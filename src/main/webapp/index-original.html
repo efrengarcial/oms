@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="oms" lang="en">
+<head>
+    <meta charset="utf-8">        
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/toastr.css"/>
+    <link rel="stylesheet" href="css/ng-grid.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    
+    
+    <style>
+        body {
+            padding-top: 60px;
+        }
+    </style>
+    <title>OMS : Submit Story</title>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">OMS</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav" role="navigation">
+                    <li>
+                        <a href="#/table">Table</a>
+                    </li>
+                </ul>
+                <ul class="nav" role="navigation">
+                    <li>
+                        <a href="#/grid">Grid</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav" role="navigation">
+                   <li><a href="j_spring_security_logout">Logout</a></li>
+                </ul>
+            </div>           
+            <!--/.nav-collapse --> 
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-view>
+
+</div>
+
+<script src="js/jquery-1.9.1.js"></script>
+<!-- 
+<script src="js/bootstrap.js"></script>
+ -->
+ 
+<script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script> 
+<script src="js/angular.js"></script>
+<script src="js/angular-resource.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/ng-grid-2.0.7.min.js"></script>
+ <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.8.0.js"></script>
+<script src="js/toastr.js"></script>
+<script src="js/app.js?(new Date()).getTime()"></script>
+</body>
+</html>
+
