@@ -7,7 +7,7 @@ public class DefaultErrorMessage {
 	private String code;
 	private String status;
 	@SuppressWarnings("rawtypes")
-	private List errors = new ArrayList<>();
+	private List errors = new ArrayList<>(); 
 
 	@SuppressWarnings("unchecked")
 	public DefaultErrorMessage(String code, String status, String error) {
