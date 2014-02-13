@@ -118,7 +118,7 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            <!-- http://padcom13.blogspot.com/2011/09/using-jrebel-from-pure-maven-in-web.html -->
+            <!-- http://padcom13.blogspot.com/2011/09/using-jrebel-from-pure-maven-in-web.html
             <plugin>
                 <groupId>org.zeroturnaround</groupId>
                 <artifactId>jrebel-maven-plugin</artifactId>
@@ -133,6 +133,7 @@
                     </execution>
                 </executions>
             </plugin> 
+             -->
 		</plugins>
 	</build>
 </project>
