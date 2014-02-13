@@ -1,4 +1,4 @@
-package com.wtf.oms.config;
+package com.touresbalon.oms.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

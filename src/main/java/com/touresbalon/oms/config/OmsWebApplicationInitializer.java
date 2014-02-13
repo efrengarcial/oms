@@ -1,4 +1,4 @@
-package com.wtf.oms.config;
+package com.touresbalon.oms.config;
 
 import javax.servlet.Filter;
 

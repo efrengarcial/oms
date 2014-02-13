@@ -1,4 +1,4 @@
-package com.wtf.oms.api;
+package com.touresbalon.oms.api;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import com.wtf.oms.domain.Story;
-import com.wtf.oms.repository.StoryRepository;
+import com.touresbalon.oms.domain.Story;
+import com.touresbalon.oms.repository.StoryRepository;
 
 @Controller
 @RequestMapping("/stories")

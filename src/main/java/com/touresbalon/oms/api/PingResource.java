@@ -1,4 +1,4 @@
-package com.wtf.oms.api;
+package com.touresbalon.oms.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

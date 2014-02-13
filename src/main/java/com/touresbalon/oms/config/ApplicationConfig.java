@@ -1,4 +1,4 @@
-package com.wtf.oms.config;
+package com.touresbalon.oms.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.mongodb.Mongo;
-import com.wtf.oms.repository.StoryRepository;
+import com.touresbalon.oms.repository.StoryRepository;
 
 
 

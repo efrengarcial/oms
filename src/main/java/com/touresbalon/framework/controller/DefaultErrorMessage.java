@@ -1,4 +1,4 @@
-package com.wtf.framework.controller;
+package com.touresbalon.framework.controller;
 
 import java.util.ArrayList;
 import java.util.List;

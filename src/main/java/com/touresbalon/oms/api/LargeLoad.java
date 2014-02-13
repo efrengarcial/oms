@@ -1,4 +1,4 @@
-package com.wtf.oms.api;
+package com.touresbalon.oms.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import com.wtf.oms.domain.Data;
+import com.touresbalon.oms.domain.Data;
 
 @RequestMapping("/largeLoad")
 @Controller

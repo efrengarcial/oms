@@ -1,4 +1,4 @@
-package com.wtf.framework.exception;
+package com.touresbalon.framework.exception;
 
 /**
  * The exception class to be extended by all

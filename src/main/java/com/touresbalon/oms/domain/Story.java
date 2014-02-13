@@ -1,4 +1,4 @@
-package com.wtf.oms.domain;
+package com.touresbalon.oms.domain;
 
 import java.util.Date;
 
