@@ -3,7 +3,7 @@
 define(["angular", "angular-resource", "angular-route","ng-grid","ui-bootstrap","js/controllers", "js/services","js/filters","angular-animate",
       "toaster",  
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
-    "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl"
+    "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController"
 ], function(angular){
     /* App Module */
     var omsApp = angular.module('omsApp', [
@@ -21,7 +21,8 @@ define(["angular", "angular-resource", "angular-route","ng-grid","ui-bootstrap",
     omsApp.config(['$routeProvider',
       function($routeProvider) {
         $routeProvider
-          .when('/', {templateUrl: 'views/stories/list.html', controller: 'StoryListController'})
+          //.when('/', {templateUrl: 'views/stories/list.html', controller: 'StoryListController'})
+          .when('/', {templateUrl: 'views/oms/parametros.html', controller: 'ParametroListController'})
           .when('/table', {templateUrl: 'views/stories/table.html', controller: 'TableController'})
           .when('/grid', {templateUrl: 'views/stories/grid.html', controller: 'GridController'})
           .when('/stories/new', {templateUrl: 'views/stories/create.html', controller: 'StoryCreateController'})

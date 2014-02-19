@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.mongodb.Mongo;
-import com.touresbalon.oms.repository.StoryRepository;
+import com.touresbalon.oms.repository.mongo.StoryRepository;
 
 
 
