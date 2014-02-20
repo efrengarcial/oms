@@ -27,5 +27,5 @@ El primero es tu `Directorio de trabajo` que contiene los archivos,
 el segundo es el `Index (stage)` que actua como una zona intermedia, 
 y el último es el `HEAD` que apunta al último commit realizado.
 
-![](https://github.com/efrengarcial/oms/blob/master/git/trees.png)
+![](http://rogerdudler.github.io/git-guide/img/trees.png)
 
