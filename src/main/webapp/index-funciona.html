@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/toaster.css"/>
+    <link rel="stylesheet" href="css/ng-grid.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    
+    
+    <style>
+        body {
+            padding-top: 60px;
+        }
+    </style>
+    <title>OMS : Submit Story</title>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">OMS</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav" role="navigation">
+                    <li>
+                        <a href="#/table">Table</a>
+                    </li>
+                </ul>
+                <ul class="nav" role="navigation">
+                    <li>
+                        <a href="#/grid">Grid</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav" role="navigation">
+                   <li><a href="j_spring_security_logout">Logout</a></li>
+                </ul>
+            </div>           
+            <!--/.nav-collapse --> 
+        </div>
+    </div>	
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'time-out': 3000}"></toaster-container>
+<div class="container" ng-view>
+
+</div>
+
+<script data-main="lib/requirejs/main-dev" src="lib/requirejs/requirejs.js"></script>
+
+</body>
+</html>
+

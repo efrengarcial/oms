@@ -1,0 +1,54 @@
+requirejs.config({
+
+    baseUrl: './',
+
+    paths: {
+        app: 'app/app.js?(new Date()).getTime()',
+        jquery: "lib/jquery/jquery-2.0.3.min",    
+        bootstrap : "lib/bootstrap/bootstrap.min",
+        angular: "lib/angular/angular",
+        "angular-resource": "lib/angular/angular-resource",
+        "angular-route": "lib/angular/angular-route",
+        "ng-grid" : "lib/ng-grid/ng-grid-2.0.7.min",
+        "ui-bootstrap" :  "lib/ui-bootstrap/ui-bootstrap-tpls-0.10.0.min",        
+        "angular-animate" :  "lib/angular-animate/angular-animate.min",
+        "toaster" :  "lib/toaster/toaster",
+        layout : "app/layout/",
+        controllers: "app/controllers/",
+        services: "app/services/",
+        filters: "app/filters/",       
+        //models: "lib/models",
+        //views: "lib/views"
+    },
+    shim: {
+    	"bootstrap": {
+          	deps: ["jquery"]
+        },
+        "angular": {
+            deps: ["jquery"],
+            exports: "angular"
+        },
+        "angular-resource": {
+            deps: ["angular"]
+        },
+        "angular-route": {
+            deps: ["angular"]
+        },
+        "ng-grid": {
+        	deps: ["angular"]
+        },
+        "ui-bootstrap": {
+        	deps: ["angular"]
+        },
+        "angular-animate": {
+        	deps: ["angular"]
+        },
+        "toaster": {
+        	deps: ["angular-animate"]
+        }
+    }
+});
+
+requirejs([
+    "app"
+]);
