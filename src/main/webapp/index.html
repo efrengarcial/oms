@@ -39,6 +39,10 @@
     <div>
         <div data-ng-include="'app/layout/shell.html'"></div>
         
+         <div class="container shuffle-animation" ng-view> </div>      
+
+		   
+                  
         <div id="splash-page" data-ng-show="false">
             <div class="page-splash">
                 <div class="page-splash-message">
@@ -54,8 +58,7 @@
    <toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'time-out': 3000}"></toaster-container>
 
       
-   <script data-main="app/main-dev" src="lib/requirejs/requirejs.js"></script>
-	
+   <script data-main="app/main-dev" src="lib/requirejs/requirejs.js"></script>	
 
     <span data-cc-scroll-to-top></span>    
 
