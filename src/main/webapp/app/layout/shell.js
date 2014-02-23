@@ -1,4 +1,4 @@
-﻿define(["angular","js/controllers"], function(angular, controllers){
+﻿define(["angular","controllers"], function(angular, controllers){
 
     controllers.controller('shell', ['$rootScope',
         function($rootScope) {

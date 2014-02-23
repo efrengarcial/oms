@@ -1,4 +1,4 @@
-define(["angular","js/controllers", "services/StoryService"], function(angular, controllers){
+define(["angular","controllers", "services/StoryService"], function(angular, controllers){
 
     controllers.controller('StoryCreateController', ['$scope', 'Story','$routeParams', '$location','toaster',
         function($scope, Story, $routeParams, $location, toaster) {

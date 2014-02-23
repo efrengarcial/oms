@@ -1,4 +1,4 @@
-define(["angular", "js/services"], function(angular, services){
+define(["angular", "services"], function(angular, services){
 
     services.factory('Token', ['$resource',
         function($resource){

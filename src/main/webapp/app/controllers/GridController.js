@@ -1,4 +1,4 @@
-define(["angular","js/controllers", "services/StoryService"], function(angular, controllers){
+define(["angular","controllers", "services/StoryService"], function(angular, controllers){
     controllers.controller('GridController', ['$scope', '$http','$modal',
         function($scope, $http , $modal) {
     		

@@ -3,7 +3,7 @@ requirejs.config({
     baseUrl: './',
 
     paths: {
-        app: 'app/app.js?(new Date()).getTime()',
+        app: 'app/app',
         jquery: "lib/jquery/jquery-2.0.3.min",    
         bootstrap : "lib/bootstrap/bootstrap.min",
         angular: "lib/angular/angular",
@@ -15,9 +15,10 @@ requirejs.config({
         "ui-bootstrap" :  "lib/ui-bootstrap/ui-bootstrap-tpls-0.10.0.min", 
         "toaster" :  "lib/toaster/toaster",
         layout : "app/layout/",
-        controllers: "app/controllers/",
-        services: "app/services/",
-        filters: "app/filters/",       
+        controllers: "app/controllers",
+        services: "app/services",
+        filters: "app/filters",  
+        directives: "app/directives",  
         //models: "lib/models",
         //views: "lib/views"
     },

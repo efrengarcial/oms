@@ -1,4 +1,4 @@
-define(["angular", "js/services"], function(angular, services){
+define(["angular", "sservices"], function(angular, services){
 
     services.factory('Movie', ['$resource',
         function($resource){

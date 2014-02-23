@@ -1,4 +1,4 @@
-define(["angular","js/controllers", "services/StoryService"], function(angular, controllers){
+define(["angular","controllers", "services/StoryService"], function(angular, controllers){
 
     controllers.controller('TableController', ['$scope', '$filter',
         function($scope, $filter) {

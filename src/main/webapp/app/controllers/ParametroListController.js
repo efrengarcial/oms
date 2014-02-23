@@ -1,4 +1,4 @@
-define(["angular","js/controllers", "services/ParametroService"], function(angular, controllers){
+define(["angular","controllers", "services/ParametroService"], function(angular, controllers){
 
     controllers.controller('ParametroListController', ['$scope', 'Parametro','toaster',
         function($scope, Parametro,toaster) {    	

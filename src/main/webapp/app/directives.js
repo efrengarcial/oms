@@ -1,92 +1,10 @@
-'use strict';
+﻿'use strict';
 
-define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-bootstrap","controllers", "services","filters","angular-animate",
-        "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
-    "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
-    "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController"
-], function(angular){
-    /* App Module */
-    var app = angular.module('app', [
-        'ngResource',
-        'ngRoute', 
-        'ngGrid',        
-        'ui.bootstrap',
-        'ngAnimate',
-        'ngSanitize',
-        'toaster',
-        'controllers',
-        'services',
-        'filters'        
-    ]);
+define(["angular"], function(angular){
+    /* Services Module */
+   
+	 var app = angular.module("app", [] );
 
-    /*app.config(['$routeProvider',
-      function($routeProvider) {    
-        $routeProvider
-          //.when('/', {templateUrl: 'views/stories/list.html', controller: 'StoryListController'})
-          .when('/', {templateUrl: 'views/oms/parametros.html', controller: 'ParametroListController'})
-          //.when('/table', {templateUrl: 'views/stories/table.html', controller: 'TableController'})
-          .when('/table', {templateUrl: 'views/oms/admin.html', controller: 'TableController'})
-          .when('/grid', {templateUrl: 'views/stories/grid.html', controller: 'GridController'})
-          .when('/stories/new', {templateUrl: 'views/stories/create.html', controller: 'StoryCreateController'})
-          .when('/stories/:storyId', {templateUrl: 'views/stories/detail.html', controller: 'StoryDetailController'})         
-          .otherwise({
-            redirectTo: '/'
-          }); 
-      }]); */
-    
-    // Collect the routes
-    app.constant('routes', getRoutes());
-    
-    // Configure the routes and route resolvers
-    app.config(['$routeProvider', 'routes', routeConfigurator]);
-    function routeConfigurator($routeProvider, routes) {
-
-        routes.forEach(function (r) {
-            $routeProvider.when(r.url, r.config);
-        });
-        $routeProvider.otherwise({ redirectTo: '/' });
-    }
-    
-    // Define the routes 
-    function getRoutes() {
-        return [
-            {
-                url: '/',
-                config: {
-                    templateUrl: 'views/oms/parametros.html',
-                    title: 'dashboard',
-                    controller: 'ParametroListController',
-                    settings: {
-                        nav: 1,
-                        content: '<i class="fa fa-dashboard"></i> Dashboard'
-                    }
-                }
-            }, {
-                url: '/table',
-                config: {
-                    title: 'admin',
-                    controller: 'TableController',
-                    templateUrl: 'views/oms/admin.html',
-                    settings: {
-                        nav: 2,
-                        content: '<i class="fa fa-lock"></i> Admin'
-                    }
-                }
-            }
-        ];
-    }
-    
-    app.run(['$http','Token','toaster', function run( $http, Token,toaster ){
-        //For CSRF token compatibility with Django
-        //$http.defaults.headers.post['X-CSRFToken'] = $cookies['csrftoken'];
-    	Token.query({}, function(data, headers){
-    	    var token =  headers('X-CSRF-TOKEN');
-    	    $http.defaults.headers.post['X-CSRF-TOKEN']=token;
-    	    toaster.pop('success', "title", "text");
-    	});        
-    }]);
-    
-    
     app.directive('ccImgPerson', ['config', function (config) {
         //Usage:
         //<img data-cc-img-person="{{s.speaker.imageSource}}"/>
@@ -274,7 +192,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                 'rightText': '@',
                 'allowCollapse': '@'
             },
-            templateUrl: 'app/layout/widgetheader.html',
+            templateUrl: '/app/layout/widgetheader.html',
             restrict: 'A',
         };
         return directive;
@@ -295,7 +213,6 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         };
     });
     
-    
-    angular.bootstrap(document, ['app']);
-    return app;
 });
+
+
