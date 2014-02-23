@@ -10,7 +10,7 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {ApplicationConfig.class, /*RepositoryOracleConfig.class,*/SecurityConfig.class };
+		return new Class[] {ApplicationConfig.class, RepositoryOracleConfig.class, SecurityConfig.class };
 	}
 
 	@Override
