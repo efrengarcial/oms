@@ -3,7 +3,8 @@
 define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-bootstrap","controllers", "services","filters","angular-animate",
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
-    "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController"
+    "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
+    "controllers/dashboard"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -53,9 +54,9 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
             {
                 url: '/',
                 config: {
-                    templateUrl: 'views/oms/parametros.html',
+                    templateUrl: 'views/oms/dashboard.html',
                     title: 'dashboard',
-                    controller: 'ParametroListController',
+                   //controller: 'dashboard',
                     settings: {
                         nav: 1,
                         content: '<i class="fa fa-dashboard"></i> Dashboard'
@@ -70,6 +71,17 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-lock"></i> Admin'
+                    }
+                }
+            } ,   {
+                url: '/param',
+                config: {
+                    templateUrl: 'views/oms/parametros.html',
+                    title: 'parametros',
+                    controller: 'ParametroListController',
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-dashboard"></i> Parametros'
                     }
                 }
             }
