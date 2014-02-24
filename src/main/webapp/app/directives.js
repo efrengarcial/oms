@@ -1,11 +1,9 @@
 ﻿'use strict';
 
-define(["angular"], function(angular){
+define(["angular","controllers"], function(angular,controllers){
     /* Services Module */
    
-	 var app = angular.module("app", [] );
-
-    app.directive('ccImgPerson', ['config', function (config) {
+    controllers.directive('ccImgPerson', ['config', function (config) {
         //Usage:
         //<img data-cc-img-person="{{s.speaker.imageSource}}"/>
         var basePath = config.imageSettings.imageBasePath;
@@ -25,7 +23,7 @@ define(["angular"], function(angular){
     }]);
 
 
-    app.directive('ccSidebar', function () {
+    controllers.directive('ccSidebar', function () {
         // Opens and clsoes the sidebar menu.
         // Usage:
         //  <div data-cc-sidebar>
@@ -64,7 +62,7 @@ define(["angular"], function(angular){
     });
 
 
-    app.directive('ccWidgetClose', function () {
+    controllers.directive('ccWidgetClose', function () {
         // Usage:
         // <a data-cc-widget-close></a>
         // Creates:
@@ -90,7 +88,7 @@ define(["angular"], function(angular){
         }
     });
 
-    app.directive('ccWidgetMinimize', function () {
+    controllers.directive('ccWidgetMinimize', function () {
         // Usage:
         // <a data-cc-widget-minimize></a>
         // Creates:
@@ -124,7 +122,7 @@ define(["angular"], function(angular){
         }
     });
 
-    app.directive('ccScrollToTop', ['$window',
+    controllers.directive('ccScrollToTop', ['$window',
         // Usage:
         // <span data-cc-scroll-to-top></span>
         // Creates:
@@ -158,7 +156,7 @@ define(["angular"], function(angular){
         }
     ]);
 
-    app.directive('ccSpinner', ['$window', function ($window) {
+    controllers.directive('ccSpinner', ['$window', function ($window) {
         // Description:
         //  Creates a new Spinner and sets its options
         // Usage:
@@ -181,7 +179,7 @@ define(["angular"], function(angular){
         }
     }]);
 
-    app.directive('ccWidgetHeader', function() {
+    controllers.directive('ccWidgetHeader', function() {
         //Usage:
         //<div data-cc-widget-header title="vm.map.title"></div>
         var directive = {
@@ -192,7 +190,7 @@ define(["angular"], function(angular){
                 'rightText': '@',
                 'allowCollapse': '@'
             },
-            templateUrl: '/app/layout/widgetheader.html',
+            templateUrl: 'app/layout/widgetheader.html',
             restrict: 'A',
         };
         return directive;
@@ -202,7 +200,7 @@ define(["angular"], function(angular){
         }
     });
 
-    app.directive('myInput', function () {
+    controllers.directive('myInput', function () {
         return {
             restrict: 'A',
             link: function (scope, element) {
