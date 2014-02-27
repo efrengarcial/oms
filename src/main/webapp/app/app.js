@@ -84,6 +84,16 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-dashboard"></i> Parametros'
                     }
                 }
+            },   {
+                url: '/consultarProductos',
+                config: {
+                    templateUrl: 'app/views/productos/consultarProductos.html',
+                    title: 'Consultar Productos',                    
+                    settings: {
+                        nav: 1,
+                        content: '<i class="fa fa-dashboard"></i> Consultar Productos'
+                    }
+                }
             }
         ];
     }
