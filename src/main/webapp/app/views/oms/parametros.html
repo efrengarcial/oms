@@ -1,0 +1,21 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">      		
+                             
+               		<h2>
+						Stories <a class="btn btn-primary pull-right" href="#/stories/new"><i
+							class="icon-plus-sign icon-white"></i> Nuevo Parametro</a>
+					</h2>
+					
+					<table class="table table-striped">
+						<tr ng-repeat="parametro in parametros">
+							<td><a href="#/stories/{{story.id}}">{{parametro.nombre}}</a></td>
+							<td>{{parametro.valor}}</td>
+						</tr>
+					</table>
+					               		
+            </div>
+        </div>
+    </section>
+</section>
