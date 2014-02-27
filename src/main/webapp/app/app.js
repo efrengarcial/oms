@@ -54,7 +54,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
             {
                 url: '/',
                 config: {
-                    templateUrl: 'views/oms/dashboard.html',
+                    templateUrl: 'app/views/oms/dashboard.html',
                     title: 'dashboard',
                    //controller: 'dashboard',
                     settings: {
@@ -67,7 +67,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                 config: {
                     title: 'admin',
                     controller: 'TableController',
-                    templateUrl: 'views/oms/admin.html',
+                    templateUrl: 'app/views/oms/admin.html',
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-lock"></i> Admin'
@@ -76,7 +76,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
             } ,   {
                 url: '/param',
                 config: {
-                    templateUrl: 'views/oms/parametros.html',
+                    templateUrl: 'app/views/oms/parametros.html',
                     title: 'parametros',
                     controller: 'ParametroListController',
                     settings: {
@@ -88,7 +88,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         ];
     }
     
-    app.run(['$http','Token','toaster', function run( $http, Token,toaster ){
+    app.run(['$http','Token','toaster','$log', function run( $http, Token,toaster,$log ){
         //For CSRF token compatibility with Django
         //$http.defaults.headers.post['X-CSRFToken'] = $cookies['csrftoken'];
     	Token.query({}, function(data, headers){
