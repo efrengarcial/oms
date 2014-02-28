@@ -4,7 +4,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
     "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
-    "controllers/dashboard"
+    "controllers/dashboard" , "controllers/StoreController"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -80,7 +80,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     title: 'parametros',
                     controller: 'ParametroListController',
                     settings: {
-                        nav: 1,
+                        nav: 3,
                         content: '<i class="fa fa-dashboard"></i> Parametros'
                     }
                 }
@@ -90,8 +90,43 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     templateUrl: 'app/views/productos/consultarProductos.html',
                     title: 'Consultar Productos',                    
                     settings: {
-                        nav: 1,
+                        nav: 4,
                         content: '<i class="fa fa-dashboard"></i> Consultar Productos'
+                    }
+                }
+            } 
+            //carrito de compras
+            ,   {
+                url: '/store',
+                config: {
+                    templateUrl: 'app/views/admincarrito/store.html',
+                    title: 'Productos',
+                    controller: 'StoreController',
+                    settings: {
+                        nav: 5,
+                        content: '<i class="fa fa-dashboard"></i> Productos'
+                    }
+                }
+            }
+            ,   {
+                url: '/products/:productSku',
+                config: {
+                    templateUrl: 'app/views/admincarrito/product.html',                    
+                    controller: 'StoreController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> xxxxxxx'
+                    }
+                }
+            }
+            ,   {
+                url: '/cart',
+                config: {
+                    templateUrl: 'app/views/admincarrito/shoppingCart.html',                   
+                    controller: 'StoreController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> xxxxxxx'
                     }
                 }
             }
