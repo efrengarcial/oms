@@ -2,6 +2,8 @@ define(["angular", "services"], function(angular, services){
 
     services.factory('ShoppingCart', function(){
     	
+    		//http://www.bennadel.com/blog/2527-Defining-Instantiatable-Classes-In-The-AngularJS-Dependency-Injection-Framework.htm
+    	
 	    	function ShoppingCart(cartName) {
 	    	    this.cartName = cartName;
 	    	    this.clearCart = false;
@@ -12,7 +14,7 @@ define(["angular", "services"], function(angular, services){
 	    	    this.loadItems();
 	    	    // save items to local storage when unloading
 	    	    var self = this;
-	    	    $(window).unload(function () {
+	    	    angular.element(window).unload(function () {
 	    	        if (self.clearCart) {
 	    	            self.clearItems();
 	    	        }

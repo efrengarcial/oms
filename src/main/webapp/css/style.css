@@ -3,3 +3,16 @@
     width: 600px; 
     height: 300px;
 }
+
+.pristine.true, .dirty.true, .invalid.true {
+  background: gray;
+}
+.valid.false {
+  background: red;
+}
+.valid.true {
+  background: green; 
+}
+.error {
+  color: red; 
+}

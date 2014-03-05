@@ -16,7 +16,7 @@ requirejs.config({
         "toaster" :  "lib/toaster/toaster",
         layout : "app/layout/",
         controllers: "app/controllers",
-        services: "app/services",
+        services: "app/services",   
         filters: "app/filters",  
         directives: "app/directives",  
         //models: "lib/models",

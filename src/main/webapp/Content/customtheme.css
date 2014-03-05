@@ -11,11 +11,11 @@
     /*font-weight: 400;*/
 }
 
-.btn, .badge, .modal, .modal-dialog, .modal-content,
+/*.btn, .badge, .modal, .modal-dialog, .modal-content,
 input, select {
     -ms-border-radius: 0 !important;
     border-radius: 0 !important;
-}
+} */
 
 input, select {
     padding: 4px !important;

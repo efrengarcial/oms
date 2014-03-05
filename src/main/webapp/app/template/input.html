@@ -1,0 +1,8 @@
+<div class="form-group" ng-class="{'error' : $field.$invalid && ( $field.$dirty || $form.attempt )}">
+  <label class="control-label text-info"  >{{label}}</label>
+  <div class="input-group col-lg-offset-2 ">
+    <input>
+    <div ng-repeat="(key, error) in $field.$error" ng-show="error && ( $field.$dirty || $form.attempt )" 
+    	class="validation-label">{{$validationMessages[key]}}</div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-	<nav class="navbar navbar-fixed-top navbar-inverse">
+<div data-ng-controller="SecurityController">	
+    <nav class="yamm navbar navbar-fixed-top navbar-inverse">
 		<div class="navbar-header">
 			<a href="/" class="navbar-brand"><span class="brand-title">B2C</span></a>
 			<a class="btn navbar-btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -15,51 +16,46 @@
 							Created by AES
 						</a>
 					</li>
-					<li>
-						<a href="http://www.breezejs.com" target="_blank">
-							<img src="Content/images/breezelogo.png" />
-						</a>
-					</li>
 					<li class="dropdown dropdown-big">
 						<a href="http://www.angularjs.org" target="_blank">
 							<img src="Content/images/AngularJS-small.png" />
 						</a>
 					</li>
-					<li class="dropdown dropdown-big"> 
+					<li class="dropdown dropdown-big"  ng-show="showMenu"> 
                          <a class="dropdown-toggle">
-                            User Sign In<b class="caret"></b>
+                            Log In<b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu" my-input>    
-                            <form class="form-horizontal">
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label" for="inputUsuario">Usuario</label>
-                                <div class="controls">
-                                  <input type="text" class="form-control" id="inputUsuario" >
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label" for="inputPassword">Password</label>
-                                <div class="controls">
-                                  <input type="password" id="inputPassword" class="form-control">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <div class="col-lg-offset-2 col-lg-10">
-                                  <label class="checkbox">
-                                    <input type="checkbox"> Remember me
-                                  </label>
-                                </div>
-                              </div>
-                                <div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                      <button type="submit" class="btn btn-default">Entrar</button>
-                                    </div>
-                                  </div>  
-
-                            </form>
+                        <ul class="dropdown-menu" my-input>  
+                            <li>
+                            <div class="yamm-content">                            
+                                    <form  name="userForm" class="form-inline" submit-valid="submitForm()"  novalidate>
+                                    	<field ng-model='usuario.login' type='text' label='Usuario:' required>
+										    <validator key='required'>Usuario es requerido</validator>
+										 </field>
+										 
+										 <field ng-model='usuario.password' type='text' label='Contrasena:' required>
+										    <validator key='required'>Constrasena es requerido</validator>
+										 </field>
+										  
+										 <div class="checkbox col-lg-offset-2">
+										    <label>
+										      <input type="checkbox"> No cerrar sesion
+										    </label>
+										  </div>                                  
+										                                        
+                                       
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-4 col-lg-10">
+                                                <button type="submit" class="btn btn-large btn-primary btn-default">Entrar</button>
+                                            </div>
+                                        </div>  
+                                    </form>                                           
+                                </div>                      
+                            </li>                                            
                         </ul>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+</div>
