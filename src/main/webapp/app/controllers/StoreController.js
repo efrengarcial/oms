@@ -1,12 +1,30 @@
-define(["angular","controllers", "services/DataService",  "services/ShoppingCart", "services/Store" ,"services/Product"],
+define(["angular","controllers", "services/DataService",  "services/ShoppingCart", "services/Store" ,"services/Product", "services/ProductoService"],
 		function(angular, controllers){
 
 	//http://nadeemkhedr.wordpress.com/2013/09/01/build-angularjs-grid-with-server-side-paging-sorting-filtering/
-    controllers.controller('StoreController', ['$scope','$routeParams', 'toaster','DataService','Store','Product','$location',
-        function($scope, $routeParams ,toaster,DataService,Store,Product,$location) {   
+    controllers.controller('StoreController', ['$scope','$routeParams', 'toaster','DataService','Store','Producto','$location','$rootScope',
+        function($scope, $routeParams ,toaster,DataService,Store,Producto,$location,$rootScope) {   
 	    	 // get store and cart from service
-	        $scope.store = DataService.store;
+	        //$scope.store = DataService.store;
 	        $scope.cart = DataService.cart;
+	        $rootScope.loading = true;
+        	Producto.query().$promise.then(	        			
+        			//success
+        			function( data ){
+        				$scope.productos =data;// data.Customers;
+        				$scope.totalPages = 10;//data.TotalPages;
+        				$scope.customersCount = 100; //data.TotalItems;
+        				$rootScope.loading = false;
+        			},
+        			//error
+        			function( error ){ 
+        				toaster.pop('error', "Mensaje de Error", error.data);
+        				$rootScope.loading = false;
+        				$scope.productos = [];
+        				$scope.totalPages = 0;
+        				$scope.customersCount = 0;
+        			}
+        	);   
 
 	        $scope.totalPages = 10;
 	        $scope.productosCount = 100;
@@ -36,23 +54,32 @@ define(["angular","controllers", "services/DataService",  "services/ShoppingCart
 	            sortedBy: 'codigo'
 	        };
 
-            //The function that is responsible of fetching the result from the server and setting the grid to the new result
+	        //The function that is responsible of fetching the result from the server and setting the grid to the new result
 	        $scope.fetchResult = function () {
-	            return api.customers.search($scope.filterCriteria).then(function (data) {
-	                $scope.customers = data.Customers;
-	                $scope.totalPages = data.TotalPages;
-	                $scope.customersCount = data.TotalItems;
-	            }, function () {
-	                $scope.customers = [];
-	                $scope.totalPages = 0;
-	                $scope.customersCount = 0;
-	            });
+	        	$rootScope.loading = true;
+	        	Producto.query().$promise.then(	        			
+	        			//success
+	        			function( data ){
+	        				$scope.productos =data;// data.Customers;
+	        				$scope.totalPages = 10;//data.TotalPages;
+	        				$scope.customersCount = 100; //data.TotalItems;
+	        				$rootScope.loading = false;
+	        			},
+	        			//error
+	        			function( error ){ 
+	        				toaster.pop('error', "Mensaje de Error", error.data);
+	        				$rootScope.loading = false;
+	        				$scope.productos = [];
+	        				$scope.totalPages = 0;
+	        				$scope.customersCount = 0;
+	        			}
+	        	);      	
 	        };
 
             //called when navigate to another page in the pagination
 	        $scope.selectPage = function (page) {
 	            $scope.filterCriteria.pageNumber = page;
-	            //$scope.fetchResult();
+	            $scope.fetchResult();
 	        };
 
             //Will be called when filtering the grid, will reset the page number to one
@@ -76,7 +103,7 @@ define(["angular","controllers", "services/DataService",  "services/ShoppingCart
 	        };
 
             //manually select a page to trigger an ajax request to populate the grid on page load
-	        $scope.selectPage(1);
+	        //$scope.selectPage(1);
 
 	
 	        // use routing to pick the selected product

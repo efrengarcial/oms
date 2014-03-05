@@ -2,6 +2,7 @@ define(["angular", "services"], function(angular, services){
 
     services.factory('ShoppingCart', function(){
     	
+    	    //http://www.codeproject.com/Articles/576246/A-Shopping-Cart-Application-Built-with-AngularJS
     		//http://www.bennadel.com/blog/2527-Defining-Instantiatable-Classes-In-The-AngularJS-Dependency-Injection-Framework.htm
     	
 	    	function ShoppingCart(cartName) {

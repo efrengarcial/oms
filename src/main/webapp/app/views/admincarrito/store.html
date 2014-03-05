@@ -32,17 +32,17 @@
                         </tr>
                      </thead>
                     <tbody>
-				    <tr ng-repeat="product in store.products | orderBy:'name' | filter:search" >
-				        <td class="tdCenter"><img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" /></td>
+				    <tr ng-repeat="product in  productos" >
+				        <td class="tdCenter"><img ng-src="img/products/{{product.codigoProducto}}.jpg" alt="{{product.nombreProducto}}" /></td>
 				        <td>
-				            <a href="#/products/{{product.sku}}"><b>{{product.name}}</b></a><br />
-				            {{product.description}}
+				            <a href="#/products/{{product.sku}}"><b>{{product.nombreProducto}}</b></a><br />
+				            {{product.descripcionProducto}}
 				        </td>
 				        <td class="tdRight">
-				            {{product.price | currency}}
+				            {{product.precio | currency}}
 				        </td>
 				        <td class="tdCenter">
-				            <a href="" class="blue" ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
+				            <a href="" class="blue" ng-click="cart.addItem(product.codigoProducto, product.nombreProducto, product.precio, 1)">
 				                Adicionar a Carrito
 				            </a>
 				        </td>
@@ -61,9 +61,11 @@
 				</table>				               			
 				<div ng-show="productosCount == 0">
                   <h3>Productos no encontrados</h3>
-                </div>                                   
-                 <pagination  total-items="productosCount" num-pages="totalPages" current-page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
+                </div>     
+                <div ng-show="totalPages > 1" class="align-center">                              
+                 	<pagination  total-items="productosCount" num-pages="totalPages" current-page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
                             on-select-page="selectPage(page)"></pagination>
+                </div>            
                             		
             </div>
         </div>

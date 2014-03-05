@@ -14,7 +14,7 @@ import com.touresbalon.oms.repository.oracle.ParametroRepository;
 
 @Controller
 @RequestMapping("/parametros")
-public class ParametroConstoller {
+public class ParametroController {
 
 	@Autowired ParametroRepository parametroRepository;
 
