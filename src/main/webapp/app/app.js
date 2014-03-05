@@ -130,6 +130,28 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     }
                 }
             }
+            ,   {
+                url: '/stories',
+                config: {
+                    templateUrl: 'app/views/stories/list.html',                   
+                    controller: 'StoryListController',
+                    settings: {
+                        nav: 6,
+                        content: '<i class="fa fa-dashboard"></i> Stories'
+                    }
+                }
+            }
+            ,   {
+                url: '/stories/new',
+                config: {
+                    templateUrl: 'app/views/stories/create.html',                   
+                    controller: 'StoryCreateController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> Stories'
+                    }
+                }
+            }
         ];
     }
     

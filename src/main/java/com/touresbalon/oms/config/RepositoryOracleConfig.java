@@ -27,9 +27,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
-import com.touresbalon.oms.domain.Data;
-import com.touresbalon.oms.domain.Parametro;
-import com.touresbalon.oms.repository.ParametroRepository;
+import com.touresbalon.oms.domain.oracle.Data;
+import com.touresbalon.oms.domain.oracle.Parametro;
+import com.touresbalon.oms.repository.oracle.ParametroRepository;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/

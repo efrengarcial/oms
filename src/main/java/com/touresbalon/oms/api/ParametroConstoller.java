@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.touresbalon.oms.domain.Parametro;
-import com.touresbalon.oms.repository.ParametroRepository;
+import com.touresbalon.oms.domain.oracle.Parametro;
+import com.touresbalon.oms.repository.oracle.ParametroRepository;
 
 
 @Controller

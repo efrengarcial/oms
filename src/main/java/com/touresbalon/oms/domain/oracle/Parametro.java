@@ -1,4 +1,4 @@
-package com.touresbalon.oms.domain;
+package com.touresbalon.oms.domain.oracle;
 
 import java.io.Serializable;
 
