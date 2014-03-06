@@ -57,12 +57,12 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     controller: 'StoreController',
                     settings: {
                         nav: 2,
-                        content: '<i class="fa fa-dashboard"></i> Eventos'
+                        content: '<i class="fa fa-dashboard"></i> Productos'
                     }
                 }
             }
             ,   {
-                url: '/products/:productSku',
+                url: '/products/:codigoProducto',
                 config: {
                     templateUrl: 'app/views/admincarrito/product.html',                    
                     controller: 'StoreController',

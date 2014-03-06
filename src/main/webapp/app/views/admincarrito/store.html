@@ -3,16 +3,14 @@
         <div class="container">
             <div class="row">      		                             
 				
-				<h2>Consultar Eventos</h2>
+				<h2>Consultar Productos</h2>
                		
-              	 <form class="well form-search">
-			        <label>Palabras Claves:</label>
-			        <input type="text" ng-model="search" class="input-medium search-query" placeholder="Keywords...">
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="search()">Buscar</button><br />
-                    <input type="radio" name="producto" value="codigo" />Codigo
-                    <input type="radio" name="producto" value="nombre" />Nombre
-                    <input type="radio" name="producto" value="descripcion" />Descripcion
-			        <p class="help-block">Pruebe  por  ejemplo: "colombia" o "ecuador" o "copa mundial"</p>      
+              	 <form class="well form-search">			       
+			        <input type="text" ng-model="codigo" class="input-medium search-query" placeholder="Codigo...">
+			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Nombre...">
+			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Descripcion...">
+			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarProductos()">Buscar</button><br />                    
+			        <p class="help-block">Pruebe  por  ejemplo: "colombia" o "ecuador" o "copa mundial de futbol"</p>      
 			    </form>			
 				
 				<table class="table table-bordered table-hover">				    
@@ -32,10 +30,10 @@
                         </tr>
                      </thead>
                     <tbody>
-				    <tr ng-repeat="product in  productos" >
+				    <tr ng-repeat="product in  store.products" >
 				        <td class="tdCenter"><img ng-src="img/products/{{product.codigoProducto}}.jpg" alt="{{product.nombreProducto}}" /></td>
 				        <td>
-				            <a href="#/products/{{product.sku}}"><b>{{product.nombreProducto}}</b></a><br />
+				            <a href="#/products/{{product.codigoProducto}}"><b>{{product.nombreProducto}}</b></a><br />
 				            {{product.descripcionProducto}}
 				        </td>
 				        <td class="tdRight">
