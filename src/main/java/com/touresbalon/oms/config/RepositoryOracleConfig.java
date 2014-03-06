@@ -99,7 +99,20 @@ public class RepositoryOracleConfig {
         bean.setPassword(dbPassword);
         bean.setJdbcUrl(dbUrl);
         bean.setUsername(dbUserName);
-        bean.setDriverClass(dbDriverClass);        
+        bean.setDriverClass(dbDriverClass);   
+        /*<property name="driverClass" value="${dataSource.driverClass}" />
+        <property name="jdbcUrl" value="${dataSource.jdbcUrl}" />
+        <property name="username" value="${dataSource.username}" />
+        <property name="password" value="${dataSource.password}" />
+        <property name="idleConnectionTestPeriodInMinutes" value="60" />
+        <property name="idleMaxAgeInMinutes" value="240" />
+        <property name="maxConnectionsPerPartition" value="${dataSource.maxConnections}" />
+        <property name="minConnectionsPerPartition" value="${dataSource.minConnections}" />
+        <property name="partitionCount" value="3" />
+        <property name="acquireIncrement" value="5" />
+        <property name="statementsCacheSize" value="100" />
+        <property name="releaseHelperThreads" value="3" />
+        <property name="connectionTimeoutInMs" value="${dataSource.connectionTimeoutInMs}"></property>*/
         return bean;
     }
 

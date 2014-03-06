@@ -92,23 +92,9 @@
 		                    class="btn btn-block btn-primary"
 		                    ng-click="cart.checkout('PayPal')"
 		                    ng-disabled="cart.getTotalCount() < 1">
-		                    <i class="icon-ok icon-white" /> check out using PayPal
-		                </button>
-		                <button 
-		                    class="btn btn-block btn-primary" 
-		                    ng-click="cart.checkout('Google')" 
-		                    ng-disabled="cart.getTotalCount() < 1">
-		                    <i class="icon-ok icon-white" /> check out using Google
-		                </button>
-		                <button 
-		                    class="btn btn-block btn-primary" 
-		                    ng-click="cart.checkout('Stripe')" 
-		                    ng-disabled="cart.getTotalCount() < 1">
-		                    <i class="icon-ok icon-white" /> check out using Stripe
-		                </button>
-		            </p>
-		                <!-- Stripe needs a form to post to -->
-		                <form class="form-stripe"></form>
+		                    <i class="icon-ok icon-white" /> Procesar La Orden
+		                </button>		              
+		            </p>	               
 		
 		            <br /><br />
 		
@@ -118,13 +104,7 @@
 		                    ng-click="cart.checkout('PayPal')"
 		                    ng-disabled="cart.getTotalCount() < 1" >
 		                    <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
-		                </button>    
-		                <button 
-		                    class="btn btn-block btn-link" 
-		                    ng-click="cart.checkout('Google')" 
-		                    ng-disabled="cart.getTotalCount() < 1" >
-		                    <img src="https://checkout.google.com/buttons/checkout.gif?w=168&h=44&style=white&variant=text" alt="checkoutGoogle"/>
-		                </button>    
+		                </button>	               
 		            </p>
 		        </div>
 		    </div>				

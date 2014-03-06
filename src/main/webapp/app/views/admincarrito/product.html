@@ -2,6 +2,9 @@
     <section class="matter">
         <div class="container">
             <div class="row">  
+            
+              <h2>Detalle Producto</h2>	
+            
                <div class="col-md-12">
 				<p class="text-info">
 				    <img ng-src="img/products/{{product.codigoProducto}}.jpg" alt="{{product.nombreProducto}}"/>
@@ -24,8 +27,13 @@
 		                </tr>
 		
 		                <tr>
-		                    <td class="tdRight"><b>Calories</b></td>
-		                    <td class="tdCenter"><h2>{{product.cal}}</h2></td>
+		                    <td class="text-right"><b>Incia</b></td>
+		                    <td class="text-center"><h1>xxxx</h1></td>
+		                    <td />
+		                </tr>
+		                  <tr>
+		                    <td class="text-right"><b>Finaliza</b></td>
+		                    <td class="text-center"><h1>xxxx</h1></td>
 		                    <td />
 		                </tr>
 		                <tr ng-repeat="(nutrientName, nutrientValue) in product.nutrients">
