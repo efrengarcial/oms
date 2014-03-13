@@ -1,0 +1,45 @@
+Presentation Layer
+Web Layer
+services Layer
+Business Logic Layer
+DAL (Data Access Layer ) which I always considered a tier and not a layer.
+
+http://www.javacodegeeks.com/2013/11/what-is-your-structure-of-jee-based-web-projects.html
+http://www.mkyong.com/spring/maven-spring-hibernate-annotation-mysql-example/
+
+
+Option 1: organize based on technical artifacts 
+
+com.mycompany.bo (includes files like: Customer.java, CreaditCard.java, Account.java, Promotion.java) 
+com.mycompany.services (includes files like: UserManaer.java, Authorization.java, Accounting.java, DiscountManager.java) 
+com.mycompany.actions (includes files like: Login.java, Authorize.java, AccountLookup.java, CalculateDiscount.java) 
+com.mycompany.dto 
+com.mycompany.assemblers 
+
+Pros: intuitive package structure; I know how the code would look like in each package 
+Cons: If I am debugging a business issue then it's hard to find out which packages might be involved 
+
+---------------------------------------------------------------------------------------- 
+
+Option 2: organize based on business concerns 
+
+com.mycompany.customer (includes files like: Customer.java,UserManaer.java,LoginAction.java) 
+com.mycompany.payment (includes files like: CreaditCard.java, Authorization.java,Authorize.java) 
+com.mycompany.account (includes files like: Account.java,Accounting.java,AccountLookupAction.java) 
+com.mycompany.promotion (includes files like: Promotion.java,DiscountManager.java,CalculateDiscount.java) 
+
+Pros: everything related to customer is in one package so it's easy to figure out business dependency 
+Cons: My technical artifacts are divided across packages and I don't know what each file might contain without opening it 
+
+Option 3: Organize based on both - the business concerns and the technical artifacts 
+
+com.mycompany.beans.customer 
+com.mycompany.services.customer 
+com.mycompany.actions.customer 
+com.mycompany.beans.account 
+com.mycompany.services.accounts 
+com.mycompany.actions.accounts 
+... 
+... 
+Pros: clear separation both business wise and tech wise 
+Cons: too many packages and sometimes only one file in each package 

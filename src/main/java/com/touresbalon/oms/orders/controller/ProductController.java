@@ -1,4 +1,4 @@
-package com.touresbalon.oms.api;
+package com.touresbalon.oms.orders.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +16,7 @@ import com.touresbalon.oms.repository.oracle.ParametroRepository;
 
 @Controller
 @RequestMapping("/productos")
-public class ProductoController {
+public class ProductController {
 
 	@Autowired ParametroRepository parametroRepository;
 
