@@ -28,8 +28,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.touresbalon.oms.domain.oracle.Data;
-import com.touresbalon.oms.domain.oracle.Parametro;
-import com.touresbalon.oms.repository.oracle.ParametroRepository;
+import com.touresbalon.oms.orders.model.dao.ParameterDao;
+import com.touresbalon.oms.orders.model.entity.Parameter;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/
@@ -53,11 +53,11 @@ import com.touresbalon.oms.repository.oracle.ParametroRepository;
         excludeFilters = {@ComponentScan.Filter(Configuration.class)})*/
 @PropertySource("classpath:/oracledb.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses =ParametroRepository.class)
+@EnableJpaRepositories(basePackageClasses =ParameterDao.class)
 @EnableLoadTimeWeaving 
-public class RepositoryOracleConfig {
+public class RepositoryOrdersConfig {
     private static final Logger logger = LoggerFactory
-            .getLogger(RepositoryOracleConfig.class);
+            .getLogger(RepositoryOrdersConfig.class);
 
     @Value("#{ environment['database.driverClassName']?:'' }")
     private String dbDriverClass;
@@ -81,9 +81,9 @@ public class RepositoryOracleConfig {
    
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public Parametro parametro() {
+    public Parameter parametro() {
         logger.debug("*** Creating Data");
-        return new Parametro();
+        return new Parameter();
     }
    
 
@@ -130,7 +130,7 @@ public class RepositoryOracleConfig {
         factory.setDataSource(dataSource());
         logger.debug("Scanning Package '{}' for entities",
                 Data.class.getPackage().getName());
-        factory.setPackagesToScan(Parametro.class.getPackage().getName());
+        factory.setPackagesToScan(Parameter.class.getPackage().getName());
 
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.valueOf(dbVendor));

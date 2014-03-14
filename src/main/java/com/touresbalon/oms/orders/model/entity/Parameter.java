@@ -1,4 +1,4 @@
-package com.touresbalon.oms.domain.oracle;
+package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SIM_PARAMETROS_WAR")
-public class Parametro implements Serializable {
+public class Parameter implements Serializable {
 	
     private static final long serialVersionUID = 1L;
     

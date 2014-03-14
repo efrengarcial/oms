@@ -1,4 +1,4 @@
-package com.touresbalon.oms.api;
+package com.touresbalon.oms.orders.controller;
 
 import java.util.List;
 
@@ -8,19 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.touresbalon.oms.domain.oracle.Parametro;
-import com.touresbalon.oms.repository.oracle.ParametroRepository;
+import com.touresbalon.oms.orders.model.dao.ParameterDao;
+import com.touresbalon.oms.orders.model.entity.Parameter;
 
 
 @Controller
-@RequestMapping("/parametros")
-public class ParametroController {
+@RequestMapping("/parameters")
+public class ParameterController {
 
-	@Autowired ParametroRepository parametroRepository;
+	@Autowired ParameterDao parameterDao;
 
 	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Parametro> allStories() {
-		return (List<Parametro>) parametroRepository.findAll();
+	public List<Parameter> allStories() {
+		return (List<Parameter>) parameterDao.findAll();
 	}
 }

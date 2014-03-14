@@ -1,9 +1,8 @@
-package com.touresbalon.oms.orders.controller;
+package com.touresbalon.oms.products.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,14 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 import com.touresbalon.oms.domain.oracle.Producto;
-import com.touresbalon.oms.repository.oracle.ParametroRepository;
 
 
 @Controller
-@RequestMapping("/productos")
+@RequestMapping("/products")
 public class ProductController {
-
-	@Autowired ParametroRepository parametroRepository;
+	
 
 	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
