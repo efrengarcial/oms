@@ -49,8 +49,6 @@ import com.touresbalon.oms.orders.model.entity.Parameter;
  * @author Efren Garcia
  */
 @Configuration
-/*@ComponentScan(basePackages = "com.touresbalon.oms.config",
-        excludeFilters = {@ComponentScan.Filter(Configuration.class)})*/
 @PropertySource("classpath:/oracledb.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses =ParameterDao.class)

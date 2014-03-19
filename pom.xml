@@ -12,6 +12,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<eclipselink.version>2.5.0</eclipselink.version>
 		<spring.version>3.2.5.RELEASE</spring.version>
+		<cxf.version>2.7.10</cxf.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -88,7 +89,20 @@
 			<version>1.3.3.RELEASE</version>
 		</dependency>
           
-          
+         <!-- Apache cxf  -->
+         <dependency>
+    		<groupId>org.apache.cxf</groupId>
+    		<artifactId>cxf-rt-frontend-jaxws</artifactId>
+    		<version>${cxf.version}</version>
+		 </dependency> 
+		
+		
+		<dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-transports-http</artifactId>
+	        <version>${cxf.version}</version>
+	    </dependency>
+        
         
           <!-- EclipseLink Dependencies -->
         <dependency>
@@ -199,6 +213,46 @@
                 </executions>
             </plugin> 
              -->
+               <!--
+               https://cxf.apache.org/docs/maven-java2ws-plugin.html
+                -->
+             	<plugin>
+				    <groupId>org.apache.cxf</groupId>
+				    <artifactId>cxf-java2ws-plugin</artifactId>
+				    <version>${cxf.version}</version>
+				    <dependencies>
+				        <dependency>
+				            <groupId>org.apache.cxf</groupId>
+				            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+				            <version>${cxf.version}</version>
+				        </dependency>
+				        <dependency>
+				            <groupId>org.apache.cxf</groupId>
+				            <artifactId>cxf-rt-frontend-simple</artifactId>
+				            <version>${cxf.version}</version>
+				        </dependency>
+				    </dependencies>
+				 
+				    <executions>
+				        <execution>				        
+				            <id>process-classes</id>
+				            <phase>process-classes</phase>
+				            <configuration>
+				                <className>com.touresbalon.oms.orders.model.service.impl.OrderServiceImpl</className>
+				                <genWsdl>true</genWsdl>
+				                <verbose>true</verbose>
+				                <soap12>true</soap12>
+				             
+				                <outputFile>${basedir}/src/main/resources/wsdl/OrderService_Service.wsdl</outputFile>
+				              
+				            </configuration>
+				            <goals>
+				                <goal>java2ws</goal>
+				            </goals>
+				        </execution>
+				    </executions>
+				</plugin>
+             
 		</plugins>
 	</build>
 </project>

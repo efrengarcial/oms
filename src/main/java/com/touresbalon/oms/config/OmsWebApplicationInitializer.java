@@ -1,6 +1,8 @@
 package com.touresbalon.oms.config;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -10,7 +12,7 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {ApplicationConfig.class, RepositoryOrdersConfig.class, SecurityConfig.class };
+		return new Class[] {ApplicationConfig.class, RepositoryOrdersConfig.class, SecurityConfig.class ,CXFConfig.class};
 	}
 
 	@Override
@@ -28,16 +30,17 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
 		return new Filter[] { new HiddenHttpMethodFilter() };
 	}
 
-	/* @Override
+/*
+	@Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext webApplicationContext = new AnnotationConfigWebApplicationContext();
-        webApplicationContext.register(ApplicationConfig.class, WebMvcConfig.class);
+        //AnnotationConfigWebApplicationContext webApplicationContext = new AnnotationConfigWebApplicationContext();
+        //webApplicationContext.register(ApplicationConfig.class, WebMvcConfig.class);
 
-        Dynamic dynamc = servletContext.addServlet("dispatcherServlet", new DispatcherServlet(webApplicationContext));
-        dynamc.addMapping("/api/v1/*");
-        dynamc.setLoadOnStartup(1);
-    }*/
-
+        //Dynamic dynamc = servletContext.addServlet("dispatcherServlet", new DispatcherServlet(webApplicationContext));
+        //dynamc.addMapping("/api/v1/*");
+        //dynamc.setLoadOnStartup(1);
+    }
+*/
 
 
 }
