@@ -8,19 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.touresbalon.oms.orders.model.dao.ParameterDao;
-import com.touresbalon.oms.orders.model.entity.Parameter;
+import com.touresbalon.oms.orders.model.dao.OrderDao;
+import com.touresbalon.oms.orders.model.entity.Order;
 
 
 @Controller
 @RequestMapping("/parameters")
-public class ParameterController {
+public class OrderController {
 
-	@Autowired ParameterDao parameterDao;
+	@Autowired OrderDao orderDao;
 
-//	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public List<Parameter> allStories() {
-//		return (List<Parameter>) parameterDao.findAll();
-//	}
+	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> allStories() {
+		return (List<Order>) orderDao.findAll();
+	}
 }

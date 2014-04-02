@@ -6,6 +6,8 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.ws.BindingType;
 
+import com.touresbalon.oms.orders.model.entity.Order;
+
 /**
  * http://www.ibm.com/developerworks/library/ws-whichwsdl/
  * http://www.coderanch.com/t/627212/java-Web-Services-SCDJWS/certification/SOAP-SOAP#2869971
@@ -19,5 +21,12 @@ import javax.xml.ws.BindingType;
 public interface OrderService {
 		
 	@WebMethod
-	public String calculator(@WebParam(name="nombreCompleto")String nombre);
+	public void updateStateOrder(@WebParam(name="idOrder") String idOrder,@WebParam(name="state") String state);
+		
+	@WebMethod
+	public void createOreder(@WebParam(name="Order") Order order);
+	
+	@WebMethod
+	public Boolean validateOrder(@WebParam(name="idOrder") Integer idOrder);
+	
 }
