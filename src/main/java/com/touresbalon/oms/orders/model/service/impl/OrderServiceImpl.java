@@ -36,9 +36,15 @@ public class OrderServiceImpl  implements OrderService {
 	@Override
 	@WebMethod
 	public Boolean validateOrder(@WebParam(name = "idOrder") Integer idOrder) {
-		// TODO Validate Order
-		return true;
+		
+		return validateOrden();
 	}
 	
+	
+	
+	private Boolean validateOrden(){
+		
+		return true;
+	}
 	
 }

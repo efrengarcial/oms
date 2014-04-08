@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 public class Order implements Serializable {
 	
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     private String orderId;
     
@@ -27,6 +27,8 @@ public class Order implements Serializable {
     private String status;
     
     private String comments;
+    
+    private String custId;
     
     public String getOrderId() {
 		return orderId;
@@ -66,5 +68,13 @@ public class Order implements Serializable {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public String getCustId() {
+		return custId;
+	}
+
+	public void setCustId(String custId) {
+		this.custId = custId;
 	}
 }
