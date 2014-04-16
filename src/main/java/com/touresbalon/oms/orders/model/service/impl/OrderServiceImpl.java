@@ -29,7 +29,7 @@ public class OrderServiceImpl  implements OrderService {
 
 	@Override
 	@WebMethod
-	public void createOreder(@WebParam(name = "Order") Order order) {
+	public void createOrder(@WebParam(name = "Order") Order order) {
 		orderManager.create(order);
 	}
 

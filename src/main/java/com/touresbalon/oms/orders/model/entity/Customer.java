@@ -1,113 +1,162 @@
 package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import java.util.List;
 
 
+/**
+ * The persistent class for the CUSTOMER database table.
+ * 
+ */
 @Entity
-@Table(name = "CUSTOMERS")
 public class Customer implements Serializable {
-	
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    private String custId;
-    
-	private String fName;
-    
-    private String lName;
-    
-    private String phoneNumber;
-    
-    private String email;
-    
-    private String password;
-    
-    private String credicardType;
-    
-    private String credicardNumber;
-    
-    private String status;
-    
-    public String getCustId() {
-		return custId;
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private String custid;
+
+	private String creditcardnumber;
+
+	private String creditcardtype;
+
+	private String email;
+
+	private String fname;
+
+	private String lname;
+
+	private String password;
+
+	private String phonenumber;
+
+	private String status;
+
+	//bi-directional many-to-one association to Address
+	@OneToMany(mappedBy="customer")
+	private List<Address> addresses;
+
+	//bi-directional many-to-one association to Order
+	@OneToMany(mappedBy="customer")
+	private List<Order> orders;
+
+	public Customer() {
 	}
 
-	public void setCustId(String custId) {
-		this.custId = custId;
+	public String getCustid() {
+		return this.custid;
 	}
 
-	public String getfName() {
-		return fName;
+	public void setCustid(String custid) {
+		this.custid = custid;
 	}
 
-	public void setfName(String fName) {
-		this.fName = fName;
+	public String getCreditcardnumber() {
+		return this.creditcardnumber;
 	}
 
-	public String getlName() {
-		return lName;
+	public void setCreditcardnumber(String creditcardnumber) {
+		this.creditcardnumber = creditcardnumber;
 	}
 
-	public void setlName(String lName) {
-		this.lName = lName;
+	public String getCreditcardtype() {
+		return this.creditcardtype;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setCreditcardtype(String creditcardtype) {
+		this.creditcardtype = creditcardtype;
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	public String getFname() {
+		return this.fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public String getLname() {
+		return this.lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getCredicardType() {
-		return credicardType;
+	public String getPhonenumber() {
+		return this.phonenumber;
 	}
 
-	public void setCredicardType(String credicardType) {
-		this.credicardType = credicardType;
-	}
-
-	public String getCredicardNumber() {
-		return credicardNumber;
-	}
-
-	public void setCredicardNumber(String credicardNumber) {
-		this.credicardNumber = credicardNumber;
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 
 	public String getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<Address> getAddresses() {
+		return this.addresses;
 	}
-    }
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public Address addAddress(Address address) {
+		getAddresses().add(address);
+		address.setCustomer(this);
+
+		return address;
+	}
+
+	public Address removeAddress(Address address) {
+		getAddresses().remove(address);
+		address.setCustomer(null);
+
+		return address;
+	}
+
+	public List<Order> getOrders() {
+		return this.orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Order addOrder(Order order) {
+		getOrders().add(order);
+		order.setCustomer(this);
+
+		return order;
+	}
+
+	public Order removeOrder(Order order) {
+		getOrders().remove(order);
+		order.setCustomer(null);
+
+		return order;
+	}
+
+}

@@ -24,7 +24,7 @@ public interface OrderService {
 	public void updateStateOrder(@WebParam(name="idOrder") String idOrder,@WebParam(name="state") String state);
 		
 	@WebMethod
-	public void createOreder(@WebParam(name="Order") Order order);
+	public void createOrder(@WebParam(name="Order") Order order);
 	
 	@WebMethod
 	public Boolean validateOrder(@WebParam(name="idOrder") Integer idOrder);

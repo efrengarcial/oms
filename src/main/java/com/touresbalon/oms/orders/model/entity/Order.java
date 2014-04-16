@@ -1,80 +1,124 @@
 package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.util.List;
 
 
+/**
+ * The persistent class for the ORDERS database table.
+ * 
+ */
 @Entity
-@Table(name = "ORDERS")
+@Table(name="ORDERS")
 public class Order implements Serializable {
-	
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    private String orderId;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-	private Date orderDate;
-    
-    private Double price;
-    
-    private String status;
-    
-    private String comments;
-    
-    private String custId;
-    
-    public String getOrderId() {
-		return orderId;
+	@Id
+	private String ordid;
+
+	private String comments;
+
+	@Temporal(TemporalType.DATE)
+	private Date endorderdate;
+
+	@Temporal(TemporalType.DATE)
+	private Date orderdate;
+
+	private BigDecimal price;
+
+	private String status;
+
+	//bi-directional many-to-one association to Item
+	@OneToMany(mappedBy="order")
+	private List<Item> items;
+
+	//bi-directional many-to-one association to Customer
+	@ManyToOne
+	@JoinColumn(name="CUSTID")
+	private Customer customer;
+
+	public Order() {
 	}
 
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public String getOrdid() {
+		return this.ordid;
 	}
 
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setOrdid(String ordid) {
+		this.ordid = ordid;
 	}
 
 	public String getComments() {
-		return comments;
+		return this.comments;
 	}
 
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
 
-	public String getCustId() {
-		return custId;
+	public Date getEndorderdate() {
+		return this.endorderdate;
 	}
 
-	public void setCustId(String custId) {
-		this.custId = custId;
+	public void setEndorderdate(Date endorderdate) {
+		this.endorderdate = endorderdate;
 	}
+
+	public Date getOrderdate() {
+		return this.orderdate;
+	}
+
+	public void setOrderdate(Date orderdate) {
+		this.orderdate = orderdate;
+	}
+
+	public BigDecimal getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<Item> getItems() {
+		return this.items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public Item addItem(Item item) {
+		getItems().add(item);
+		item.setOrder(this);
+
+		return item;
+	}
+
+	public Item removeItem(Item item) {
+		getItems().remove(item);
+		item.setOrder(null);
+
+		return item;
+	}
+
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 }

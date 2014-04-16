@@ -1,93 +1,106 @@
 package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-
+/**
+ * The persistent class for the ITEMS database table.
+ * 
+ */
 @Entity
-@Table(name = "ITEMS")
+@Table(name="ITEMS")
 public class Item implements Serializable {
-	
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    private String itemId;
-    
-	private Integer prodID;
-	
-	private String productName;
-	
-	private String partNum;
-	
-	private Integer price;
-    
-	private Integer quantity;
-	
-	private String ordId;
-	
-	public String getItemId() {
-		return itemId;
+	@Id
+	private String itemid;
+
+	private String codprod;
+
+	@Temporal(TemporalType.DATE)
+	private Date itemdate;
+
+	private String partnum;
+
+	private BigDecimal price;
+
+	private String productname;
+
+	private BigDecimal quantity;
+
+	//bi-directional many-to-one association to Order
+	@ManyToOne
+	@JoinColumn(name="ORDID")
+	private Order order;
+
+	public Item() {
 	}
 
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
+	public String getItemid() {
+		return this.itemid;
 	}
 
-	public Integer getProdID() {
-		return prodID;
+	public void setItemid(String itemid) {
+		this.itemid = itemid;
 	}
 
-	public void setProdID(Integer prodID) {
-		this.prodID = prodID;
+	public String getCodprod() {
+		return this.codprod;
 	}
 
-	public String getProductName() {
-		return productName;
+	public void setCodprod(String codprod) {
+		this.codprod = codprod;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public Date getItemdate() {
+		return this.itemdate;
 	}
 
-	public String getPartNum() {
-		return partNum;
+	public void setItemdate(Date itemdate) {
+		this.itemdate = itemdate;
 	}
 
-	public void setPartNum(String partNum) {
-		this.partNum = partNum;
+	public String getPartnum() {
+		return this.partnum;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public void setPartnum(String partnum) {
+		this.partnum = partnum;
 	}
 
-	public void setPrice(Integer price) {
+	public BigDecimal getPrice() {
+		return this.price;
+	}
+
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
+	public String getProductname() {
+		return this.productname;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+	public BigDecimal getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(BigDecimal quantity) {
 		this.quantity = quantity;
 	}
 
-	public String getOrdId() {
-		return ordId;
+	public Order getOrder() {
+		return this.order;
 	}
 
-	public void setOrdId(String ordId) {
-		this.ordId = ordId;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-    }
+}
