@@ -23,7 +23,7 @@ public class CXFConfig {
 	// More code
 
 	@Bean
-	public Endpoint calculator() {
+	public Endpoint order() {
 		EndpointImpl endpoint = new EndpointImpl(cxfBus, new OrderServiceImpl());
 		endpoint.setAddress("/OrderService");
 		endpoint.publish();

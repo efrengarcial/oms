@@ -12,7 +12,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<eclipselink.version>2.5.0</eclipselink.version>
 		<spring.version>3.2.5.RELEASE</spring.version>
-		<cxf.version>2.7.10</cxf.version>
+		<cxf.version>2.7.11</cxf.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -213,10 +213,9 @@
                 </executions>
             </plugin> 
              -->
-               <!--
-               https://cxf.apache.org/docs/maven-java2ws-plugin.html
-                -->
-             	<!-- <plugin>
+               <!--https://cxf.apache.org/docs/maven-java2ws-plugin.html >
+               -->
+               <plugin> 
 				    <groupId>org.apache.cxf</groupId>
 				    <artifactId>cxf-java2ws-plugin</artifactId>
 				    <version>${cxf.version}</version>
@@ -251,7 +250,7 @@
 				            </goals>
 				        </execution>
 				    </executions>
-				</plugin> -->
+				</plugin>
              
 		</plugins>
 	</build>

@@ -83,7 +83,7 @@ public class SecurityConfig {
         	  //.addFilterAfter(new CsrfTokenGeneratorFilter(), CsrfFilter.class)
         	  .csrf().disable()
               .authorizeRequests()
-                .antMatchers("/signup","/about").permitAll() // #4
+                .antMatchers("/signup","/about","/services/**").permitAll() // #4
                 .antMatchers("/admin/**").hasRole("ADMIN") // #6
                  .anyRequest().authenticated() // #7
                 //.anyRequest().hasRole("USER")

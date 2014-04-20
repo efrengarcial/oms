@@ -17,11 +17,14 @@ import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.dao.support.PersistenceExceptionTranslator;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -71,7 +74,6 @@ public class RepositoryOrdersConfig {
     @Autowired
     BeanFactory beanFactory;
 
-    @SuppressWarnings("unused")
 	@Autowired
     private Environment environment;
 
@@ -129,6 +131,7 @@ public class RepositoryOrdersConfig {
         logger.debug("Scanning Package '{}' for entities",
                 Data.class.getPackage().getName());
         factory.setPackagesToScan(Parameter.class.getPackage().getName());
+        factory.setJpaDialect(new EclipseLinkJpaDialect());
 
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.valueOf(dbVendor));
@@ -173,4 +176,15 @@ public class RepositoryOrdersConfig {
 
         return bean;
     }
+    
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+      return new PersistenceExceptionTranslationPostProcessor();
+    }
+    
+    @Bean
+    public PersistenceExceptionTranslator persistenceExceptionTranslator() {
+      return new EclipseLinkJpaDialect();
+    }
+   
 }

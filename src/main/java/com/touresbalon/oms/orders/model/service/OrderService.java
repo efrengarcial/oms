@@ -17,16 +17,13 @@ import com.touresbalon.oms.orders.model.entity.Order;
  */
 @WebService
 @BindingType(javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_BINDING) 
-@SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL)
+@SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL,
+	parameterStyle=SOAPBinding.ParameterStyle.BARE)
 public interface OrderService {
 		
 	@WebMethod
 	public void updateStateOrder(@WebParam(name="idOrder") String idOrder,@WebParam(name="state") String state);
 		
-	@WebMethod
-	public void createOrder(@WebParam(name="Order") Order order);
-	
-	@WebMethod
-	public Boolean validateOrder(@WebParam(name="idOrder") Integer idOrder);
-	
+	@WebMethod(operationName="createOrder")
+	public String createOrder(@WebParam(name="order") Order order);
 }
