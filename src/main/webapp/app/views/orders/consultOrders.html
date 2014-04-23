@@ -3,23 +3,67 @@
         <div class="container">
             <div class="row">      		                             
 				
-				<h2>Consultar Productos</h2>
+				<h2>Consultar Ordenes</h2>
                		
               	 <form class="well form-search">			       
-			        <input type="text" ng-model="codigo" class="input-medium search-query" placeholder="Codigo...">
-			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Nombre...">
-			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Descripcion...">
+			        <input type="text" ng-model="ordid" class="input-medium search-query" placeholder="Codigo...">
+			        <input type="text" ng-model="custid" class="input-medium search-query" placeholder="Cliente...">
+			        <input type="text" ng-model="status" class="input-medium search-query" placeholder="status...">
+			        <input type="text" ng-model="orderDate" class="input-medium search-query" placeholder="order date...">
+			        <input type="text" ng-model="endOrderDate" class="input-medium search-query" placeholder="end order date...">
 			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarProductos()">Buscar</button><br />                    
-			        <p class="help-block">Pruebe  por  ejemplo: "colombia" o "ecuador" o "copa mundial de futbol"</p>      
+			        <p class="help-block">Buscar Ordenes por criterio"</p>      
 			    </form>			
+				
+				<table class="table table-striped table-condensed table-hover">
+    <thead>
+        <tr>
+            <th class="id">Id&nbsp;<a ng-click="sort_by('id')"><i class="icon-sort"></i></a></th>
+            <th class="name">Name&nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+            <th class="description">Description&nbsp;<a ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
+            <th class="field3">Field 3&nbsp;<a ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
+            <th class="field4">Field 4&nbsp;<a ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
+            <th class="field5">Field 5&nbsp;<a ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <td colspan="6">
+            <div class="pagination pull-right">
+                <ul>
+                    <li ng-class="{disabled: currentPage == 0}">
+                        <a href ng-click="prevPage()">« Prev</a>
+                    </li>
+                    <li ng-repeat="n in range(pagedItems.length)"
+                        ng-class="{active: n == currentPage}"
+                    ng-click="setPage()">
+                        <a href ng-bind="n + 1">1</a>
+                    </li>
+                    <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                        <a href ng-click="nextPage()">Next »</a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tfoot>
+    <tbody>
+        <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.field3}}</td>
+            <td>{{item.field4}}</td>
+            <td>{{item.field5}}</td>
+        </tr>
+    </tbody>
+</table>
 				
 				<table class="table table-bordered table-hover">				    
                      <thead>
                        <tr class="well bviolet">
 				          <td class="text-right" colspan="4" >
-				            <a  href="#/cart" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
+				            <a  href="#/order" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
 				                <i class="fa fa-shopping-cart fa-lg" />
-				                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+				                <b>{{order.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
 				            </a>
 				         </td>
 				       </tr>

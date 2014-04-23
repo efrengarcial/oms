@@ -4,7 +4,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
     "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
-    "controllers/dashboard" , "controllers/StoreController"
+    "controllers/dashboard", "controllers/StoreController", "controllers/SecurityController"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -19,22 +19,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         'services',
         'filters'        
     ]);
-
-    /*app.config(['$routeProvider',
-      function($routeProvider) {    
-        $routeProvider
-          //.when('/', {templateUrl: 'views/stories/list.html', controller: 'StoryListController'})
-          .when('/', {templateUrl: 'views/oms/parametros.html', controller: 'ParametroListController'})
-          //.when('/table', {templateUrl: 'views/stories/table.html', controller: 'TableController'})
-          .when('/table', {templateUrl: 'views/oms/admin.html', controller: 'TableController'})
-          .when('/grid', {templateUrl: 'views/stories/grid.html', controller: 'GridController'})
-          .when('/stories/new', {templateUrl: 'views/stories/create.html', controller: 'StoryCreateController'})
-          .when('/stories/:storyId', {templateUrl: 'views/stories/detail.html', controller: 'StoryDetailController'})         
-          .otherwise({
-            redirectTo: '/'
-          }); 
-      }]); */
-    
+       
     // Collect the routes
     app.constant('routes', getRoutes());
     
@@ -62,54 +47,22 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-dashboard"></i> Dashboard'
                     }
                 }
-            }, {
-                url: '/table',
-                config: {
-                    title: 'admin',
-                    controller: 'TableController',
-                    templateUrl: 'app/views/oms/admin.html',
-                    settings: {
-                        nav: 2,
-                        content: '<i class="fa fa-lock"></i> Admin'
-                    }
-                }
-            } ,   {
-                url: '/param',
-                config: {
-                    templateUrl: 'app/views/oms/parametros.html',
-                    title: 'parametros',
-                    controller: 'ParametroListController',
-                    settings: {
-                        nav: 3,
-                        content: '<i class="fa fa-dashboard"></i> Parametros'
-                    }
-                }
-            },   {
-                url: '/consultarProductos',
-                config: {
-                    templateUrl: 'app/views/productos/consultarProductos.html',
-                    title: 'Consultar Productos',                    
-                    settings: {
-                        nav: 4,
-                        content: '<i class="fa fa-dashboard"></i> Consultar Productos'
-                    }
-                }
-            } 
+            }
             //carrito de compras
             ,   {
                 url: '/store',
                 config: {
                     templateUrl: 'app/views/admincarrito/store.html',
-                    title: 'Productos',
+                    title: 'Productos efl',
                     controller: 'StoreController',
                     settings: {
-                        nav: 5,
+                        nav: 2,
                         content: '<i class="fa fa-dashboard"></i> Productos'
                     }
                 }
             }
             ,   {
-                url: '/products/:productSku',
+                url: '/products/:codigoProducto',
                 config: {
                     templateUrl: 'app/views/admincarrito/product.html',                    
                     controller: 'StoreController',
@@ -130,25 +83,15 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     }
                 }
             }
-            ,   {
-                url: '/stories',
+            , {
+                url: '/grid',
                 config: {
-                    templateUrl: 'app/views/stories/list.html',                   
-                    controller: 'StoryListController',
+                    templateUrl: 'app/views/stories/grid.html',
+                    title: 'Grid',
+                    controller: 'GridController',
                     settings: {
-                        nav: 6,
-                        content: '<i class="fa fa-dashboard"></i> Stories'
-                    }
-                }
-            }
-            ,   {
-                url: '/stories/new',
-                config: {
-                    templateUrl: 'app/views/stories/create.html',                   
-                    controller: 'StoryCreateController',
-                    settings: {
-                        nav: null,
-                        content: '<i class="fa fa-dashboard"></i> Stories'
+                        nav: 2,
+                        content: '<i class="fa fa-dashboard"></i> Grid'
                     }
                 }
             }

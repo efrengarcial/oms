@@ -17,24 +17,23 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDERS")
-    @SequenceGenerator(name="SEQ_ORDERS",sequenceName="SEQ_ORDERS", allocationSize = 1)
-	private String ordId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String ordid;
 
 	private String comments;
 
 	@Temporal(TemporalType.DATE)
-	private Date endOrderDate;
+	private Date endorderdate;
 
 	@Temporal(TemporalType.DATE)
-	private Date orderDate;
+	private Date orderdate;
 
 	private BigDecimal price;
 
 	private String status;
 
 	//bi-directional many-to-one association to Item
-	@OneToMany(mappedBy="order", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="order")
 	private List<Item> items;
 
 	//bi-directional many-to-one association to Customer
@@ -44,32 +43,13 @@ public class Order implements Serializable {
 
 	public Order() {
 	}
-	
-	public String getOrdId() {
-		return ordId;
+
+	public String getOrdid() {
+		return this.ordid;
 	}
 
-
-	public void setOrdId(String ordId) {
-		this.ordId = ordId;
-	}
-
-
-	public Date getEndOrderDate() {
-		return endOrderDate;
-	}
-
-	public void setEndOrderDate(Date endOrderDate) {
-		this.endOrderDate = endOrderDate;
-	}
-
-
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public void setOrdid(String ordid) {
+		this.ordid = ordid;
 	}
 
 	public String getComments() {
@@ -78,6 +58,22 @@ public class Order implements Serializable {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public Date getEndorderdate() {
+		return this.endorderdate;
+	}
+
+	public void setEndorderdate(Date endorderdate) {
+		this.endorderdate = endorderdate;
+	}
+
+	public Date getOrderdate() {
+		return this.orderdate;
+	}
+
+	public void setOrderdate(Date orderdate) {
+		this.orderdate = orderdate;
 	}
 
 	public BigDecimal getPrice() {
