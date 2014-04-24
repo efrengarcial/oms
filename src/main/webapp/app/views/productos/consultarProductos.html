@@ -1,73 +1,77 @@
-<section class="mainbar" >
-    <section class="matter">
-        <div class="container">
-            <div class="row">      		                             
-				
+<section class="mainbar">
+	<section class="matter">
+		<div class="container">
+			<div class="row">
+
 				<h2>Consultar Productos</h2>
-               		
-              	 <form class="well form-search">			       
-			        <input type="text" ng-model="codigo" class="input-medium search-query" placeholder="Codigo...">
-			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Nombre...">
-			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Descripcion...">
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarProductos()">Buscar</button><br />                    
-			        <p class="help-block">Pruebe  por  ejemplo: "colombia" o "ecuador" o "copa mundial de futbol"</p>      
-			    </form>			
-				
-				<table class="table table-bordered table-hover">				    
-                     <thead>
-                       <tr class="well bviolet">
-				          <td class="text-right" colspan="4" >
-				            <a  href="#/cart" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
-				                <i class="fa fa-shopping-cart fa-lg" />
-				                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-				            </a>
-				         </td>
-				       </tr>
-                        <tr class="well blightblue">
-                          <th ng-repeat="header in headers">
-                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
-                          </th>
-                        </tr>
-                     </thead>
-                    <tbody>
-				    <tr ng-repeat="product in  store.products" >
-				        <td class="tdCenter"><img ng-src="img/products/{{product.codigoProducto}}.jpg" alt="{{product.nombreProducto}}" /></td>
-				        <td>
-				            <a href="#/products/{{product.codigoProducto}}"><b>{{product.nombreProducto}}</b></a><br />
-				            {{product.descripcionProducto}}
-				        </td>
-				        <td class="tdRight">
-				            {{product.precio | currency}}
-				        </td>
-				        <td class="tdCenter">
-				            <a href="" class="blue" ng-click="cart.addItem(product.codigoProducto, product.nombreProducto, product.precio, 1)">
-				                Adicionar a Carrito
-				            </a>
-				        </td>
-				    </tr>
-				     </tbody>
-				     <tfoot>
-                    <tr class="well bviolet">
-				        <td class="text-right" colspan="4">
-				            <a href="#/cart" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
-				                <i class="fa fa-shopping-cart" />
-				                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-				            </a>
-				        </td>
-				    </tr>
-                    </tfoot>				   
-				</table>				               			
+
+				<form class="well form-search">
+					<input type="text" ng-model="codigo"
+						class="input-medium search-query" placeholder="Codigo...">
+					<input type="text" ng-model="nombre"
+						class="input-medium search-query" placeholder="Nombre...">
+					<input type="text" ng-model="nombre"
+						class="input-medium search-query" placeholder="Descripcion...">
+					<button type="submit" class="btn btn-large btn-primary"
+						ng-click="buscarProductos()">Buscar</button>
+					<br />
+					<p class="help-block">Pruebe por ejemplo: "colombia" o
+						"ecuador" o "copa mundial de futbol"</p>
+				</form>
+
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr class="well bviolet">
+							<td class="text-right" colspan="4"><a href="#/cart"
+								title="Ir a carrito de compras"
+								ng-disabled="cart.getTotalCount() < 1"> <i
+									class="fa fa-shopping-cart fa-lg" /> <b>{{cart.getTotalCount()}}</b>
+									items, <b>{{cart.getTotalPrice() | currency}}</b>
+							</a></td>
+						</tr>
+						<tr class="well blightblue">
+							<th ng-repeat="header in headers"><sort-by onsort="onSort"
+									sortdir="filterCriteria.sortDir"
+									sortedby="filterCriteria.sortedBy"
+									sortvalue="{{ header.value }}">{{ header.title }}</sort-by></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="product in  store.products">
+							<td class="tdCenter"><img
+								ng-src="img/products/{{product.codigoProducto}}.jpg"
+								alt="{{product.nombreProducto}}" /></td>
+							<td><a href="#/products/{{product.codigoProducto}}"><b>{{product.nombreProducto}}</b></a><br />
+								{{product.descripcionProducto}}</td>
+							<td class="tdRight">{{product.precio | currency}}</td>
+							<td class="tdCenter"><a href="" class="blue"
+								ng-click="cart.addItem(product.codigoProducto, product.nombreProducto, product.precio, 1)">
+									Adicionar a Carrito </a></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr class="well bviolet">
+							<td class="text-right" colspan="4"><a href="#/cart"
+								title="Ir a carrito de compras"
+								ng-disabled="cart.getTotalCount() < 1"> <i
+									class="fa fa-shopping-cart" /> <b>{{cart.getTotalCount()}}</b>
+									items, <b>{{cart.getTotalPrice() | currency}}</b>
+							</a></td>
+						</tr>
+					</tfoot>
+				</table>
 				<div ng-show="productosCount == 0">
-                  <h3>Productos no encontrados</h3>
-                </div>     
-                <div ng-show="totalPages > 1" class="align-center">                              
-                 	<pagination  total-items="productosCount" num-pages="totalPages" current-page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
-                            on-select-page="selectPage(page)"></pagination>
-                </div>            
-                            		
-            </div>
-        </div>
-    </section>
+					<h3>Productos no encontrados</h3>
+				</div>
+				<div ng-show="totalPages > 1" class="align-center">
+					<pagination total-items="productosCount" num-pages="totalPages"
+						current-page="filterCriteria.pageNumber" max-size="10" class=""
+						boundary-links="true" on-select-page="selectPage(page)"></pagination>
+				</div>
+
+			</div>
+		</div>
+	</section>
 </section>
 
 

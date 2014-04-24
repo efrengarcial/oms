@@ -4,7 +4,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
     "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
-    "controllers/dashboard" , "controllers/StoreController"
+    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","controllers/SecurityController"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -56,7 +56,8 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
 			    url: '/consultOrders',
 			    config: {
 			        templateUrl: 'app/views/orders/consultOrders.html',
-			        title: 'Consultar Ordenes',                    
+			        title: 'Consultar Ordenes',
+			        controller: 'OrderController',
 			        settings: {
 			            nav: 1,
 			            content: '<i class="fa fa-dashboard"></i> Ordenes'
