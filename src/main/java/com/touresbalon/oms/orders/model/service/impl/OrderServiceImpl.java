@@ -25,7 +25,7 @@ public class OrderServiceImpl  implements OrderService {
 	@Override	
 	public String createOrder(Order order) {		
 		Order orderCreated = orderManager.create(order);
-		return orderCreated.getOrdid();
+		return orderCreated.getOrdId();
 	}	
 	
 }
