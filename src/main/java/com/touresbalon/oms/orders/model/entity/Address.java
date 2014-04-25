@@ -16,7 +16,7 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String addrid;
 
-	private String addresstype;
+	private String addressType;
 
 	private String city;
 
@@ -45,12 +45,12 @@ public class Address implements Serializable {
 		this.addrid = addrid;
 	}
 
-	public String getAddresstype() {
-		return this.addresstype;
+	public String getAddressType() {
+		return this.addressType;
 	}
 
-	public void setAddresstype(String addresstype) {
-		this.addresstype = addresstype;
+	public void setAddressType(String addressType) {
+		this.addressType = addressType;
 	}
 
 	public String getCity() {

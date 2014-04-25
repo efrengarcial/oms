@@ -21,11 +21,10 @@ public class OrderController {
 
 	@Autowired OrderManager orderMgr;
 
-	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/allOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<Order> allOrders() {
-		//return (List<Order>) orderDao.findAll();
-		return null;
+		return (List<Order>) orderMgr.findAll();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -35,10 +34,10 @@ public class OrderController {
 		orderMgr.create(order);
 	}
 	
-	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/findOrderById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Order find(String id){
-		return orderMgr.find(id);
+	public Order findOrderById(String ordId){
+		return orderMgr.find(ordId);
 	}
 
 	
