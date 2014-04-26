@@ -30,7 +30,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
-import com.touresbalon.oms.domain.oracle.Data;
 import com.touresbalon.oms.orders.model.dao.ParameterDao;
 import com.touresbalon.oms.orders.model.entity.Parameter;
 
@@ -129,7 +128,7 @@ public class RepositoryOrdersConfig {
         factory.setLoadTimeWeaver(this.loadTimeWeaver);        
         factory.setDataSource(dataSource());
         logger.debug("Scanning Package '{}' for entities",
-                Data.class.getPackage().getName());
+        		Parameter.class.getPackage().getName());
         factory.setPackagesToScan(Parameter.class.getPackage().getName());
         factory.setJpaDialect(new EclipseLinkJpaDialect());
 
