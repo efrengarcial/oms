@@ -23,10 +23,10 @@ public class Order implements Serializable {
 
 	private String comments;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date endOrderDate;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDate;
 
 	private BigDecimal price;

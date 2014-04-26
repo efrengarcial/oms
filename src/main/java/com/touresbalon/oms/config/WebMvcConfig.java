@@ -9,12 +9,14 @@ import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 import com.touresbalon.framework.controller.GlobalControllerExceptionHandler;
 import com.touresbalon.oms.api.PingResource;
+import com.touresbalon.oms.orders.controller.OrderController;
 import com.touresbalon.oms.orders.controller.ParameterController;
 import com.touresbalon.oms.products.controller.ProductController;
+import com.touresbalon.oms.products.model.mgr.ProductoManager;
 
 @EnableWebMvc
 @ComponentScan(basePackageClasses = {  GlobalControllerExceptionHandler.class , PingResource.class,
-										ParameterController.class, ProductController.class} )
+										ParameterController.class, ProductController.class, OrderController.class, ProductoManager.class} )
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 

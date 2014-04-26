@@ -13,8 +13,7 @@ import com.touresbalon.oms.orders.model.entity.Order;
 @Service
 public class OrderManager {
 
-	@Autowired
-	OrderDao orderDao;
+	@Autowired OrderDao orderDao;
 		
 	@Transactional 
 	public Order create(Order order){
@@ -30,6 +29,7 @@ public class OrderManager {
 		order.setStatus(state);
 		orderDao.save(order);
 	}
+	
 	public Order find(String id){
 		return orderDao.findOne(id);
 	}

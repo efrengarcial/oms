@@ -23,7 +23,7 @@ public class Item implements Serializable {
 
 	private int prodId;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date itemDate;
 
 	private String partNum;

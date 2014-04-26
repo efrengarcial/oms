@@ -30,10 +30,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
-import com.touresbalon.oms.orders.model.dao.OrderDao;
-import com.touresbalon.oms.orders.model.entity.Order;
-import com.touresbalon.oms.orders.model.entity.Parameter;
 import com.touresbalon.oms.products.model.dao.ProductoDao;
+import com.touresbalon.oms.products.model.entity.Producto;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/
@@ -53,16 +51,17 @@ import com.touresbalon.oms.products.model.dao.ProductoDao;
  * @author Efren Garcia
  */
 @Configuration
-@PropertySource("classpath:/oracledb.properties")
+@PropertySource("classpath:/sqlserverdb.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {OrderDao.class},
-entityManagerFactoryRef = "entityManagerFactoryOracle", 
-transactionManagerRef = "transactionManagerOracle"
+@EnableJpaRepositories(basePackageClasses = {ProductoDao.class},
+entityManagerFactoryRef = "entityManagerFactorySqlServer", 
+transactionManagerRef = "transactionManagerSqlServer"
 )
+
 @EnableLoadTimeWeaving 
-public class RepositoryOrdersConfig {
+public class RepositoryProductsConfig {
     private static final Logger logger = LoggerFactory
-            .getLogger(RepositoryOrdersConfig.class);
+            .getLogger(RepositoryProductsConfig.class);
 
     @Value("#{ environment['database.driverClassName']?:'' }")
     private String dbDriverClass;
@@ -83,15 +82,15 @@ public class RepositoryOrdersConfig {
 
     @Autowired LoadTimeWeaver loadTimeWeaver;
    
-    @Bean(name="order")
+    @Bean(name="producto")
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public Order order() {
+    public Producto producto() {
         logger.debug("*** Creating Data");
-        return new Order();
+        return new Producto();
     }
    
 
-    @Bean(name="dataSourceOracle")
+    @Bean(name="sqlserverDataSource")
     public DataSource dataSource() {
         logger.debug("*** 1. Creating dataSource");
         logger.trace("URL '{}'", dbUrl);
@@ -120,7 +119,7 @@ public class RepositoryOrdersConfig {
         return bean;
     }
 
-    @Bean(name ="entityManagerFactoryOracle")
+    @Bean(name="entityManagerFactorySqlServer")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory()
             throws Exception {
         logger.trace("Vendor '{}'", dbVendor);
@@ -132,8 +131,8 @@ public class RepositoryOrdersConfig {
         //http://stackoverflow.com/questions/10769051/eclipselinkjpavendoradapter-instead-of-hibernatejpavendoradapter-issue        
         factory.setLoadTimeWeaver(this.loadTimeWeaver);        
         factory.setDataSource(dataSource());
-        logger.debug("Scanning Package '{}' for entities",Order.class.getPackage().getName());
-        factory.setPackagesToScan(Order.class.getPackage().getName());
+        logger.debug("Scanning Package '{}' for entities",Producto.class.getPackage().getName());
+        factory.setPackagesToScan(Producto.class.getPackage().getName());
         factory.setJpaDialect(new EclipseLinkJpaDialect());
 
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
@@ -147,7 +146,7 @@ public class RepositoryOrdersConfig {
         return factory;
     }
 
-    @Bean(name ="transactionManagerOracle")
+    @Bean(name="transactionManagerSqlServer")
     public PlatformTransactionManager transactionManager() throws Exception {
         JpaTransactionManager bean = new JpaTransactionManager();
         bean.setEntityManagerFactory(entityManagerFactory().getObject());
@@ -157,7 +156,7 @@ public class RepositoryOrdersConfig {
         return bean;
     }
 
-    @Bean(name="entityManagerOracle")
+    @Bean(name="entityManagerSqlServer")
     public EntityManager entityManager() throws Exception {
         if (entityManagerFactory() == null)
             logger.error("CEMF IS NULL");
@@ -180,12 +179,12 @@ public class RepositoryOrdersConfig {
         return bean;
     }
     
-    @Bean(name="exceptionTranslationOracle")
+    @Bean(name="exceptionTranslationSqlserver")
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
       return new PersistenceExceptionTranslationPostProcessor();
     }
     
-    @Bean(name="persistenceExceptionTranslatorOracle")
+    @Bean(name="persistenceExceptionTranslatorSqlServer")
     public PersistenceExceptionTranslator persistenceExceptionTranslator() {
       return new EclipseLinkJpaDialect();
     }

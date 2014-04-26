@@ -19,7 +19,8 @@ import com.touresbalon.oms.orders.model.mgr.OrderManager;
 @RequestMapping("/orders")
 public class OrderController {
 
-	@Autowired OrderManager orderMgr;
+	@Autowired 
+	OrderManager orderMgr;
 
 	@RequestMapping(value = "/allOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -39,6 +40,4 @@ public class OrderController {
 	public Order findOrderById(String ordId){
 		return orderMgr.find(ordId);
 	}
-
-	
 }
