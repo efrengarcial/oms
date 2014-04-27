@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OrderService" targetNamespace="http://www.touresbalon.com/oms/orders/1.0" xmlns:ns1="http://service.model.orders.oms.touresbalon.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.touresbalon.com/oms/orders/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:import namespace="http://service.model.orders.oms.touresbalon.com/" location="OrderService.wsdl">
+    </wsdl:import>
+  <wsdl:binding name="OrderServiceSoapBinding" type="ns1:OrderService">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createOrder">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="createOrder">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createOrderResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateStateOrder">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="updateStateOrder">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateStateOrderResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderService">
+    <wsdl:port name="OrderServicePort" binding="tns:OrderServiceSoapBinding">
+      <soap12:address location="http://localhost:9090/OrderServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OrderService" targetNamespace="http://service.model.orders.oms.touresbalon.com/" xmlns:ns1="http://service.model.orders.oms.touresbalon.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://service.model.orders.oms.touresbalon.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.model.orders.oms.touresbalon.com/">
+  <xs:complexType name="order">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comments" type="xs:string"/>
+      <xs:element minOccurs="0" name="customer" type="tns:customer"/>
+      <xs:element minOccurs="0" name="endOrderDate" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="items" nillable="true" type="tns:item"/>
+      <xs:element minOccurs="0" name="ordId" type="xs:string"/>
+      <xs:element minOccurs="0" name="orderDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="price" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customer">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="addresses" nillable="true" type="tns:address"/>
+      <xs:element minOccurs="0" name="creditcardnumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="creditcardtype" type="xs:string"/>
+      <xs:element minOccurs="0" name="custid" type="xs:string"/>
+      <xs:element minOccurs="0" name="email" type="xs:string"/>
+      <xs:element minOccurs="0" name="fname" type="xs:string"/>
+      <xs:element minOccurs="0" name="lname" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="orders" nillable="true" type="tns:order"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element minOccurs="0" name="phonenumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="addressType" type="xs:string"/>
+      <xs:element minOccurs="0" name="addrid" type="xs:string"/>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element minOccurs="0" name="country" type="xs:string"/>
+      <xs:element minOccurs="0" name="customer" type="tns:customer"/>
+      <xs:element minOccurs="0" name="state" type="xs:string"/>
+      <xs:element minOccurs="0" name="street" type="xs:string"/>
+      <xs:element minOccurs="0" name="zip" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="itemDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="itemId" type="xs:string"/>
+      <xs:element minOccurs="0" name="order" type="tns:order"/>
+      <xs:element minOccurs="0" name="partNum" type="xs:string"/>
+      <xs:element minOccurs="0" name="price" type="xs:decimal"/>
+      <xs:element name="prodId" type="xs:int"/>
+      <xs:element minOccurs="0" name="productName" type="xs:string"/>
+      <xs:element minOccurs="0" name="quantity" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="order" nillable="true" type="tns:order"/>
+  <xs:element name="createOrderResponse" nillable="true" type="xs:string"/>
+  <xs:element name="idOrder" nillable="true" type="xs:string"/>
+  <xs:element name="state" nillable="true" type="xs:string"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createOrder">
+    <wsdl:part name="order" element="ns1:order">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateStateOrder">
+    <wsdl:part name="idOrder" element="ns1:idOrder">
+    </wsdl:part>
+    <wsdl:part name="state" element="ns1:state">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateStateOrderResponse">
+  </wsdl:message>
+  <wsdl:message name="createOrderResponse">
+    <wsdl:part name="createOrderResponse" element="ns1:createOrderResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OrderService">
+    <wsdl:operation name="createOrder">
+      <wsdl:input name="createOrder" message="ns1:createOrder">
+    </wsdl:input>
+      <wsdl:output name="createOrderResponse" message="ns1:createOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateStateOrder">
+      <wsdl:input name="updateStateOrder" message="ns1:updateStateOrder">
+    </wsdl:input>
+      <wsdl:output name="updateStateOrderResponse" message="ns1:updateStateOrderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
