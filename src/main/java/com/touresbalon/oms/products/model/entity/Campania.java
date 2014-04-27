@@ -1,9 +1,17 @@
 package com.touresbalon.oms.products.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
 import java.sql.Timestamp;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -22,11 +30,11 @@ public class Campania implements Serializable {
 
 	private boolean estado;
 	
-	@Temporal(TemporalType.DATE)
-	private Timestamp fechaFinal;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaFinal;
 
-	@Temporal(TemporalType.DATE)
-	private Timestamp fechaInicial;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaInicial;
 
 	private String nombreCampania;
 
@@ -49,7 +57,7 @@ public class Campania implements Serializable {
 		this.estado = estado;
 	}
 
-	public Timestamp getFechaFinal() {
+	public Date getFechaFinal() {
 		return this.fechaFinal;
 	}
 
@@ -57,7 +65,7 @@ public class Campania implements Serializable {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public Timestamp getFechaInicial() {
+	public Date getFechaInicial() {
 		return this.fechaInicial;
 	}
 

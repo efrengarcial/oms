@@ -1,9 +1,18 @@
 package com.touresbalon.oms.products.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
 import java.sql.Timestamp;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -19,11 +28,11 @@ public class Espectaculo implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idEspectaculo;
 
-	@Temporal(TemporalType.DATE)
-	private Timestamp fechaFinal;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaFinal;
 
-	@Temporal(TemporalType.DATE)
-	private Timestamp fechaInicial;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaInicial;
 
 	private String nombreEspectaculo;
 
@@ -43,7 +52,7 @@ public class Espectaculo implements Serializable {
 		this.idEspectaculo = idEspectaculo;
 	}
 
-	public Timestamp getFechaFinal() {
+	public Date getFechaFinal() {
 		return this.fechaFinal;
 	}
 
@@ -51,7 +60,7 @@ public class Espectaculo implements Serializable {
 		this.fechaFinal = fechaFinal;
 	}
 
-	public Timestamp getFechaInicial() {
+	public Date getFechaInicial() {
 		return this.fechaInicial;
 	}
 

@@ -30,10 +30,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
-import com.touresbalon.oms.orders.controller.OrderController;
-import com.touresbalon.oms.orders.model.dao.OrderDao;
-import com.touresbalon.oms.orders.model.entity.Order;
-import com.touresbalon.oms.orders.model.mgr.OrderManager;
+import com.touresbalon.oms.products.controller.ProductController;
+import com.touresbalon.oms.products.model.dao.ProductoDao;
+import com.touresbalon.oms.products.model.entity.Producto;
+import com.touresbalon.oms.products.model.mgr.ProductoManager;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/
@@ -53,18 +53,16 @@ import com.touresbalon.oms.orders.model.mgr.OrderManager;
  * @author Efren Garcia
  */
 @Configuration
-@PropertySource("classpath:/oracledb.properties")
+@PropertySource("classpath:/sqlserverdb.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {OrderDao.class},
-entityManagerFactoryRef = "entityManagerFactoryOracle", 
-transactionManagerRef = "transactionManagerOracle"
+@EnableJpaRepositories(basePackageClasses = {ProductoDao.class},
+entityManagerFactoryRef = "entityManagerFactoryProduct", 
+transactionManagerRef = "transactionManagerProduct"
 )
-@ComponentScan(basePackages = "com.touresbalon.oms.orders",
-excludeFilters = {@ComponentScan.Filter(Configuration.class)})
-//@ComponentScan(basePackageClasses = {  OrderController.class , OrderDao.class, OrderManager.class, Order.class} )
+@ComponentScan(basePackageClasses = {  ProductController.class , ProductoDao.class, ProductoManager.class} )//,
 @EnableLoadTimeWeaving 
-public class RepositoryOrdersConfig {
-    private static final Logger logger = LoggerFactory.getLogger(RepositoryOrdersConfig.class);
+public class RepositoryProductsConfig {
+    private static final Logger logger = LoggerFactory.getLogger(RepositoryProductsConfig.class);
 
     @Value("#{ environment['database.driverClassName']?:'' }")
     private String dbDriverClass;
@@ -76,7 +74,7 @@ public class RepositoryOrdersConfig {
     private String dbPassword;
     @Value("#{ environment['database.vendor']?:'' }")
     private String dbVendor;
-
+    
     @Autowired
     BeanFactory beanFactory;
 
@@ -85,15 +83,15 @@ public class RepositoryOrdersConfig {
 
     @Autowired LoadTimeWeaver loadTimeWeaver;
    
-    @Bean(name="order")
+    @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public Order order() {
+    public Producto producto() {
         logger.debug("*** Creating Data");
-        return new Order();
+        return new Producto();
     }
    
 
-    @Bean(name="dataSourceOracle")
+    @Bean(name="dataSourceProduct")
     public DataSource dataSource() {
         logger.debug("*** 1. Creating dataSource");
         logger.trace("URL '{}'", dbUrl);
@@ -122,7 +120,7 @@ public class RepositoryOrdersConfig {
         return bean;
     }
 
-    @Bean(name ="entityManagerFactoryOracle")
+    @Bean(name ="entityManagerFactoryProduct")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory()
             throws Exception {
         logger.trace("Vendor '{}'", dbVendor);
@@ -134,8 +132,8 @@ public class RepositoryOrdersConfig {
         //http://stackoverflow.com/questions/10769051/eclipselinkjpavendoradapter-instead-of-hibernatejpavendoradapter-issue        
         factory.setLoadTimeWeaver(this.loadTimeWeaver);        
         factory.setDataSource(dataSource());
-        logger.debug("Scanning Package '{}' for entities",Order.class.getPackage().getName());
-        factory.setPackagesToScan(Order.class.getPackage().getName());
+        logger.debug("Scanning Package '{}' for entities",Producto.class.getPackage().getName());
+        factory.setPackagesToScan(Producto.class.getPackage().getName());
         factory.setJpaDialect(new EclipseLinkJpaDialect());
 
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
@@ -149,7 +147,7 @@ public class RepositoryOrdersConfig {
         return factory;
     }
 
-    @Bean(name ="transactionManagerOracle")
+    @Bean(name ="transactionManagerProduct")
     public PlatformTransactionManager transactionManager() throws Exception {
         JpaTransactionManager bean = new JpaTransactionManager();
         bean.setEntityManagerFactory(entityManagerFactory().getObject());
@@ -159,7 +157,7 @@ public class RepositoryOrdersConfig {
         return bean;
     }
 
-    @Bean(name="entityManagerOracle")
+    @Bean(name="entityManagerProduct")
     public EntityManager entityManager() throws Exception {
         if (entityManagerFactory() == null)
             logger.error("CEMF IS NULL");
@@ -182,12 +180,12 @@ public class RepositoryOrdersConfig {
         return bean;
     }
     
-    @Bean(name="exceptionTranslationOracle")
+    @Bean(name="exceptionTranslationProduct")
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
       return new PersistenceExceptionTranslationPostProcessor();
     }
     
-    @Bean(name="persistenceExceptionTranslatorOracle")
+    @Bean(name="persistenceExceptionTranslatorProduct")
     public PersistenceExceptionTranslator persistenceExceptionTranslator() {
       return new EclipseLinkJpaDialect();
     }
