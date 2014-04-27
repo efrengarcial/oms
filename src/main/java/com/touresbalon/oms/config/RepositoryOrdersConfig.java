@@ -34,6 +34,7 @@ import com.touresbalon.oms.orders.controller.OrderController;
 import com.touresbalon.oms.orders.model.dao.OrderDao;
 import com.touresbalon.oms.orders.model.entity.Order;
 import com.touresbalon.oms.orders.model.mgr.OrderManager;
+import com.touresbalon.oms.orders.model.service.impl.OrderServiceImpl;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/
@@ -59,7 +60,7 @@ import com.touresbalon.oms.orders.model.mgr.OrderManager;
 entityManagerFactoryRef = "entityManagerFactoryOracle", 
 transactionManagerRef = "transactionManagerOracle"
 )
-@ComponentScan(basePackageClasses = { OrderController.class, OrderManager.class } )
+@ComponentScan(basePackageClasses = { OrderController.class, OrderManager.class ,OrderServiceImpl.class } )
 
 @EnableLoadTimeWeaving 
 public class RepositoryOrdersConfig {
