@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.touresbalon.oms.orders.model.dao.CustomerDao;
 import com.touresbalon.oms.orders.model.dao.OrderDao;
+import com.touresbalon.oms.orders.model.entity.Customer;
 import com.touresbalon.oms.orders.model.entity.Item;
 import com.touresbalon.oms.orders.model.entity.Order;
 
@@ -14,13 +16,18 @@ import com.touresbalon.oms.orders.model.entity.Order;
 public class OrderManager {
 
 	@Autowired
-	OrderDao orderDao;
+	private OrderDao orderDao;
+	
+	@Autowired
+	private CustomerDao customerDao;
 		
 	@Transactional 
 	public Order create(Order order){
 		for (Item item : order.getItems()) {
 			item.setOrder(order);
 		}
+		Customer customer = customerDao.findOne(order.getCustomer().getCustid());
+		order.setCustomer(customer);		
 		return orderDao.save(order);
 	}
 	
