@@ -59,7 +59,8 @@ import com.touresbalon.oms.products.model.mgr.ProductoManager;
 entityManagerFactoryRef = "entityManagerFactoryProduct", 
 transactionManagerRef = "transactionManagerProduct"
 )
-@ComponentScan(basePackageClasses = {  ProductController.class , ProductoDao.class, ProductoManager.class} )//,
+@ComponentScan(basePackageClasses = { ProductController.class, ProductoManager.class } )
+
 @EnableLoadTimeWeaving 
 public class RepositoryProductsConfig {
     private static final Logger logger = LoggerFactory.getLogger(RepositoryProductsConfig.class);
@@ -139,8 +140,9 @@ public class RepositoryProductsConfig {
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.valueOf(dbVendor));
         jpaVendorAdapter.setShowSql(true);
-        jpaVendorAdapter.setGenerateDdl(true);        
-
+        jpaVendorAdapter.setGenerateDdl(true);      
+        factory.setPersistenceUnitName("productsPersistenceUnit");
+       
         factory.setJpaVendorAdapter(jpaVendorAdapter);
 
         // No persistence.xml - thanks to packagesToScan

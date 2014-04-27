@@ -59,9 +59,8 @@ import com.touresbalon.oms.orders.model.mgr.OrderManager;
 entityManagerFactoryRef = "entityManagerFactoryOracle", 
 transactionManagerRef = "transactionManagerOracle"
 )
-@ComponentScan(basePackages = "com.touresbalon.oms.orders",
-excludeFilters = {@ComponentScan.Filter(Configuration.class)})
-//@ComponentScan(basePackageClasses = {  OrderController.class , OrderDao.class, OrderManager.class, Order.class} )
+@ComponentScan(basePackageClasses = { OrderController.class, OrderManager.class } )
+
 @EnableLoadTimeWeaving 
 public class RepositoryOrdersConfig {
     private static final Logger logger = LoggerFactory.getLogger(RepositoryOrdersConfig.class);
@@ -137,6 +136,7 @@ public class RepositoryOrdersConfig {
         logger.debug("Scanning Package '{}' for entities",Order.class.getPackage().getName());
         factory.setPackagesToScan(Order.class.getPackage().getName());
         factory.setJpaDialect(new EclipseLinkJpaDialect());
+        factory.setPersistenceUnitName("ordersPersistenceUnit");
 
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.valueOf(dbVendor));

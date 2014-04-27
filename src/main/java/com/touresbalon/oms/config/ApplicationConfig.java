@@ -12,10 +12,8 @@ import org.springframework.data.authentication.UserCredentials;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.mongodb.Mongo;
-import com.touresbalon.oms.repository.mongo.StoryRepository;
 
 
 
@@ -28,10 +26,9 @@ import com.touresbalon.oms.repository.mongo.StoryRepository;
  *
  */
 @Configuration
-@EnableMongoRepositories(basePackageClasses = StoryRepository.class)
 @PropertySource("classpath:/mongodb.properties")
 @ComponentScan(basePackages = "com.touresbalon.oms",
-				excludeFilters = {@ComponentScan.Filter(Configuration.class)})
+				excludeFilters = {@ComponentScan.Filter(Configuration.class)}) 
 public class ApplicationConfig {
 
 	static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
@@ -39,19 +36,6 @@ public class ApplicationConfig {
 	@Autowired
 	Environment env;
 
-	@Bean
-	public MongoTemplate mongoTemplate() throws Exception {
-		logger.info("Test logger......");
-		String openshiftMongoDbHost =env.getRequiredProperty("mongo.db.host");  //System.getenv("OPENSHIFT_MONGODB_DB_HOST");
-		int openshiftMongoDbPort =Integer.parseInt(env.getRequiredProperty("mongo.db.port")); //Integer.parseInt(System.getenv("OPENSHIFT_MONGODB_DB_PORT"));
-		String username = env.getRequiredProperty("mongo.db.username");//System.getenv("OPENSHIFT_MONGODB_DB_USERNAME");
-		String password =env.getRequiredProperty("mongo.db.password");//System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");
-		Mongo mongo = new Mongo(openshiftMongoDbHost, openshiftMongoDbPort);
-		UserCredentials userCredentials = new UserCredentials(username, password);
-		String databaseName = env.getRequiredProperty("mongo.db.name");//System.getenv("OPENSHIFT_APP_NAME");
-		MongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(mongo, databaseName, userCredentials);
-		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory);
-		return mongoTemplate;
-	}
+	
 
 }
