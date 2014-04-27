@@ -14,13 +14,21 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name="PRODUCTO")
+@Table(name="Producto")
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int IdProducto;
+	private Integer IdProducto;
+	@Id
+	private Integer idEspectaculo;
+	@Id
+	private Integer idTarifaBoleta;
+	@Id
+	private Integer idTarifaTransporte;
+	@Id	
+	private Integer idTarifaHospedaje;
 	
 	private String codigoProducto;
 
@@ -28,13 +36,10 @@ public class Producto implements Serializable {
 	
 	private String descripcionProducto;
 	
-	private int idEspectaculo;
+
 	
-	private int idTarifaBoleta;
-	
-	private int idTarifaTransporte;
-		
-	private int idTarifaHospedaje;
+	public Producto() {
+	}
 	
 	public int getIdProducto() {
 		return IdProducto;
@@ -112,13 +117,6 @@ public class Producto implements Serializable {
 
 	public void setIdTarifaHospedaje(int idTarifaHospedaje) {
 		this.idTarifaHospedaje = idTarifaHospedaje;
-	}
-
-
-	
-
-	
-	public Producto() {
 	}
 	
 }

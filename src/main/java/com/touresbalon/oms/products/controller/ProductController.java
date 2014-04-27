@@ -20,20 +20,20 @@ import com.touresbalon.oms.products.model.mgr.ProductoManager;
 public class ProductController {
 	
 	@Autowired 
-	ProductoManager producMgr;
+	private ProductoManager producMgr;
 	
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public @ResponseBody
-	void save(Producto producto){
-		producMgr.create(producto);
-	}
-	
-	@RequestMapping(value = "/allProducts",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public List<Producto> allProductos(){
-		return producMgr.findAll();
-	}
+//	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//	@ResponseStatus(value = HttpStatus.CREATED)
+//	public @ResponseBody
+//	void save(Producto producto){
+//		producMgr.create(producto);
+//	}
+//	
+//	@RequestMapping(value = "/allProducts",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	@ResponseBody
+//	public List<Producto> allProductos(){
+//		return producMgr.findAll();
+//	}
 //	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 //	@ResponseBody
 //	public List<Producto> allProductoos() {

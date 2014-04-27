@@ -11,12 +11,13 @@ import com.touresbalon.framework.controller.GlobalControllerExceptionHandler;
 import com.touresbalon.oms.api.PingResource;
 import com.touresbalon.oms.orders.controller.OrderController;
 import com.touresbalon.oms.orders.controller.ParameterController;
+import com.touresbalon.oms.orders.model.mgr.OrderManager;
 import com.touresbalon.oms.products.controller.ProductController;
 import com.touresbalon.oms.products.model.mgr.ProductoManager;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = {  GlobalControllerExceptionHandler.class , PingResource.class,
-										ParameterController.class, ProductController.class, OrderController.class, ProductoManager.class} )
+@ComponentScan(basePackageClasses = {  GlobalControllerExceptionHandler.class , PingResource.class} )//,
+										//ParameterController.class, ProductController.class, OrderController.class} )
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 

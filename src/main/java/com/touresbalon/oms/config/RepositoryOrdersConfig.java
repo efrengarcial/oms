@@ -30,10 +30,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import com.touresbalon.oms.orders.controller.OrderController;
 import com.touresbalon.oms.orders.model.dao.OrderDao;
 import com.touresbalon.oms.orders.model.entity.Order;
-import com.touresbalon.oms.orders.model.entity.Parameter;
-import com.touresbalon.oms.products.model.dao.ProductoDao;
+import com.touresbalon.oms.orders.model.mgr.OrderManager;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/
@@ -59,10 +59,12 @@ import com.touresbalon.oms.products.model.dao.ProductoDao;
 entityManagerFactoryRef = "entityManagerFactoryOracle", 
 transactionManagerRef = "transactionManagerOracle"
 )
+@ComponentScan(basePackages = "com.touresbalon.oms.orders",
+excludeFilters = {@ComponentScan.Filter(Configuration.class)})
+//@ComponentScan(basePackageClasses = {  OrderController.class , OrderDao.class, OrderManager.class, Order.class} )
 @EnableLoadTimeWeaving 
 public class RepositoryOrdersConfig {
-    private static final Logger logger = LoggerFactory
-            .getLogger(RepositoryOrdersConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(RepositoryOrdersConfig.class);
 
     @Value("#{ environment['database.driverClassName']?:'' }")
     private String dbDriverClass;

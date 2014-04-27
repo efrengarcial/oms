@@ -30,8 +30,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import com.touresbalon.oms.products.controller.ProductController;
 import com.touresbalon.oms.products.model.dao.ProductoDao;
 import com.touresbalon.oms.products.model.entity.Producto;
+import com.touresbalon.oms.products.model.mgr.ProductoManager;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/
@@ -54,14 +56,13 @@ import com.touresbalon.oms.products.model.entity.Producto;
 @PropertySource("classpath:/sqlserverdb.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {ProductoDao.class},
-entityManagerFactoryRef = "entityManagerFactorySqlServer", 
-transactionManagerRef = "transactionManagerSqlServer"
+entityManagerFactoryRef = "entityManagerFactoryProduct", 
+transactionManagerRef = "transactionManagerProduct"
 )
-
+@ComponentScan(basePackageClasses = {  ProductController.class , ProductoDao.class, ProductoManager.class} )//,
 @EnableLoadTimeWeaving 
 public class RepositoryProductsConfig {
-    private static final Logger logger = LoggerFactory
-            .getLogger(RepositoryProductsConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(RepositoryProductsConfig.class);
 
     @Value("#{ environment['database.driverClassName']?:'' }")
     private String dbDriverClass;
@@ -73,7 +74,7 @@ public class RepositoryProductsConfig {
     private String dbPassword;
     @Value("#{ environment['database.vendor']?:'' }")
     private String dbVendor;
-
+    
     @Autowired
     BeanFactory beanFactory;
 
@@ -82,7 +83,7 @@ public class RepositoryProductsConfig {
 
     @Autowired LoadTimeWeaver loadTimeWeaver;
    
-    @Bean(name="producto")
+    @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public Producto producto() {
         logger.debug("*** Creating Data");
@@ -90,7 +91,7 @@ public class RepositoryProductsConfig {
     }
    
 
-    @Bean(name="sqlserverDataSource")
+    @Bean(name="dataSourceProduct")
     public DataSource dataSource() {
         logger.debug("*** 1. Creating dataSource");
         logger.trace("URL '{}'", dbUrl);
@@ -119,7 +120,7 @@ public class RepositoryProductsConfig {
         return bean;
     }
 
-    @Bean(name="entityManagerFactorySqlServer")
+    @Bean(name ="entityManagerFactoryProduct")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory()
             throws Exception {
         logger.trace("Vendor '{}'", dbVendor);
@@ -146,7 +147,7 @@ public class RepositoryProductsConfig {
         return factory;
     }
 
-    @Bean(name="transactionManagerSqlServer")
+    @Bean(name ="transactionManagerProduct")
     public PlatformTransactionManager transactionManager() throws Exception {
         JpaTransactionManager bean = new JpaTransactionManager();
         bean.setEntityManagerFactory(entityManagerFactory().getObject());
@@ -156,7 +157,7 @@ public class RepositoryProductsConfig {
         return bean;
     }
 
-    @Bean(name="entityManagerSqlServer")
+    @Bean(name="entityManagerProduct")
     public EntityManager entityManager() throws Exception {
         if (entityManagerFactory() == null)
             logger.error("CEMF IS NULL");
@@ -179,12 +180,12 @@ public class RepositoryProductsConfig {
         return bean;
     }
     
-    @Bean(name="exceptionTranslationSqlserver")
+    @Bean(name="exceptionTranslationProduct")
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
       return new PersistenceExceptionTranslationPostProcessor();
     }
     
-    @Bean(name="persistenceExceptionTranslatorSqlServer")
+    @Bean(name="persistenceExceptionTranslatorProduct")
     public PersistenceExceptionTranslator persistenceExceptionTranslator() {
       return new EclipseLinkJpaDialect();
     }

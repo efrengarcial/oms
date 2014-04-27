@@ -13,7 +13,8 @@ import com.touresbalon.oms.orders.model.entity.Order;
 @Service
 public class OrderManager {
 
-	@Autowired OrderDao orderDao;
+	@Autowired 
+	private OrderDao orderDao;
 		
 	@Transactional 
 	public Order create(Order order){
