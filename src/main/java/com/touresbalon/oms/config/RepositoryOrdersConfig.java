@@ -58,7 +58,7 @@ import com.touresbalon.oms.orders.model.service.impl.OrderServiceImpl;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {OrderDao.class},
 entityManagerFactoryRef = "entityManagerFactoryOracle", 
-transactionManagerRef = "transactionManagerOracle"
+transactionManagerRef = "transactionManagerOrders"
 )
 @ComponentScan(basePackageClasses = { OrderController.class, OrderManager.class ,OrderServiceImpl.class } )
 
@@ -150,7 +150,7 @@ public class RepositoryOrdersConfig {
         return factory;
     }
 
-    @Bean(name ="transactionManagerOracle")
+    @Bean(name ="transactionManagerOrders")
     public PlatformTransactionManager transactionManager() throws Exception {
         JpaTransactionManager bean = new JpaTransactionManager();
         bean.setEntityManagerFactory(entityManagerFactory().getObject());

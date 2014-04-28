@@ -21,7 +21,7 @@ public class OrderManager {
 	@Autowired
 	private CustomerDao customerDao;
 		
-	@Transactional 
+	@Transactional(value="transactionManagerOrders") 
 	public Order create(Order order){
 		for (Item item : order.getItems()) {
 			item.setOrder(order);
@@ -31,7 +31,7 @@ public class OrderManager {
 		return orderDao.save(order);
 	}
 	
-	@Transactional 
+	@Transactional(value="transactionManagerOrders") 
 	public void update(String idOrder,String state){
 		Order order= orderDao.findOne(idOrder);
 		order.setStatus(state);
