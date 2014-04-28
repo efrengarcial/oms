@@ -21,13 +21,9 @@ public class Producto implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer IdProducto;
-	@Id
 	private Integer idEspectaculo;
-	@Id
 	private Integer idTarifaBoleta;
-	@Id
 	private Integer idTarifaTransporte;
-	@Id	
 	private Integer idTarifaHospedaje;
 	
 	private String codigoProducto;

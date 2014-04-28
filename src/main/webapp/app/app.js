@@ -100,11 +100,11 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
             },   {
                 url: '/consultarProductos',
                 config: {
-                    templateUrl: 'app/views/productos/consultarProductos.html',
+                    templateUrl: 'app/views/productos/product.html',
                     title: 'Consultar Productos',                    
                     settings: {
                         nav: 5,
-                        content: '<i class="fa fa-dashboard"></i> Consultar Productos'
+                        content: '<i class="fa fa-dashboard"></i>Consultar Productos'
                     }
                 }
             }

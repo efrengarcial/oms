@@ -22,18 +22,20 @@ public class ProductController {
 	@Autowired 
 	private ProductoManager producMgr;
 	
-//	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseStatus(value = HttpStatus.CREATED)
-//	public @ResponseBody
-//	void save(Producto producto){
-//		producMgr.create(producto);
-//	}
-//	
-//	@RequestMapping(value = "/allProducts",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public List<Producto> allProductos(){
-//		return producMgr.findAll();
-//	}
+	@RequestMapping(value = "/allProducts",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Producto> allProductos(){
+		return (List<Producto>)producMgr.findAll();
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public @ResponseBody
+	void save(Producto producto){
+		producMgr.create(producto);
+	}
+	
+	
 //	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 //	@ResponseBody
 //	public List<Producto> allProductoos() {
