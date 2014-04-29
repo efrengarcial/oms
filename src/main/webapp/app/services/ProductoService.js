@@ -1,8 +1,8 @@
 define(["angular", "services"], function(angular, services){
 
-    services.factory('ProductoService', ['$resource',
+    services.factory('Producto', ['$resource',
         function($resource){
-    	 	var Producto = $resource('/oms/api/v1/productos');    
+    	 	var Producto = $resource('/oms/api/v1/products');    
     	    return Producto;
         }
     ]);

@@ -5,12 +5,27 @@
             
               <h2>Detalle Producto</h2>	
             
-               <div class="col-md-12">
+             <div class="col-md-12">
 				<p class="text-info">
 				    <img ng-src="img/products/{{product.codigoProducto}}.jpg" alt="{{product.nombreProducto}}"/>
 				    {{product.nombreProducto}}: {{product.descripcionProducto}}<br />
 				</p>
 			 </div>
+			 <div class="control-group">
+				            <label class="control-label" for="idProducto">Id Producto:</label>
+				            <div class="controls">
+				                <input type="text" id="idProducto" ng-model="product.idProducto"/>
+				            </div>
+			   				<label class="control-label" for="codigoProducto">Codigo Producto:</label>
+            				<div class="controls">
+                			<input type="text" id="codigoProducto" ng-model="product.codigoProducto"/>
+            				</div>
+        	
+			</div>
+			<div class="control-group">
+            </div>
+			
+			
 			<div class="row">  	
 				 <div class="col-md-6">				
 		            <!-- product info -->
@@ -25,7 +40,7 @@
 		                        </a>
 		                    </td>
 		                </tr>
-		
+						 
 		                <tr>
 		                    <td class="text-right"><b>Incia</b></td>
 		                    <td class="text-center"><h1>xxxx</h1></td>
@@ -78,8 +93,41 @@
 		            </button>				       
 				</div>
             </div>
+            
+          
+    <h1>Product</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="idProducto">Id Producto:</label>
+            <div class="controls">
+                <input type="text" id="idProducto" ng-model="product.idProducto"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="codigoProducto">Codigo Producto:</label>
+            <div class="controls">
+                <input type="text" id="codigoProducto" ng-model="product.codigoProducto"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+              <!-- user-detail.html: -->
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-click="updateUser()" class="btn btn-small btn-primary">update user</a>
+
+              <!-- user-creation.html: -->
+                <a ng-click="save()" class="btn btn-small btn-primary">create Product</a>
+            </div>
+        </div>
+    </form>
+
         </div>
     </section>
 </section>
+
+
+
+
 
 

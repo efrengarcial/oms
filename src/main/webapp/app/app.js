@@ -4,7 +4,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
     "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
-    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","controllers/SecurityController"
+    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","controllers/SecurityController","controllers/ProductCreateController"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -87,14 +87,14 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     }
                 }
             } ,   {
-                url: '/param',
+                url: '/product',
                 config: {
-                    templateUrl: 'app/views/oms/parametros.html',
-                    title: 'parametros',
-                    controller: 'ParametroListController',
+                    templateUrl: 'app/views/productos/product.html',
+                    title: 'Productos',
+                    controller: 'ProductCreateController',
                     settings: {
                         nav: 4,
-                        content: '<i class="fa fa-dashboard"></i> Parametros'
+                        content: '<i class="fa fa-dashboard"></i> Crud Products'
                     }
                 }
             },   {
