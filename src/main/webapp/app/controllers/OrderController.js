@@ -12,11 +12,9 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
     	        });
     	    };
     	    
-    	    $scope.find = function () {
-    	    	$scope.order.find(function (ordId, headers) {
+    	    $scope.$findOrderById = function () {
+    	    	$scope.order.$findOrderById(function (ordId, headers) {
     	    		toaster.pop('success', "title", "Submitted New Order");
-    	    		//toastr.success("Submitted New Story");
-    	           // $location.path('/');
     	        });
     	    };
         }]);

@@ -4,7 +4,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
     "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
-    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","controllers/SecurityController","controllers/ProductCreateController"
+    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","controllers/SecurityController","controllers/ProductController"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -89,9 +89,9 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
             } ,   {
                 url: '/product',
                 config: {
-                    templateUrl: 'app/views/productos/product.html',
-                    title: 'Productos',
-                    controller: 'ProductCreateController',
+                    templateUrl: 'app/views/productos/producto.html',
+                    title: 'Producto',
+                    controller: 'ProductController',
                     settings: {
                         nav: 4,
                         content: '<i class="fa fa-dashboard"></i> Crud Products'
@@ -100,8 +100,9 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
             },   {
                 url: '/consultarProductos',
                 config: {
-                    templateUrl: 'app/views/productos/product.html',
-                    title: 'Consultar Productos',                    
+                    templateUrl: 'app/views/productos/consultarProductos.html',
+                    title: 'Consultar Productos',   
+                    controller: 'ProductController',
                     settings: {
                         nav: 5,
                         content: '<i class="fa fa-dashboard"></i>Consultar Productos'

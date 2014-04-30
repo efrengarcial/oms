@@ -20,7 +20,7 @@ public class Producto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer IdProducto;
+	private Integer idProducto;
 	private Integer idEspectaculo;
 	private Integer idTarifaBoleta;
 	private Integer idTarifaTransporte;
@@ -28,7 +28,7 @@ public class Producto implements Serializable {
 	
 	private String codigoProducto;
 
-	private String NombreProducto;
+	private String nombreProducto;
 	
 	private String descripcionProducto;
 	
@@ -38,11 +38,11 @@ public class Producto implements Serializable {
 	}
 	
 	public int getIdProducto() {
-		return IdProducto;
+		return idProducto;
 	}
 
 	public void setIdProducto(int idProducto) {
-		IdProducto = idProducto;
+		idProducto = idProducto;
 	}
 
 
@@ -57,12 +57,12 @@ public class Producto implements Serializable {
 
 
 	public String getNombreProducto() {
-		return NombreProducto;
+		return nombreProducto;
 	}
 
 
 	public void setNombreProducto(String nombreProducto) {
-		NombreProducto = nombreProducto;
+		nombreProducto = nombreProducto;
 	}
 
 
