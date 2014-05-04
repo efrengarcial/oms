@@ -17,15 +17,16 @@
   <xs:complexType name="customer">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="addresses" nillable="true" type="tns:address"/>
-      <xs:element minOccurs="0" name="creditcardnumber" type="xs:string"/>
-      <xs:element minOccurs="0" name="creditcardtype" type="xs:string"/>
+      <xs:element minOccurs="0" name="creditCardNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="creditCardType" type="xs:string"/>
       <xs:element minOccurs="0" name="custid" type="xs:string"/>
       <xs:element minOccurs="0" name="email" type="xs:string"/>
-      <xs:element minOccurs="0" name="fname" type="xs:string"/>
-      <xs:element minOccurs="0" name="lname" type="xs:string"/>
       <xs:element minOccurs="0" name="password" type="xs:string"/>
-      <xs:element minOccurs="0" name="phonenumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
       <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element minOccurs="0" name="fName" type="xs:string"/>
+      <xs:element minOccurs="0" name="lName" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="address">
