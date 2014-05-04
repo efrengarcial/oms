@@ -23,8 +23,10 @@ public class OrderManager {
 		
 	@Transactional(value="transactionManagerOrders") 
 	public Order create(Order order){
-		for (Item item : order.getItems()) {
-			item.setOrder(order);
+		if (order.getItems() !=null) {
+			for (Item item : order.getItems()) {
+				item.setOrder(order);
+			}
 		}
 		Customer customer = customerDao.findOne(order.getCustomer().getCustid());
 		order.setCustomer(customer);		

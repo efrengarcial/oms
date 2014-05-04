@@ -25,5 +25,5 @@ public interface OrderService {
 	public void updateStateOrder(@WebParam(name="idOrder") String idOrder,@WebParam(name="state") String state);
 		
 	@WebMethod(operationName="createOrder")
-	public String createOrder(@WebParam(name="order") Order order);
+	public Order createOrder(@WebParam(name="order") Order order);
 }

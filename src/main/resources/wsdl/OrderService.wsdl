@@ -23,7 +23,6 @@
       <xs:element minOccurs="0" name="email" type="xs:string"/>
       <xs:element minOccurs="0" name="fname" type="xs:string"/>
       <xs:element minOccurs="0" name="lname" type="xs:string"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="orders" nillable="true" type="tns:order"/>
       <xs:element minOccurs="0" name="password" type="xs:string"/>
       <xs:element minOccurs="0" name="phonenumber" type="xs:string"/>
       <xs:element minOccurs="0" name="status" type="xs:string"/>
@@ -54,7 +53,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="order" nillable="true" type="tns:order"/>
-  <xs:element name="createOrderResponse" nillable="true" type="xs:string"/>
+  <xs:element name="createOrderResponse" nillable="true" type="tns:order"/>
   <xs:element name="idOrder" nillable="true" type="xs:string"/>
   <xs:element name="state" nillable="true" type="xs:string"/>
 </xs:schema>
