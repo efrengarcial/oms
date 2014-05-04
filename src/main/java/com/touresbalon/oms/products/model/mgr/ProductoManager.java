@@ -15,20 +15,20 @@ public class ProductoManager {
 	@Autowired
 	private ProductoDao productoDao;
 		
-//	@Transactional 
-//	public Producto create(Producto producto){
-//		return productoDao.save(producto);
-//	}
-//	
-//	@Transactional 
-//	public void update(Producto producto){
-//		productoDao.save(producto);
-//	}
-//	public Producto find(String idProducto){
-//		return productoDao.findOne(idProducto);
-//	}
-//	
-//	public List<Producto> findAll(){
-//		return (List<Producto>)productoDao.findAll();
-//	}
+	@Transactional 
+	public Producto create(Producto producto){
+		return productoDao.save(producto);
+	}
+	
+	@Transactional 
+	public void update(Producto producto){
+		productoDao.save(producto);
+	}
+	public Producto find(String idProducto){
+		return productoDao.findOne(idProducto);
+	}
+	
+	public List<Producto> findAll(){
+		return (List<Producto>)productoDao.findAll();
+	}
 }

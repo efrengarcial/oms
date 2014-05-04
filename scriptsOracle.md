@@ -86,4 +86,5 @@ select * from dba_data_files where file_id = 4;
 
 ALTER USER oms quota unlimited on USERS;
 
+ALTER TABLE ADDRESS ADD TYPE VARCHAR(20) NULL;
   
