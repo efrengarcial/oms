@@ -31,9 +31,7 @@ public class Producto implements Serializable {
 	private String nombreProducto;
 	
 	private String descripcionProducto;
-	
-
-	
+		
 	public Producto() {
 	}
 	
@@ -42,7 +40,7 @@ public class Producto implements Serializable {
 	}
 
 	public void setIdProducto(int idProducto) {
-		idProducto = idProducto;
+		this.idProducto = idProducto;
 	}
 
 
@@ -62,7 +60,7 @@ public class Producto implements Serializable {
 
 
 	public void setNombreProducto(String nombreProducto) {
-		nombreProducto = nombreProducto;
+		this.nombreProducto = nombreProducto;
 	}
 
 

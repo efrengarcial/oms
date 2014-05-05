@@ -3,29 +3,40 @@
         <div class="container">
             <div class="row">      		                             
 				
-				<h2>Consultar Productos</h2>
+				<h2>Consultar Ordenes</h2>
                		
               	 <form class="well form-search">	
-			        <input type="text" ng-model="codigo" class="input-medium search-query" placeholder="Codigo...">
-			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Nombre...">
-			        <input type="text" ng-model="descripcion" class="input-medium search-query" placeholder="Descripcion...">
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarProductos()">Buscar</button><br />                    
-			        <p class="help-block">Pruebe  por  ejemplo: "colombia" o "ecuador" o "copa mundial de futbol"</p>      
+			        <input type="text" ng-model="ordId" class="input-medium search-query" placeholder="Numero orden...">
+			        <input type="text" ng-model="producto" class="input-medium search-query" placeholder="NumeroProducto..."><br />
+			        <label class="control-label" for="inputCerradas">Ordenes cerradas</label>
+			        <input type="checkbox" ng-model="cerradas" class="input-medium search-query">
+			        <label class="control-label" for="inputAbiertas">Ordenes abiertas</label>
+			        <input type="checkbox" ng-model="abiertas" class="input-medium search-query" placeholder="Ordenes abiertas...">
+			         <label class="control-label" for="inputCerradasFacturadas">Ordenes cerradas mas facturadas</label>
+			        <input type="checkbox" ng-model="cerradasDinero" class="input-medium search-query">
+			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenes()">Buscar</button>
 			    </form>	
-                <div ng-show="productosCount == 0">
-                  <h3>Productos no encontrados</h3>
+			    <form class="well form-search">	
+			         <input type="date" ng-model="fechainicio" class="input-medium search-query" placeholder="Fecha inicio...">
+			        <input type="date" ng-model="fechafin" class="input-medium search-query" placeholder="Fecha fin...">
+			        <p class="help-block">Consultar ordenes</p>      
+			    </form>
+			    
+			    
+                <div ng-show="ordenesCount == 0">
+                  <h3>Ordenes no encontradas</h3>
                 </div>
-                <div ng-show="productosCount > 0">
-                  <h3>Productos encontrados: {{productosCount}}</h3>
+                <div ng-show="ordenesCount > 0">
+                  <h3>Ordenes encontradas: {{ordenesCount}}</h3>
                 </div>    		
 				
-				<table class="table table-bordered table-hover" ng-show="totalPages >= 0">				    
+				<table class="table table-boed table-hover" ng-show="totalPages > 0">				    
                      <thead>
                        <tr class="well bviolet">
 				          <td class="text-right" colspan="6" >
-				            <a  href="#/cart" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
+				            <a  href="#/order" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
 				                <i class="fa fa-shopping-cart fa-lg" />
-				                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+				                <b>{{order.getTotalCount()}}</b> items, <b>{{order.getTotalPrice() | currency}}</b>
 				            </a>
 				         </td>
 				       </tr>
@@ -36,25 +47,27 @@
                         </tr>
                      </thead>
                     <tbody>
-				    <tr ng-repeat="product in  store.products" >
+				    <tr ng-repeat="order in  orders" >
 				        <td class="text-center">
-                            <a href="#/products/{{product.IdProducto}}">
+                            <a href="#/products/{{order.ordId}}">
                                 <img width="30%" height="20%"  ng-src="{{product.RutaImagen}}"                                 
-                            alt="{{product.NombreProducto}}" />
+                            alt="{{order.ordId}}" />
                              </a> 
 				        </td>
                         <td class="tdRight">
-				            {{product.CodigoProducto}}
+				            {{order.orderid}}
 				        </td>
 				        <td>
-				            <b>{{product.NombreProducto}}</b><br />
-				            {{product.DescripcionProducto}}
+				            <b>{{order.comments}}</b><br />
 				        </td>
                         <td class="tdRight">
-				            {{product.FechaInicial | date:'dd/MM/yyyy' }}
+				            {{order.orderDate | date:'dd/MM/yyyy' }}
 				        </td>
 				        <td class="tdRight">
-				            {{product.ValorProducto | currency}}
+				            {{order.endOrderDate | date:'dd/MM/yyyy' }}
+				        </td>
+				        <td class="tdRight">
+				            {{order.price | currency}}
 				        </td>
 				        <td class="tdCenter">
                              <button 
@@ -77,7 +90,7 @@
                     </tfoot>				   
 				</table>
                 <div ng-show="totalPages > 1" class="align-center">                              
-                 	<pagination  total-items="productosCount" page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
+                 	<pagination  total-items="ordenesCount" page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
                             on-select-page="selectPage(page)"></pagination>
                 </div>            
                             		

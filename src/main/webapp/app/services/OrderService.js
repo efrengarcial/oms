@@ -1,9 +1,10 @@
 define(["angular", "services"], function(angular, services){
 
-    services.factory('Order', ['$resource',
+    services.factory('OrderService', ['$resource',
         function($resource){
-    	 	var Order = $resource('/oms/api/v1/orders');    
-    	    return Order;
+    	return {
+              consultarOrden: $resource('/oms/api/v1/orders/consultarOrden', { ordId: '@ordId' })
+    		};
         }
     ]);
 });

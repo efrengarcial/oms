@@ -20,12 +20,18 @@ import com.touresbalon.oms.products.model.mgr.ProductoManager;
 public class ProductController {
 	
 	@Autowired 
-	private ProductoManager producMgr;
+	public ProductoManager producMgr;
 	
 	@RequestMapping(value = "/allProducts",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<Producto> allProductos(){
 		return (List<Producto>)producMgr.findAll();
+	}
+	
+	@RequestMapping(value = "/consultarProductos",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Producto> consultarProductos(int paginaActual, String codigoProducto, String nombreProducto, String descripcionProducto){
+		return producMgr.findProductos(codigoProducto,nombreProducto,descripcionProducto);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -34,7 +40,6 @@ public class ProductController {
 	void save(Producto producto){
 		producMgr.create(producto);
 	}
-	
 	
 //	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 //	@ResponseBody
