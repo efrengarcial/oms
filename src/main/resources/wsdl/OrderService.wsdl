@@ -45,7 +45,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="itemDate" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="itemId" type="xs:string"/>
-      <xs:element minOccurs="0" name="order" type="tns:order"/>
       <xs:element minOccurs="0" name="partNum" type="xs:string"/>
       <xs:element minOccurs="0" name="price" type="xs:decimal"/>
       <xs:element name="prodId" type="xs:int"/>

@@ -30,7 +30,7 @@ public class OrderManager {
 		}
 		Customer customer = customerDao.findOne(order.getCustomer().getCustid());
 		order.setCustomer(customer);		
-		return orderDao.save(order);
+		return  orderDao.save(order);		
 	}
 	
 	@Transactional(value="transactionManagerOrders") 

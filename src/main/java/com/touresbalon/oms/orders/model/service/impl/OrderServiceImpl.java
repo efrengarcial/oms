@@ -5,6 +5,7 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.touresbalon.oms.orders.model.entity.Item;
 import com.touresbalon.oms.orders.model.entity.Order;
 import com.touresbalon.oms.orders.model.mgr.OrderManager;
 import com.touresbalon.oms.orders.model.service.OrderService;
@@ -25,6 +26,9 @@ public class OrderServiceImpl  implements OrderService {
 	@Override	
 	public Order createOrder(Order order) {		
 		Order orderCreated = orderManager.create(order);
+		for (Item item : orderCreated.getItems()) {
+			item.setOrder(null);
+		}
 		return orderCreated;
 	}	
 	
