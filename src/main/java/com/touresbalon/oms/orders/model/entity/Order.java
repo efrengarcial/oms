@@ -34,7 +34,7 @@ public class Order implements Serializable {
 	private String status;
 
 	//bi-directional many-to-one association to Item
-	@OneToMany(mappedBy="order", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="order")
 	private List<Item> items;
 
 	//bi-directional many-to-one association to Customer

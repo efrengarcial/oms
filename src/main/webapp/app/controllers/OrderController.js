@@ -26,7 +26,7 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
 	        $scope.fetchResult = function ($scope) {
 	        	
 	        	// use routing to pick the selected order
-		        if ($scope.ordId != null) {
+		        if ($scope.ordId != null && $scope.ordId<0) {
 		             //$scope.product = $scope.producto.consultarProducto($scope.IdProducto);
 		        	
 		            OrderService.consultarOrden.get({ordId: $scope.ordId }).$promise.then(
@@ -43,18 +43,20 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
 		        } else{	
 	        //	$rootScope.loading = true;
 		        	OrderService.consultarOrdenes.get({
-	        	    paginaActual: $scope.filterCriteria.pageNumber, codigoProducto :  $scope.codigo,
-	        	    nombreProducto: $scope.nombre, descripcionProducto : $scope.descripcion }).$promise.then(
+	        	    paginaActual: $scope.filterCriteria.pageNumber, ordId: $scope.ordId,
+	        	    codigoProducto :  $scope.codigo}).$promise.then(
 	        			//success
 	        			function( data ){	        				
-	        			    $scope.orders=data;	        			  
+	        			     $scope.orders=data;
+	        				 $scope.totalPages = 10;
+	        				 $scope.ordenesCount = 100;
 	        			    //$rootScope.loading = false;
-	        			    if ($scope.filterCriteria.pageNumber == 1) {
-	        			        $scope.totalPages = data.TotalPaginas;
-	        			        //$scope.store.setTotalPages($scope.totalPages);
-	        			        $scope.ordenesCount = data.TotalRegistros;
-	        			        //$scope.store.setOrdenesCount($scope.ordenesCount);
-	        			    }
+//	        			    if ($scope.filterCriteria.pageNumber == 1) {
+//	        			        $scope.totalPages = 10;//data.TotalPaginas;
+//	        			        //$scope.store.setTotalPages($scope.totalPages);
+//	        			        $scope.ordenesCount = 100;//data.TotalRegistros;
+//	        			        //$scope.store.setOrdenesCount($scope.ordenesCount);
+//	        			    }
 	        			},
 	        			//error
 	        			function( error ){ 
