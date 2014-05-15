@@ -13,7 +13,9 @@ import com.touresbalon.oms.orders.model.entity.Order;
 public interface OrderDao extends CrudRepository<Order, String> {
 
 	@Query("SELECT p FROM Order p WHERE p.ordId = :idOrden")
-    public List<Order> consultarOrden(@Param("idOrden") String idOrden);
+    public List<Order> findOrdersByNumberOrder(@Param("idOrden") String idOrden);
 	
-	
+	@Query("SELECT o FROM Order o, Item i WHERE (o.ordId = i.order.ordId) and (i.prodId = :codigoProducto)")
+    public List<Order> findOrdersByNumberProduct(@Param("codigoProducto") String codigoProducto);
+
 }
