@@ -1,10 +1,21 @@
 package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
 import java.math.BigDecimal;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 /**
@@ -107,7 +118,7 @@ public class Item implements Serializable {
 	public void setQuantity(BigDecimal quantity) {
 		this.quantity = quantity;
 	}
-
+	@JsonIgnore
 	public Order getOrder() {
 		return this.order;
 	}

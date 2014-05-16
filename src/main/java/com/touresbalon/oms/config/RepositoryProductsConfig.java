@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
@@ -150,6 +151,7 @@ public class RepositoryProductsConfig {
     }
 
     @Bean(name ="transactionManagerProduct")
+    @Primary
     public PlatformTransactionManager transactionManager() throws Exception {
         JpaTransactionManager bean = new JpaTransactionManager();
         bean.setEntityManagerFactory(entityManagerFactory().getObject());

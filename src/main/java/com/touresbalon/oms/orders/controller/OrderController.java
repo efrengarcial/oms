@@ -35,9 +35,23 @@ public class OrderController {
 		orderMgr.create(order);
 	}
 	
-	@RequestMapping(value = "/findOrderById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/findOrder", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Order findOrderById(String ordId){
+	public Order consultarOrden(String ordId){
 		return orderMgr.find(ordId);
 	}
+	
+	@RequestMapping(value = "/findOrdersByNumberOrder",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> findOrdersByNumberOrder(int paginaActual, String ordId){
+		return orderMgr.findOrdersByNumberOrder(ordId);
+	}
+	
+	@RequestMapping(value = "/findOrdersByNumberProduct",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> findOrdersByNumberProduct(int paginaActual, String codigoProducto){
+		return orderMgr.findOrdersByNumberProduct(codigoProducto);
+	}
+	
+	
 }

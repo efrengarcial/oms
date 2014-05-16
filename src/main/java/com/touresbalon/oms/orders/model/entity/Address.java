@@ -3,6 +3,8 @@ package com.touresbalon.oms.orders.model.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 
 /**
  * The persistent class for the ADDRESS database table.
@@ -92,7 +94,7 @@ public class Address implements Serializable {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-
+	@JsonIgnore
 	public Customer getCustomer() {
 		return this.customer;
 	}

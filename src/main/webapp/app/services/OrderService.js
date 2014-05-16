@@ -1,9 +1,16 @@
 define(["angular", "services"], function(angular, services){
 
-    services.factory('Order', ['$resource',
+    services.factory('OrderService', ['$resource',
         function($resource){
-    	 	var Order = $resource('/oms/api/v1/orders');    
-    	    return Order;
+    	return {
+    		findOrdersByNumberOrder:  $resource('/oms/api/v1/orders/findOrdersByNumberOrder?paginaActual=:paginaActual&ordId=:ordId'+
+                      '&codigoProducto=:codigoProducto',
+                      { paginaActual: '@paginaActual', ordId: '@ordId'}),
+                      findOrdersByNumberProduct:  $resource('/oms/api/v1/orders/findOrdersByNumberProduct?paginaActual=:paginaActual'+
+                              '&codigoProducto=:codigoProducto',
+                              { paginaActual: '@paginaActual', codigoProducto: '@codigoProducto'})         
+                      //consultarOrden: $resource('/oms/api/v1/orders/consultarOrden', { ordId: '@ordId' }),        
+    		};
         }
     ]);
 });

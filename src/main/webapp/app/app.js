@@ -4,7 +4,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
     "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
-    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","controllers/SecurityController","controllers/ProductController"
+    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","services/OrderService","controllers/SecurityController","controllers/ProductController"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -52,18 +52,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
     function getRoutes() {
         return [
 			//Ordenes 
-			{
-			    url: '/consultOrders',
-			    config: {
-			        templateUrl: 'app/views/orders/consultOrders.html',
-			        title: 'Consultar Ordenes',
-			        controller: 'OrderController',
-			        settings: {
-			            nav: 1,
-			            content: '<i class="fa fa-dashboard"></i> Ordenes'
-			        }
-			    }
-			}, 
+	 
             {
                 url: '/',
                 config: {
@@ -71,11 +60,23 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     title: 'dashboard',
                    //controller: 'dashboard',
                     settings: {
-                        nav: 2,
+                        nav: 1,
                         content: '<i class="fa fa-dashboard"></i> Dashboard'
                     }
                 }
-            }, {
+            },		{
+			    url: '/order',
+			    config: {
+			        templateUrl: 'app/views/orders/consultarOrdenes.html',
+			        title: 'Consultar Ordenes',
+			        controller: 'OrderController',
+			        settings: {
+			            nav: 2,
+			            content: '<i class="fa fa-dashboard"></i> Ordenes'
+			        }
+			    }
+			},
+            {
                 url: '/table',
                 config: {
                     title: 'admin',

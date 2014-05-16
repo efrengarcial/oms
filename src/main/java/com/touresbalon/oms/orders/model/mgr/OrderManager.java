@@ -46,4 +46,14 @@ public class OrderManager {
 	public List<Order> findAll(){
 		return (List<Order>)orderDao.findAll();
 	}
+	
+	@Transactional(value="transactionManagerOrders") 
+	public List<Order> findOrdersByNumberOrder(String idOrden){
+		return orderDao.findOrdersByNumberOrder(idOrden);
+	}
+	
+	@Transactional(value="transactionManagerOrders") 
+	public List<Order> findOrdersByNumberProduct(String codProduct){
+		return orderDao.findOrdersByNumberProduct(codProduct);
+	}
 }
