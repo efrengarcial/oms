@@ -53,7 +53,7 @@ public class OrderManager {
 	}
 	
 	@Transactional(value="transactionManagerOrders") 
-	public List<Order> findOrdersByNumberProduct(String codProduct){
+	public List<Order> findOrdersByNumberProduct(int codProduct){
 		return orderDao.findOrdersByNumberProduct(codProduct);
 	}
 }

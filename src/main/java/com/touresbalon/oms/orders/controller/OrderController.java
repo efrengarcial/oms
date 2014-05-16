@@ -49,7 +49,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/findOrdersByNumberProduct",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Order> findOrdersByNumberProduct(int paginaActual, String codigoProducto){
+	public List<Order> findOrdersByNumberProduct(int paginaActual, int codigoProducto){
 		return orderMgr.findOrdersByNumberProduct(codigoProducto);
 	}
 	

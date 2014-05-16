@@ -4,6 +4,35 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
         function($scope, $routeParams, $location, toaster, OrderService) {
     	$scope.orders = [];
     	
+    	$scope.headers = [
+    	                  {
+    	                      title: 'Orden Id',
+    	                      value: 'orderid'
+    	                  },
+    	                  {
+    	                      title: 'Comentarios',
+    	                      value: 'comments'
+    	                  },
+    	                  {
+    	                      title: 'Fecha Creacion',
+    	                      value: 'orderDate'
+    	                  },
+    	                  {
+    	                      title: 'Fecha Cierre',
+    	                      value: 'endOrderDate'
+    	                  },
+    	                  {
+    	                      title: 'Precio',
+    	                      value: 'price'
+    	                  },
+    	                  {
+    	                      title: 'Detalle Orden',
+    	                      value: ''
+    	                  }
+    	                  
+    	                  ];
+    	
+    	
     	    $scope.save = function () {
     	    	$scope.order.$save(function (order, headers) {
     	    		toaster.pop('success', "title", "Submitted Order");
@@ -35,6 +64,12 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
 		        			function( data ){	        				
 		        			    $scope.orders = data;
 		        			    //$scope.totalPages = data.TotalPaginas;
+		        			    if ($scope.filterCriteria.pageNumber == 1) {
+		        			        $scope.totalPages = 10;//data.TotalPaginas;
+		        			        //$scope.store.setTotalPages($scope.totalPages);
+		        			        $scope.ordenesCount = data.TotalRegistros;
+		        			        //$scope.store.setOrdenesCount($scope.ordenesCount);
+		        			    }
 		        			},
 		        			//error
 		        			function( error ){ 

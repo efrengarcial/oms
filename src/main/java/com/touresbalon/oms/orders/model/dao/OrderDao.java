@@ -15,7 +15,7 @@ public interface OrderDao extends CrudRepository<Order, String> {
 	@Query("SELECT p FROM Order p WHERE p.ordId = :idOrden")
     public List<Order> findOrdersByNumberOrder(@Param("idOrden") String idOrden);
 	
-	@Query("SELECT o FROM Order o, Item i WHERE (o.ordId = i.order.ordId) and (i.prodId = :codigoProducto)")
-    public List<Order> findOrdersByNumberProduct(@Param("codigoProducto") String codigoProducto);
+	@Query("SELECT o FROM Order o, Item i WHERE (o.ordId = i.order.ordId) and (i.prodId = :codigo)")
+    public List<Order> findOrdersByNumberProduct(@Param("codigo") int codigoProducto);
 
 }

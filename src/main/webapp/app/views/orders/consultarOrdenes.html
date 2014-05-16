@@ -7,7 +7,7 @@
                		
               	 <form class="well form-search">	
 			        <input type="text" ng-model="ordId" class="input-medium search-query" placeholder="Numero orden...">
-			        <input type="text" ng-model="codigoProducto" class="input-medium search-query" placeholder="NumeroProducto..."><br />
+			        <input type="number" ng-model="codigoProducto" class="input-medium search-query" placeholder="NumeroProducto..."><br />
 			        <label class="control-label" for="inputCerradas">Ordenes cerradas</label>
 			        <input type="checkbox" ng-model="cerradas" class="input-medium search-query">
 			        <label class="control-label" for="inputAbiertas">Ordenes abiertas</label>
@@ -35,8 +35,8 @@
                        <tr class="well bviolet">
 				          <td class="text-right" colspan="6" >
 				            <a  href="#/order" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
-				                <i class="fa fa-shopping-cart fa-lg" />
-				                <b>{{order.getTotalCount()}}</b> items, <b>{{order.getTotalPrice() | currency}}</b>
+				                <!--  <i class="fa fa-shopping-cart fa-lg" />-->
+				                <b>{{order.getTotalCount()}}</b> Ordenes, <b>{{order.getTotalPrice() | currency}}</b>
 				            </a>
 				         </td>
 				       </tr>
@@ -48,14 +48,9 @@
                      </thead>
                     <tbody>
 				    <tr ng-repeat="order in  orders" >
-				        <td class="text-center">
-                            <a href="#/products/{{order.ordId}}">
-                                <img width="30%" height="20%"  ng-src="{{product.RutaImagen}}"                                 
-                            alt="{{order.ordId}}" />
-                             </a> 
-				        </td>
+
                         <td class="tdRight">
-				            {{order.orderid}}
+				            {{order.ordId}}
 				        </td>
 				        <td>
 				            <b>{{order.comments}}</b><br />
@@ -70,19 +65,21 @@
 				            {{order.price | currency}}
 				        </td>
 				        <td class="tdCenter">
+				        	<a href="#/products/{{order.ordId}}">
                              <button 
 		                        class="btn btn-block btn-success" 
 		                        ng-click="cart.addItem(product.CodigoProducto, product.NombreProducto, product.ValorProducto, 1)">
-		                        <i class="fa fa-shopping-cart fa-lg icon-white" /> Adicionar a Carrito
+		                        Detalle de la Orden
 		                    </button>
-				        </td>
+		                    </a>
+                       </td>
 				    </tr>
 				     </tbody>
 				     <tfoot>
                     <tr class="well bviolet">
 				        <td class="text-right" colspan="6">
 				            <a href="#/cart" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
-				                <i class="fa fa-shopping-cart" />
+				                <!--  <i class="fa fa-shopping-cart" />-->
 				                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
 				            </a>
 				        </td>
