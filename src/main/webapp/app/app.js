@@ -52,7 +52,6 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
     function getRoutes() {
         return [
 			//Ordenes 
-	 
             {
                 url: '/',
                 config: {
@@ -72,33 +71,80 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
 			        controller: 'OrderController',
 			        settings: {
 			            nav: 2,
-			            content: '<i class="fa fa-dashboard"></i> Ordenes'
+			            content: '<i class="fa fa-dashboard"></i> Consulta de Ordenes'
 			        }
 			    }
 			},
-            {
-                url: '/table',
+			{
+                url: '/orders/:fechaInicio',
                 config: {
-                    title: 'admin',
-                    controller: 'TableController',
-                    templateUrl: 'app/views/oms/admin.html',
+                    templateUrl: 'app/views/orders/ordenesCerradas.html',                    
+                    controller: 'OrderController',
                     settings: {
-                        nav: 3,
-                        content: '<i class="fa fa-lock"></i> Admin'
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> xxxxxxx'
                     }
                 }
-            } ,   {
+            },
+            {
+                url: '/order/:ordId',
+                config: {
+                    templateUrl: 'app/views/orders/orden.html',                    
+                    controller: 'OrderController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> xxxxxxx'
+                    }
+                }
+            },
+            {//Cliente
+                url: '/customer/:ordId',
+                config: {
+                    templateUrl: 'app/views/orders/customer.html',                    
+                    controller: 'OrderController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i>Customer'
+                    }
+                }
+            },
+            {//item
+                url: '/item/:ordId/:itemId',
+                config: {
+                    templateUrl: 'app/views/orders/item.html',                    
+                    controller: 'OrderController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> item'
+                    }
+                }
+            },
+            {
+                url: '/ords',
+                config: {
+                    templateUrl: 'app/views/orders/orden.html',                    
+                    controller: 'OrderController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> orders'
+                    }
+                }
+            },
+            
+            //Productos
+            {
                 url: '/product',
                 config: {
                     templateUrl: 'app/views/productos/producto.html',
                     title: 'Producto',
                     controller: 'ProductController',
                     settings: {
-                        nav: 4,
+                        nav: null,
                         content: '<i class="fa fa-dashboard"></i> Crud Products'
                     }
                 }
-            },   {
+            }
+            ,{
                 url: '/consultarProductos',
                 config: {
                     templateUrl: 'app/views/productos/consultarProductos.html',
@@ -109,7 +155,19 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-dashboard"></i>Consultar Productos'
                     }
                 }
-            }
+            },
+            {
+                url: '/table',
+                config: {
+                    title: 'admin',
+                    controller: 'TableController',
+                    templateUrl: 'app/views/oms/admin.html',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-lock"></i> Admin'
+                    }
+                }
+            } 
             //carrito de compras
             ,   {
                 url: '/store',
@@ -118,7 +176,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     title: 'Productos',
                     controller: 'StoreController',
                     settings: {
-                        nav: 6,
+                        nav: null,
                         content: '<i class="fa fa-dashboard"></i> Productos'
                     }
                 }
@@ -129,7 +187,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     templateUrl: 'app/views/admincarrito/product.html',                    
                     controller: 'StoreController',
                     settings: {
-                        nav: 7,
+                        nav: null,
                         content: '<i class="fa fa-dashboard"></i> xxxxxxx'
                     }
                 }
@@ -140,7 +198,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     templateUrl: 'app/views/admincarrito/shoppingCart.html',                   
                     controller: 'StoreController',
                     settings: {
-                        nav: 8,
+                        nav: null,
                         content: '<i class="fa fa-dashboard"></i> xxxxxxx'
                     }
                 }
@@ -151,7 +209,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     templateUrl: 'app/views/stories/list.html',                   
                     controller: 'StoryListController',
                     settings: {
-                        nav: 9,
+                        nav: null,
                         content: '<i class="fa fa-dashboard"></i> Stories'
                     }
                 }
@@ -162,7 +220,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     templateUrl: 'app/views/stories/create.html',                   
                     controller: 'StoryCreateController',
                     settings: {
-                        nav: 10,
+                        nav: null,
                         content: '<i class="fa fa-dashboard"></i> Stories'
                     }
                 }

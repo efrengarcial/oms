@@ -1,0 +1,86 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">  
+            
+              <h2>Detalle del Cliente</h2>	
+            
+             <div class="col-md-12">
+				<p class="text-info">
+				    <img ng-src="img/productos/{{producto.codigoproductoo}}.jpg" alt="{{producto.nombreproductoo}}"/>
+				    {{order.customer.fName}} {{order.customer.lName}}<br />
+				</p>
+			 </div>
+			<div class="control-group">
+            </div>
+			
+			
+			<div class="row">  	
+				 <div class="col-md-6">				
+		            <!-- producto info -->
+		            <table class="table table-bordered">
+						
+						<tr class="well blightblue">
+                          <th ng-repeat="header in headersOrder">
+                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
+                          </th>
+                        </tr>
+		                 <tr>
+		                    <td class="text-right"><b>Id Cliente:</b></td>
+		                    <td class="text-center"> {{order.customer.custid}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Tipo Cliente:</b></td>
+		                    <td class="text-center"> {{order.customer.type}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Estatus:</b></td>
+		                    <td class="text-center"> {{order.customer.status}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Nombres:</b></td>
+		                    <td class="text-center"> {{order.customer.fName}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Apellidos:</b></td>
+		                    <td class="text-center"> {{order.customer.lName}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Numero Telefono:</b></td>
+		                    <td class="text-center"> {{order.customer.phoneNumber}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Tipo tarjeta de credito:</b></td>
+		                    <td class="text-center"> {{order.customer.creditCardType}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Numero Tarjeta de credito:</b></td>
+		                    <td class="text-center"> {{order.customer.creditCardNumber}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Email:</b></td>
+		                    <td class="text-center">{{order.customer.email}}</td>
+		                </tr>
+		            </table>
+		        </div>
+		        
+		        <!-- buttons -->
+		        <div class="col-md-3">
+		        	<!-- <a href="#/order/{{order.ordId}}"> -->
+		            <button 
+		                class="btn btn-block" ng-click="go('/order/'+ order.ordId)" >
+		                <i class="fa fa-chevron-left fa-lg icon-white" /> Regresar
+		            </button>	
+		            <!-- </a>-->
+				</div>
+            </div>
+
+        </div>
+    </section>
+</section>
+
+
+
+
+
+

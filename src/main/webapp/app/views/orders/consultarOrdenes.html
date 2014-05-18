@@ -3,23 +3,26 @@
         <div class="container">
             <div class="row">      		                             
 				
-				<h2>Consultar Ordenes</h2>
+				<h2>Consulta de Ordenes</h2>
                		
               	 <form class="well form-search">	
 			        <input type="text" ng-model="ordId" class="input-medium search-query" placeholder="Numero orden...">
-			        <input type="number" ng-model="codigoProducto" class="input-medium search-query" placeholder="NumeroProducto..."><br />
-			        <label class="control-label" for="inputCerradas">Ordenes cerradas</label>
-			        <input type="checkbox" ng-model="cerradas" class="input-medium search-query">
-			        <label class="control-label" for="inputAbiertas">Ordenes abiertas</label>
-			        <input type="checkbox" ng-model="abiertas" class="input-medium search-query" placeholder="Ordenes abiertas...">
-			         <label class="control-label" for="inputCerradasFacturadas">Ordenes cerradas mas facturadas</label>
-			        <input type="checkbox" ng-model="cerradasDinero" class="input-medium search-query">
+			        <input type="number" ng-model="codigoProducto" class="input-medium search-query" placeholder="NumeroProducto...">
 			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenes()">Buscar</button>
+			        <br />
 			    </form>	
 			    <form class="well form-search">	
-			         <input type="date" ng-model="fechainicio" class="input-medium search-query" placeholder="Fecha inicio...">
-			        <input type="date" ng-model="fechafin" class="input-medium search-query" placeholder="Fecha fin...">
-			        <p class="help-block">Consultar ordenes</p>      
+			        <input type="date" ng-model="fechaInicio" class="input-medium search-query" placeholder="Fecha inicio...">
+			        <input type="date" ng-model="fechaFin" class="input-medium search-query" placeholder="Fecha fin...">
+			       <!--  <a href="#/orders/{{fechaInicio}}"> -->
+			        	<button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenesCerradas(fechaInicio,fechaFin)">Ordenes Cerradas</button>
+			       <!-- </a> -->
+			        <a href="#/orders/{{fechaInicio}}">
+			        	<button type="submit" class="btn btn-large btn-primary" ng-click="">Ranking ordenes abiertas</button>
+			        </a>
+			        <a href="#/orders/{{fechaInicio}}">
+			        	<button type="submit" class="btn btn-large btn-primary" ng-click="">Ranking ordenes cerradas</button>
+			        </a>
 			    </form>
 			    
 			    
@@ -34,10 +37,6 @@
                      <thead>
                        <tr class="well bviolet">
 				          <td class="text-right" colspan="6" >
-				            <a  href="#/order" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
-				                <!--  <i class="fa fa-shopping-cart fa-lg" />-->
-				                <b>{{order.getTotalCount()}}</b> Ordenes, <b>{{order.getTotalPrice() | currency}}</b>
-				            </a>
 				         </td>
 				       </tr>
                         <tr class="well blightblue">
@@ -65,10 +64,10 @@
 				            {{order.price | currency}}
 				        </td>
 				        <td class="tdCenter">
-				        	<a href="#/products/{{order.ordId}}">
+				        	<a href="#/order/{{order.ordId}}">
                              <button 
 		                        class="btn btn-block btn-success" 
-		                        ng-click="cart.addItem(product.CodigoProducto, product.NombreProducto, product.ValorProducto, 1)">
+		                        ng-click="">
 		                        Detalle de la Orden
 		                    </button>
 		                    </a>
@@ -78,10 +77,6 @@
 				     <tfoot>
                     <tr class="well bviolet">
 				        <td class="text-right" colspan="6">
-				            <a href="#/cart" title="Ir a carrito de compras" ng-disabled="cart.getTotalCount() < 1">
-				                <!--  <i class="fa fa-shopping-cart" />-->
-				                <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
-				            </a>
 				        </td>
 				    </tr>
                     </tfoot>				   

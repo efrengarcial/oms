@@ -4,7 +4,7 @@ define(["angular", "services"], function(angular, services){
         function(ShoppingCart,Store,Product){
 	    	  // create store
 	        var myStore = new Store();
-	
+	        	        
 	        // create shopping cart
 	        var myCart = new ShoppingCart("AngularStore");
 	
