@@ -1,9 +1,9 @@
-define(["angular","controllers", "services/ProductService"], function(angular, controllers){
+define(["angular","controllers", "services/ProductService","services/Store"], function(angular, controllers){
 
-    controllers.controller('ProductController', ['$scope', '$routeParams', '$location','toaster','ProductService',
-        function($scope,  $routeParams, $location, toaster, ProductService) {
+    controllers.controller('ProductController', ['$scope', '$routeParams', '$location','toaster','ProductService','DataService', 'Store',
+        function($scope,  $routeParams, $location, toaster, ProductService,DataService, Store) {
     	  	$scope.products = [];
-
+    	  	$scope.store = DataService.store;
     	    $scope.save = function () {
     	    	$scope.producto.$save(function (producto, headers) {
     	    		toaster.pop('success', "title", "Submitted Product");

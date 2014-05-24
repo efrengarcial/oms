@@ -1,0 +1,76 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">  
+            
+              <h2>Detalle Item</h2>	
+            
+             <div class="col-md-12">
+				<p class="text-info">
+				    <img ng-src="img/productos/{{producto.codigoproductoo}}.jpg" alt="{{producto.nombreproductoo}}"/>
+				    {{item.itemId}}: {{item.productName}}<br />
+				</p>
+			 </div>
+			<div class="control-group">
+            </div>
+			
+			
+			<div class="row">  	
+				 <div class="col-md-6">				
+		            <!-- producto info -->
+		            <table class="table table-bordered">
+		
+						<tr class="well blightblue">
+                          <th ng-repeat="header in headersItemDetalle">
+                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
+                          </th>
+                        </tr>
+		                <tr>
+		                    <td class="text-left"><b>Id item</b></td>
+		                    <td class="text-center"> {{item.itemId}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-left"><b>Id Producto:</b></td>
+		                    <td class="text-center"> {{item.prodId}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-left"><b>Nombre Producto:</b></td>
+		                    <td class="text-center"> {{item.productName}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-left"><b>Fecha creacion:</b></td>
+		                    <td class="text-center">{{item.itemDate | date:'dd/MM/yyyy' }}</td>
+		                </tr>
+		                 <tr>
+		                    <td class="text-left"><b>Cantidad:</b></td>
+		                    <td class="text-center"> {{item.quantity}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-left"><b>Numero de Parte:</b></td>
+		                    <td class="text-center"> {{item.productName}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-left"><b>Precio:</b></td>
+		                    <td class="text-center"> {{item.price | currency}}</td>
+		                </tr>
+		            </table>
+		        </div>
+		        
+		        <!-- buttons -->
+		        <div class="col-md-3">
+		            <button 
+		                class="btn btn-block" ng-click="go('/order/'+ order.ordId)" >
+		                <i class="fa fa-chevron-left fa-lg icon-white" /> Regresar a Eventos
+		            </button>				       
+				</div>
+            </div>
+
+        </div>
+    </section>
+</section>
+
+
+
+
+
+

@@ -1,0 +1,122 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">  
+            
+              <h2>Ordenes cerradas</h2>	
+            
+             <div class="col-md-12">
+				<p class="text-info">
+				    <img ng-src="img/productos/{{producto.codigoproductoo}}.jpg" alt="{{producto.nombreproductoo}}"/>
+				    {{producto.nombreproductoo}}: {{producto.descripcionproductoo}}<br />
+				</p>
+			 </div>
+			<div class="control-group">
+            </div>
+			
+			
+			<div class="row">  	
+				 <div class="col-md-6">				
+		            <!-- producto info -->
+		            <table class="table table-bordered">
+		
+		                <tr class="well">
+		                    <td class="bviolet tdRight" colspan="3" >
+		                        <a href="#/cart" title="Ir al Carrito de Compras" ng-disabled="cart.getTotalCount() < 1">
+		                            <i class="icon-shopping-cart" />
+		                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+		                            <span ng-show="cart.getTotalCount(producto.codigoproductoo) > 0"><br />Este item esta en el carrito</span>
+		                        </a>
+		                    </td>
+		                </tr>
+						 
+		                <tr>
+		                    <td class="text-right"><b>Id producto</b></td>
+		                    <td class="text-center"><input type="text" id="idProducto" ng-model="idProducto" placeholder="Id producto..."/></td>
+		                    <td />
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Codigo producto:</b></td>
+		                    <td class="text-center"><input type="text" id="codigoProducto" ng-model="codigoProducto" placeholder="Codigo producto..."/></td>
+		                    <td />
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Nombre producto:</b></td>
+		                    <td class="text-center"><input type="text" id="nombreProducto" ng-model="nombreProducto" placeholder="Nombre producto..."/></td>
+		                    <td />
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Descripcion producto:</b></td>
+		                    <td class="text-center"><input type="text" id="descripcionProducto" ng-model="descripcionProducto" placeholder="Descripcion producto..."/></td>
+		                    <td />
+		                </tr>
+		                
+		                <tr ng-repeat="(nutrientName, nutrientValue) in producto.nutrients">
+		                    <td class="tdRight"><b>{{nutrientName}}</b></td>
+		                    <td class="tdCenter"><img ng-src="img/r{{nutrientValue}}.png" alt="{{nutrientValue}}" /></td>
+		                    <td>
+		                        <b>{{store.dvaCaption[nutrientValue]}}</b>:
+		                        {{store.dvaRange[nutrientValue]}}
+		                        of the recommended daily value.
+		                    </td>
+		                </tr>
+		
+		                <tr class="well">
+		                    <td class="tdRight" colspan="3" >
+		                        <a href="#/producto" title="Ir al Carrito de Compras" ng-disabled="cart.getTotalCount() < 1">
+		                            <i class="icon-shopping-cart fa-lg" />
+		                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+		                            <span ng-show="cart.getTotalCount(producto.codigoproductoo) > 0"><br />Este item esta en el carrito</span>
+		                        </a>
+		                    </td>
+		                </tr>
+		
+		            </table>
+		        </div>
+		
+		        <!-- buttons -->
+		        <div class="col-md-3">
+		            <button 
+		                class="btn btn-block btn-success" 
+		                ng-click="save()">
+		                <i class="fa fa-shopping-cart fa-lg icon-white" /> Crear productoo
+		            </button>
+		            <button 
+		                class="btn btn-block btn-danger" 
+		                ng-click="cart.addItem(producto.codigoproductoo, producto.nombreproductoo, -10000)"
+		                ng-disabled="cart.getTotalCount(producto.sku) < 1">
+		                <i class="fa fa-trash-o fa-lg icon-white" /> Remover de Carrito
+		            </button>
+		            <button 
+		                class="btn btn-block" ng-click="go('/store')" >
+		                <i class="fa fa-chevron-left fa-lg icon-white" /> Regresar a Eventos
+		            </button>				       
+				</div>
+            </div>
+
+        </div>
+        
+        		<h2>Consultar Productos</h2>
+
+				<form class="well form-search">
+					<input type="text" ng-model="codigoProducto"
+						class="input-medium search-query" placeholder="Codigo...">
+					<input type="text" ng-model="nombre"
+						class="input-medium search-query" placeholder="Nombre...">
+					<input type="text" ng-model="nombre"
+						class="input-medium search-query" placeholder="Descripcion...">
+					<button type="submit" class="btn btn-large btn-primary"
+						ng-click="findAll()">Buscar</button>
+					<br />
+					<p class="help-block">Pruebe por ejemplo: "colombia" o
+						"ecuador" o "copa mundial de futbol"</p>
+				</form>
+				
+    </section>
+</section>
+
+
+
+
+
+

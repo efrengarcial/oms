@@ -1,5 +1,6 @@
 package com.touresbalon.oms.orders.model.mgr;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.touresbalon.oms.orders.model.dao.CustomerDao;
+import com.touresbalon.oms.orders.model.dao.OrderCustomDao;
 import com.touresbalon.oms.orders.model.dao.OrderDao;
+import com.touresbalon.oms.orders.model.dto.OrdenVO;
 import com.touresbalon.oms.orders.model.entity.Customer;
 import com.touresbalon.oms.orders.model.entity.Item;
 import com.touresbalon.oms.orders.model.entity.Order;
@@ -17,6 +20,9 @@ public class OrderManager {
 
 	@Autowired
 	private OrderDao orderDao;
+	
+//	@Autowired
+//	OrderCustomDao orderCustomDao;
 	
 	@Autowired
 	private CustomerDao customerDao;
@@ -39,6 +45,7 @@ public class OrderManager {
 		order.setStatus(state);
 		orderDao.save(order);
 	}
+	@Transactional(value="transactionManagerOrders") 
 	public Order find(String id){
 		return orderDao.findOne(id);
 	}
@@ -53,7 +60,13 @@ public class OrderManager {
 	}
 	
 	@Transactional(value="transactionManagerOrders") 
-	public List<Order> findOrdersByNumberProduct(String codProduct){
+	public List<Order> findOrdersByNumberProduct(int codProduct){
 		return orderDao.findOrdersByNumberProduct(codProduct);
+	}
+	
+	@Transactional(value="transactionManagerOrders") 
+	public List<OrdenVO> findOrdersClosed(int paginaActual, Date dateIni, Date dateFin){
+		return null;
+		//return orderCustomDao.findOrdersClosed(paginaActual, dateIni, dateFin);
 	}
 }

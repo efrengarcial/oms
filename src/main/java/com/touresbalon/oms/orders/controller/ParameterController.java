@@ -11,7 +11,7 @@ import com.touresbalon.oms.orders.model.dao.ParameterDao;
 @RequestMapping("/parameters")
 public class ParameterController {
 
-	@Autowired ParameterDao parameterDao;
+	//@Autowired ParameterDao parameterDao;
 
 //	@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 //	@ResponseBody

@@ -1,0 +1,122 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">  
+            
+              <h2>Detalle Orden</h2>	
+            
+             <div class="col-md-12">
+				<p class="text-info">
+				    <img ng-src="img/productos/{{producto.codigoproductoo}}.jpg" alt="{{producto.nombreproductoo}}"/>
+				    {{order.ordId}}: {{order.comments}}<br />
+				</p>
+			 </div>
+			<div class="control-group">
+            </div>
+			
+			
+			<div class="row">  	
+				 <div class="col-md-6">				
+		            <!-- producto info -->
+		            <table class="table table-bordered">
+		            	<tr class="well bviolet">
+				          <td class="text-right" colspan="6" >
+				         </td>
+				       </tr>
+						<tr class="well blightblue">
+                          <th ng-repeat="header in headersOrder">
+                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
+                          </th>
+                        </tr>
+		                <tr>
+		                    <td class="text-right"><b>Id producto</b></td>
+		                    <td class="text-center"> {{order.ordId}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Comentarios:</b></td>
+		                    <td class="text-center"> {{order.comments}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Fecha creacion:</b></td>
+		                    <td class="text-center">{{order.orderDate | date:'dd/MM/yyyy' }}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Fecha cierre:</b></td>
+		                    <td class="text-center"> {{order.endOrderDate | date:'dd/MM/yyyy' }}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Precio:</b></td>
+		                    <td class="text-center"> {{order.price | currency}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-right"><b>Cliente:</b></td>
+		                    <td class="text-center">{{order.customer.type}}</td>
+		                	<td class="tdCenter">
+				        	<a href="#/customer/{{order.ordId}}">
+                             <button 
+		                        class="btn btn-block btn-success" ng-click="">Detalle del Cliente
+		                    </button>
+		                    </a>
+                       		</td>
+		                </tr>
+		            </table>
+		            
+		            <table class="table table-bordered table-hover">				    
+                     <thead>
+                       <tr class="well bviolet">
+				          <td class="text-right" colspan="4" >
+				          </td>
+				       </tr>
+                        <tr class="well blightblue">
+                          <th ng-repeat="header in headersItem">
+                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
+                          </th>
+                        </tr>
+                     </thead>
+                    <tbody>
+				    <tr ng-repeat="item in  order.items" >
+						<td class="tdCenter">
+				            {{item.itemId}}
+				        </td>
+				        <td class="tdCenter">
+				            {{item.prodId}}
+				        </td>
+				        <td class="tdRight">
+				            {{item.productName}}
+				        </td>
+				        <td class="tdCenter">
+				        	<a href="#/item/{{order.ordId}}/{{item.itemId}}">
+                             <button 
+		                        class="btn btn-block btn-success" ng-click="">Detalle del Item
+		                    </button>
+		                    </a>
+                       </td>
+				    </tr>
+				     </tbody>
+				     <tfoot>
+                    <tr class="well bviolet">
+				        <td class="text-right" colspan="4">
+				        </td>
+				    </tr>
+                    </tfoot>				   
+				</table>
+		        </div>
+		        
+		        <!-- buttons -->
+		        <div class="col-md-3">
+		            <button 
+		                class="btn btn-block" ng-click="go('/order/')" >
+		                <i class="fa fa-chevron-left fa-lg icon-white" /> Regresar
+		            </button>				       
+				</div>
+            </div>
+
+        </div>
+    </section>
+</section>
+
+
+
+
+
+

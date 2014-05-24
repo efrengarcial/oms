@@ -10,14 +10,13 @@ import org.springframework.stereotype.Repository;
 import com.touresbalon.oms.products.model.entity.Producto;
 
 @Repository
-public interface ProductoDao extends CrudRepository<Producto, String> {
+public interface ProductDao extends CrudRepository<Producto, Integer> {
 	
 	@Query("SELECT p FROM Producto p WHERE p.codigoProducto = :codigoProducto")
     public List<Producto> findByCodigo(@Param("codigoProducto") String codigoProducto);
 	
-	@Query("SELECT p FROM Producto p WHERE p.codigoProducto = :codProducto or p.nombreProducto = :nomProducto or p.descripcionProducto = :desProducto")
-	public List<Producto> findProductos(@Param("codProducto") String codProducto, @Param("nomProducto") String nomProducto,
-			@Param("desProducto") String desProducto);
+	@Query("SELECT p FROM Producto p WHERE p.nombreProducto = :nomProducto")
+	public List<Producto> findProductos(@Param("nomProducto") String nomProducto);
 		
 	
 	

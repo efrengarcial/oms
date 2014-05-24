@@ -5,7 +5,8 @@
 		//----------------------------------------------------------------
 		// store (contains the products)
 		function Store() {
-		    this.products = [];		    
+		    this.products = [];	
+		    this.orders = [];
 		}
 		
 		// Define the "instance" methods using the prototype
@@ -20,6 +21,29 @@
 		            return this.products[i];
 		    }
 		    return null;
+		};
+		Store.prototype.getOrder = function (ordId) {
+		    for (var i = 0; i < this.orders.length; i++) {
+		        if (this.orders[i].ordId == ordId)
+		            return this.orders[i];
+		    }
+		    return null;
+		};
+		
+		Store.prototype.getItem = function (ordId,itemId) {
+		    for (var i = 0; i < this.orders.length; i++) {
+		        if (this.orders[i].ordId == ordId){
+		        	for(var j=0; j<this.orders[i].items.length; j++){
+		        		if (this.orders[i].items[j].itemId == itemId){
+		        			return this.orders[i].items[j];
+		        		}
+		        	}
+		        }
+		    }
+		    return null;
+		};
+		Store.prototype.setOrders = function (orders) {
+			this.orders= orders;
 		};
 		
 		Store.prototype.setProducts = function (products) {

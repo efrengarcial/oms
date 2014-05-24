@@ -1,8 +1,77 @@
-define(["angular","controllers", "services/OrderService"], function(angular, controllers){
+define(["angular","controllers", "services/OrderService","services/Order","services/Store","services/DataService"], function(angular, controllers){
 
-    controllers.controller('OrderController', ['$scope', '$routeParams', '$location','toaster','OrderService',
-        function($scope, $routeParams, $location, toaster, OrderService) {
+    controllers.controller('OrderController', ['$scope', '$routeParams', '$location','toaster','OrderService','DataService', 'Store',
+        function($scope, $routeParams, $location, toaster, OrderService,DataService, Store) {
     	$scope.orders = [];
+    	$scope.store = DataService.store;
+    	
+    	$scope.headersOrder = [
+    	        	                  {
+    	        	                      title: 'Atributo',
+    	        	                      value: ''
+    	        	                  },
+    	        	                  {
+    	        	                      title: 'Valor',
+    	        	                      value: ''
+    	        	                  }
+    	        	                  ];
+    	$scope.headers = [
+    	                  {
+    	                      title: 'Orden Id',
+    	                      value: 'orderid'
+    	                  },
+    	                  {
+    	                      title: 'Comentarios',
+    	                      value: 'comments'
+    	                  },
+    	                  {
+    	                      title: 'Fecha Creacion',
+    	                      value: 'orderDate'
+    	                  },
+    	                  {
+    	                      title: 'Fecha Cierre',
+    	                      value: 'endOrderDate'
+    	                  },
+    	                  {
+    	                      title: 'Precio',
+    	                      value: 'price'
+    	                  },
+    	                  {
+    	                      title: 'Detalle Orden',
+    	                      value: ''
+    	                  }
+    	                  
+    	                  ];
+    	
+    	$scope.headersItem = [
+    	                  {
+    	                      title: 'Id Item',
+    	                      value: 'itemId'
+    	                  },
+    	                  {
+    	                      title: 'Id Producto',
+    	                      value: 'prodId'
+    	                  },
+    	                  {
+    	                      title: 'Nombre Producto',
+    	                      value: 'productName'
+    	                  },
+    	                  {
+    	                      title: 'Detalle del item',
+    	                      value: ''
+    	                  }
+    	                  ];
+    	
+    	$scope.headersItemDetalle = [
+        	                  {
+        	                      title: 'Atributo',
+        	                      value: ''
+        	                  },
+        	                  {
+        	                      title: 'Valor',
+        	                      value: ''
+        	                  }
+        	                  ];
     	
     	    $scope.save = function () {
     	    	$scope.order.$save(function (order, headers) {
@@ -14,6 +83,11 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
 	        	console.log('Buscando ordenes....');
 	        	$scope.selectPage(1);
 	        }; 
+	        
+	        $scope.buscarOrdenesCerradas= function (fechaInicio,fechaFin) {
+	        	console.log('Buscando ordenes cerradas....');
+	        	$scope.selectPage(1);
+	        };
 	        
 	        //called when navigate to another page in the pagination
 	        $scope.selectPage = function (page) {
@@ -34,7 +108,14 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
 		        			//success
 		        			function( data ){	        				
 		        			    $scope.orders = data;
+		        			    $scope.store.setOrders(data);
 		        			    //$scope.totalPages = data.TotalPaginas;
+		        			    if ($scope.filterCriteria.pageNumber == 1) {
+		        			        $scope.totalPages = 10;//data.TotalPaginas;
+		        			        //$scope.store.setTotalPages($scope.totalPages);
+		        			        $scope.ordenesCount = data.TotalRegistros;
+		        			        //$scope.store.setOrdenesCount($scope.ordenesCount);
+		        			    }
 		        			},
 		        			//error
 		        			function( error ){ 
@@ -48,7 +129,7 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
 	        			//success
 	        			function(data){	  
 	        				 $scope.orders=data;
-	        				 //$rootScope.loading = false;
+	        				 $scope.store.setOrders(data);
 	        			    if ($scope.filterCriteria.pageNumber == 1) {
 	        			        $scope.totalPages = 10;//data.TotalPaginas;
 	        			        //$scope.store.setTotalPages($scope.totalPages);
@@ -71,9 +152,18 @@ define(["angular","controllers", "services/OrderService"], function(angular, con
 		        }
 	            
 	        };
-	        
-	        
-	        
+	        $scope.go = function ( path ) {
+	        	  $location.path( path );
+	        };
+			
+			if ($routeParams.ordId!=null && $routeParams.itemId != null) {
+	            $scope.item = $scope.store.getItem($routeParams.ordId,$routeParams.itemId);
+	        } 
+			
+			if ($routeParams.ordId != null) {
+	            $scope.order = $scope.store.getOrder($routeParams.ordId);
+	        } 
+			
 	        //default criteria that will be sent to the server
 	        $scope.filterCriteria = {
 	            pageNumber: 1,

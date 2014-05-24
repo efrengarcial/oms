@@ -1,5 +1,6 @@
 package com.touresbalon.oms.orders.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.touresbalon.oms.orders.model.dto.OrdenVO;
 import com.touresbalon.oms.orders.model.entity.Order;
 import com.touresbalon.oms.orders.model.mgr.OrderManager;
 
@@ -22,6 +24,7 @@ public class OrderController {
 	@Autowired 
 	OrderManager orderMgr;
 
+	
 	@RequestMapping(value = "/allOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<Order> allOrders() {
@@ -49,9 +52,14 @@ public class OrderController {
 	
 	@RequestMapping(value = "/findOrdersByNumberProduct",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Order> findOrdersByNumberProduct(int paginaActual, String codigoProducto){
+	public List<Order> findOrdersByNumberProduct(int paginaActual, int codigoProducto){
 		return orderMgr.findOrdersByNumberProduct(codigoProducto);
 	}
 	
+	@RequestMapping(value = "/findOrdersClosed",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<OrdenVO> findOrdersClosed(int paginaActual, Date dateIni, Date dateFin){
+		return orderMgr.findOrdersClosed(paginaActual, dateIni, dateFin);
+	}
 	
 }

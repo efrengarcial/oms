@@ -36,7 +36,7 @@ public class Customer implements Serializable {
 	private String type;
 
 	//bi-directional many-to-one association to Address
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
 	private List<Address> addresses;
 
 
