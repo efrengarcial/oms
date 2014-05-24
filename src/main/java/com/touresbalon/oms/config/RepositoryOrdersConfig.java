@@ -31,6 +31,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.touresbalon.oms.orders.controller.OrderController;
+import com.touresbalon.oms.orders.model.dao.OrderCustomDao;
 import com.touresbalon.oms.orders.model.dao.OrderDao;
 import com.touresbalon.oms.orders.model.entity.Order;
 import com.touresbalon.oms.orders.model.mgr.OrderManager;
@@ -56,7 +57,7 @@ import com.touresbalon.oms.orders.model.service.impl.OrderServiceImpl;
 @Configuration
 @PropertySource("classpath:/oracledb.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {OrderDao.class},
+@EnableJpaRepositories(basePackageClasses = {OrderDao.class,OrderCustomDao.class},
 entityManagerFactoryRef = "entityManagerFactoryOracle", 
 transactionManagerRef = "transactionManagerOrders"
 )
@@ -142,7 +143,7 @@ public class RepositoryOrdersConfig {
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.valueOf(dbVendor));
         jpaVendorAdapter.setShowSql(true);
-        jpaVendorAdapter.setGenerateDdl(true);        
+        jpaVendorAdapter.setGenerateDdl(false);        
 
         factory.setJpaVendorAdapter(jpaVendorAdapter);
 

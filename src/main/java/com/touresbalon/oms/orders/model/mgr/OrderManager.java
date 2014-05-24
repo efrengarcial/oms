@@ -45,7 +45,7 @@ public class OrderManager {
 		order.setStatus(state);
 		orderDao.save(order);
 	}
-	
+	@Transactional(value="transactionManagerOrders") 
 	public Order find(String id){
 		return orderDao.findOne(id);
 	}

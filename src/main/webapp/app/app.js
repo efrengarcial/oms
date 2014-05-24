@@ -129,9 +129,19 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-dashboard"></i> orders'
                     }
                 }
+            },//Productos
+            {
+                url: '/consultarProductos',
+                config: {
+                    templateUrl: 'app/views/productos/consultarProductos.html',
+                    title: 'Consultar Productos',   
+                    controller: 'ProductController',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-dashboard"></i>Consultar Productos'
+                    }
+                }
             },
-            
-            //Productos
             {
                 url: '/product',
                 config: {
@@ -144,18 +154,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     }
                 }
             }
-            ,{
-                url: '/consultarProductos',
-                config: {
-                    templateUrl: 'app/views/productos/consultarProductos.html',
-                    title: 'Consultar Productos',   
-                    controller: 'ProductController',
-                    settings: {
-                        nav: 5,
-                        content: '<i class="fa fa-dashboard"></i>Consultar Productos'
-                    }
-                }
-            },
+            ,
             {
                 url: '/table',
                 config: {
@@ -167,7 +166,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-lock"></i> Admin'
                     }
                 }
-            } 
+            }
             //carrito de compras
             ,   {
                 url: '/store',

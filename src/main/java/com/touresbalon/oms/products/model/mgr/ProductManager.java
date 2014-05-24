@@ -6,16 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.touresbalon.oms.products.model.dao.ProductoDao;
+import com.touresbalon.oms.products.model.dao.ProductDao;
 import com.touresbalon.oms.products.model.entity.Producto;
 
 @Service
-public class ProductoManager {
+public class ProductManager {
 
 	@Autowired
-	public ProductoDao productoDao;
+	public ProductDao productoDao;
+	
+//	@Autowired
+//	public ProductCustomDao productCustomDao;
 		
-	@Transactional 
+	@Transactional(value="transactionManagerProduct")  
 	public Producto create(Producto producto){
 		return productoDao.save(producto);
 	}
@@ -23,16 +26,14 @@ public class ProductoManager {
 	public void update(Producto producto){
 		productoDao.save(producto);
 	}
-	@Transactional
-	public Producto find(String idProducto){
+	@Transactional(value="transactionManagerProduct") 
+	public Producto find(int idProducto){
 		return productoDao.findOne(idProducto);
 	}
-	@Transactional
-	public List<Producto> findProductos(String codigoProducto,String nombreProducto, String descripcionProducto){
-		return productoDao.findProductos(codigoProducto,nombreProducto,descripcionProducto);
+	public List<Producto>  findProductos(String codigoProducto,String nombreProducto, String descripcionProducto){
+		return productoDao.findProductos(nombreProducto);
 	}
 	
-	@Transactional
 	public List<Producto> findAll(){
 		return (List<Producto>)productoDao.findAll();
 	}

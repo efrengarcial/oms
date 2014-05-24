@@ -10,7 +10,7 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {RepositoryProductsConfig.class, RepositoryOrdersConfig.class,  SecurityConfig.class };
+		return new Class[] { RepositoryOrdersConfig.class, RepositoryProductsConfig.class,  SecurityConfig.class };
 	}
 
 	@Override

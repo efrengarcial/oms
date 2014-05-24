@@ -32,9 +32,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.touresbalon.oms.products.controller.ProductController;
-import com.touresbalon.oms.products.model.dao.ProductoDao;
+import com.touresbalon.oms.products.model.dao.ProductDao;
 import com.touresbalon.oms.products.model.entity.Producto;
-import com.touresbalon.oms.products.model.mgr.ProductoManager;
+import com.touresbalon.oms.products.model.mgr.ProductManager;
 
 /**
  * http://gordondickens.com/wordpress/2013/02/28/database-config-spring-3-2-environment-profiles/
@@ -56,11 +56,11 @@ import com.touresbalon.oms.products.model.mgr.ProductoManager;
 @Configuration
 @PropertySource("classpath:/sqlserverdb.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {ProductoDao.class},
+@EnableJpaRepositories(basePackageClasses = {ProductDao.class},
 entityManagerFactoryRef = "entityManagerFactoryProduct", 
 transactionManagerRef = "transactionManagerProduct"
 )
-@ComponentScan(basePackageClasses = { ProductController.class, ProductoManager.class } )
+@ComponentScan(basePackageClasses = { ProductController.class, ProductManager.class } )
 
 @EnableLoadTimeWeaving 
 public class RepositoryProductsConfig {
@@ -85,7 +85,7 @@ public class RepositoryProductsConfig {
 
     @Autowired LoadTimeWeaver loadTimeWeaver;
    
-    @Bean
+    @Bean(name="producto")
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public Producto producto() {
         logger.debug("*** Creating Data");
@@ -137,12 +137,13 @@ public class RepositoryProductsConfig {
         logger.debug("Scanning Package '{}' for entities",Producto.class.getPackage().getName());
         factory.setPackagesToScan(Producto.class.getPackage().getName());
         factory.setJpaDialect(new EclipseLinkJpaDialect());
-
+        factory.setPersistenceUnitName("productsPersistenceUnit");
+        
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.valueOf(dbVendor));
         jpaVendorAdapter.setShowSql(true);
-        jpaVendorAdapter.setGenerateDdl(true);      
-        factory.setPersistenceUnitName("productsPersistenceUnit");
+        jpaVendorAdapter.setGenerateDdl(false);      
+        
        
         factory.setJpaVendorAdapter(jpaVendorAdapter);
 
@@ -151,7 +152,6 @@ public class RepositoryProductsConfig {
     }
 
     @Bean(name ="transactionManagerProduct")
-    @Primary
     public PlatformTransactionManager transactionManager() throws Exception {
         JpaTransactionManager bean = new JpaTransactionManager();
         bean.setEntityManagerFactory(entityManagerFactory().getObject());
