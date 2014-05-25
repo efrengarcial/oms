@@ -8,7 +8,7 @@
              <div class="col-md-12">
 				<p class="text-info">
 				    <img ng-src="img/productos/{{producto.codigoproductoo}}.jpg" alt="{{producto.nombreproductoo}}"/>
-				    {{order.customer.fName}} {{order.customer.lName}}<br />
+				    {{customer.fName}} {{customer.lName}}<br />
 				</p>
 			 </div>
 			<div class="control-group">
@@ -19,72 +19,63 @@
 				 <div class="col-md-6">				
 		            <!-- producto info -->
 		            <table class="table table-bordered">
-						
-						<tr class="well blightblue">
-                          <th ng-repeat="header in headersOrder">
-                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
-                          </th>
-                        </tr>
-		                 <tr>
+		                <tr>
 		                    <td class="text-right"><b>Id Cliente:</b></td>
-		                    <td class="text-center"> {{order.customer.custid}}</td>
+		                    <td class="text-center"> {{customer.custid}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Tipo identificacion:</b></td>
-		                    <td class="text-center"> {{order.customer.tipoIdentificacion}}</td>
+		                    <td class="text-center"> {{customer.tipoIdentificacion}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Identificacion:</b></td>
-		                    <td class="text-center"> {{order.customer.identificacion}}</td>
+		                    <td class="text-center"> {{customer.identificacion}}</td>
 		                </tr>
-		                
 		                <tr>
 		                    <td class="text-right"><b>Tipo Cliente:</b></td>
-		                    <td class="text-center"> {{order.customer.type}}</td>
+		                    <td class="text-center"> {{customer.type}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Estatus:</b></td>
-		                    <td class="text-center"> {{order.customer.status}}</td>
+		                    <td class="text-center"> {{customer.status}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Nombres:</b></td>
-		                    <td class="text-center"> {{order.customer.fName}}</td>
+		                    <td class="text-center"> {{customer.fName}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Apellidos:</b></td>
-		                    <td class="text-center"> {{order.customer.lName}}</td>
+		                    <td class="text-center"> {{customer.lName}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Numero Telefono:</b></td>
-		                    <td class="text-center"> {{order.customer.phoneNumber}}</td>
+		                    <td class="text-center"> {{customer.phoneNumber}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Tipo tarjeta de credito:</b></td>
-		                    <td class="text-center"> {{order.customer.creditCardType}}</td>
+		                    <td class="text-center"> {{customer.creditCardType}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Numero Tarjeta de credito:</b></td>
-		                    <td class="text-center"> {{order.customer.creditCardNumber}}</td>
+		                    <td class="text-center"> {{customer.creditCardNumber}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Franquicia:</b></td>
-		                    <td class="text-center"> {{order.customer.franquicia}}</td>
+		                    <td class="text-center"> {{customer.franquicia}}</td>
 		                </tr>
 		                <tr>
 		                    <td class="text-right"><b>Email:</b></td>
-		                    <td class="text-center">{{order.customer.email}}</td>
+		                    <td class="text-center">{{customer.email}}</td>
 		                </tr>
 		            </table>
 		        </div>
 		        
 		        <!-- buttons -->
 		        <div class="col-md-3">
-		        	<!-- <a href="#/order/{{order.ordId}}"> -->
 		            <button 
-		                class="btn btn-block" ng-click="go('/order/'+ order.ordId)" >
+		                class="btn btn-block" ng-click="go('/customers/')" >
 		                <i class="fa fa-chevron-left fa-lg icon-white" /> Regresar
 		            </button>	
-		            <!-- </a>-->
 				</div>
             </div>
 

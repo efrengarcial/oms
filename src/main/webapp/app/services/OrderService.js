@@ -9,7 +9,6 @@ define(["angular", "services"], function(angular, services){
                       findOrdersByNumberProduct:  $resource('/oms/api/v1/orders/findOrdersByNumberProduct?paginaActual=:paginaActual'+
                               '&codigoProducto=:codigoProducto',
                               { paginaActual: '@paginaActual', codigoProducto: '@codigoProducto'})         
-                      //consultarOrden: $resource('/oms/api/v1/orders/consultarOrden', { ordId: '@ordId' }),        
     		};
         }
     ]);
