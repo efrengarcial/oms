@@ -4,7 +4,8 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         "angular-sanitize", "toaster", "layout/shell", "layout/sidebar","directives",
     "services/TokenService","controllers/StoryListController","controllers/StoryCreateController","controllers/StoryDetailController",
     "controllers/TableController","controllers/GridController","controllers/ModalInstanceCtrl","controllers/ParametroListController",
-    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","services/OrderService","controllers/SecurityController","controllers/ProductController"
+    "controllers/dashboard" , "controllers/StoreController","controllers/OrderController","services/OrderService","controllers/SecurityController",
+    "controllers/ProductController","services/CustomerService","controllers/CustomerController"
 ], function(angular){
     /* App Module */
     var app = angular.module('app', [
@@ -153,8 +154,30 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-dashboard"></i> Crud Products'
                     }
                 }
-            }
-            ,
+            },
+            {//Clientes
+                url: '/customers',
+                config: {
+                    templateUrl: 'app/views/customer/consultaClientes.html',
+                    title: 'Customer',
+                    controller: 'CustomerController',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="fa fa-dashboard"></i> Consulta de clientes'
+                    }
+                }
+            },
+            {
+                url: '/customers/:custid',
+                config: {
+                    templateUrl: 'app/views/customer/customer.html',                    
+                    controller: 'CustomerController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i>Customer'
+                    }
+                }
+            },
             {
                 url: '/table',
                 config: {

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.touresbalon.oms.products.model.dao.ProductDao;
+import com.touresbalon.oms.products.model.dao.TipoEspectaculoDao;
 import com.touresbalon.oms.products.model.entity.Producto;
+import com.touresbalon.oms.products.model.entity.TipoEspectaculo;
 
 @Service
 public class ProductManager {
@@ -18,6 +20,9 @@ public class ProductManager {
 //	@Autowired
 //	public ProductCustomDao productCustomDao;
 		
+	//@Autowired
+	//public TipoEspectaculoDao tipoEspectaculoDao;
+	
 	@Transactional(value="transactionManagerProduct")  
 	public Producto create(Producto producto){
 		return productoDao.save(producto);
@@ -36,5 +41,10 @@ public class ProductManager {
 	
 	public List<Producto> findAll(){
 		return (List<Producto>)productoDao.findAll();
+	}
+	
+	public TipoEspectaculo findTipoEspectaculo(int idTipoEspectaculo){
+		//return tipoEspectaculoDao.findOne(idTipoEspectaculo);
+		return null;
 	}
 }

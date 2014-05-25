@@ -1,0 +1,90 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">      		                             
+				
+				<h2>Consulta de Clientes</h2>
+               		
+              	 <form class="well form-search">	
+			        <input type="text" ng-model="codigoProducto" class="input-medium search-query" placeholder="Codigo Producto...">
+			        <input type="number" ng-model="identificacion" class="input-medium search-query" placeholder="Identificacion cliente...">
+			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarClientes()">Buscar</button>
+			        <br />
+			    </form>	
+			    <form class="well form-search">	
+			        <input type="date" ng-model="fechaInicio" class="input-medium search-query" placeholder="Fecha inicio...">
+			        <input type="date" ng-model="fechaFin" class="input-medium search-query" placeholder="Fecha fin...">
+			       <!--  <a href="#/orders/{{fechaInicio}}"> -->
+			        	<button type="submit" class="btn btn-large btn-primary" ng-click="buscarClientesProducto(fechaInicio,fechaFin)">Ordenes Cerradas</button>
+			       <!-- </a> -->
+			        <a href="#/customers/{{fechaInicio}}/:{{fechaFin}}">
+			        	<button type="submit" class="btn btn-large btn-primary" ng-click="">Ranking de clientes</button>
+			        </a>
+			    </form>
+			    
+			    
+                <div ng-show="customersCount == 0">
+                  <h3>Clientes no encontrados</h3>
+                </div>
+                <div ng-show="customersCount > 0">
+                  <h3>Clientes encontrados: {{customersCount}}</h3>
+                </div>    		
+				
+				<table class="table table-boed table-hover" ng-show="totalPages > 0">				    
+                     <thead>
+                       <tr class="well bviolet">
+				          <td class="text-right" colspan="6" >
+				         </td>
+				       </tr>
+                        <tr class="well blightblue">
+                          <th ng-repeat="header in headersCustomer">
+                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
+                          </th>
+                        </tr>
+                     </thead>
+                    <tbody>
+				    <tr ng-repeat="customer in customers" >
+						<td class="tdCenter">
+				            <b>{{customer.tipoIdentificacion}}</b><br />
+				        </td>
+                        <td class="tdRight">
+				            {{customer.identificacion}}
+				        </td>
+				        <td class="tdRight">
+				            <b>{{customer.fName}}</b><br />
+				        </td>
+				        <td class="tdRight">
+				            <b>{{customer.lName}}</b><br />
+				        </td>
+				        <td class="tdRight">
+				            <b>{{customer.type}}</b><br />
+				        </td>
+				        <td class="tdCenter">
+				        	<a href="#/customers/{{customer.custid}}">
+                             <button 
+		                        class="btn btn-block btn-success" 
+		                        ng-click="">
+		                        Detalle del cliente
+		                    </button>
+		                    </a>
+                       </td>
+				    </tr>
+				     </tbody>
+				     <tfoot>
+                    <tr class="well bviolet">
+				        <td class="text-right" colspan="6">
+				        </td>
+				    </tr>
+                    </tfoot>				   
+				</table>
+                <div ng-show="totalPages > 1" class="align-center">                              
+                 	<pagination  total-items="ordenesCount" page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
+                            on-select-page="selectPage(page)"></pagination>
+                </div>            
+                            		
+            </div>
+        </div>
+    </section>
+</section>
+
+

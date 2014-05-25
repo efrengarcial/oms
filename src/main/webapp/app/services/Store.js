@@ -7,6 +7,7 @@
 		function Store() {
 		    this.products = [];	
 		    this.orders = [];
+		    this.customers = [];
 		}
 		
 		// Define the "instance" methods using the prototype
@@ -42,12 +43,24 @@
 		    }
 		    return null;
 		};
+		Store.prototype.getCustomer = function (custid) {
+		    for (var i = 0; i < this.customers.length; i++) {
+		        if (this.customers[i].custid == custid)
+		            return this.customers[i];
+		    }
+		    return null;
+		};
+		
 		Store.prototype.setOrders = function (orders) {
 			this.orders= orders;
 		};
 		
 		Store.prototype.setProducts = function (products) {
 			this.products= products;
+		};
+		
+		Store.prototype.setCustomers = function (customers) {
+			this.customers= customers;
 		};
 		
 		 // Return constructor - this is what defines the actual

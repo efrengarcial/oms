@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.touresbalon.oms.products.model.entity.Producto;
+import com.touresbalon.oms.products.model.entity.TipoEspectaculo;
 import com.touresbalon.oms.products.model.mgr.ProductManager;
 
 
@@ -46,5 +48,11 @@ public class ProductController {
 	void save(Producto producto){
 		producMgr.create(producto);
 	}
-
+	
+	
+	@RequestMapping(value = "/findByIdTipoEspectaculo",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public TipoEspectaculo findTipoEspectaculo(int idTipoEspectaculo){
+		return producMgr.findTipoEspectaculo(idTipoEspectaculo);
+	}
 }

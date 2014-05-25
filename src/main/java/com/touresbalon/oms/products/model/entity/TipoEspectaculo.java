@@ -1,12 +1,20 @@
 package com.touresbalon.oms.products.model.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="TIPOESPECTACULO")
 public class TipoEspectaculo {
-	@Id
-	private int idTipoEspectaculo;
 	
-	private int nombreEspectaculo;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer idTipoEspectaculo;
+	
+	private String nombreTipoEspectaculo;
 	
 	public int getIdTipoEspectaculo() {
 		return idTipoEspectaculo;
@@ -14,10 +22,11 @@ public class TipoEspectaculo {
 	public void setIdTipoEspectaculo(int idTipoEspectaculo) {
 		this.idTipoEspectaculo = idTipoEspectaculo;
 	}
-	public int getNombreEspectaculo() {
-		return nombreEspectaculo;
+	public String getNombreTipoEspectaculo() {
+		return nombreTipoEspectaculo;
 	}
-	public void setNombreEspectaculo(int nombreEspectaculo) {
-		this.nombreEspectaculo = nombreEspectaculo;
+	public void setNombreTipoEspectaculo(String nombreTipoEspectaculo) {
+		this.nombreTipoEspectaculo = nombreTipoEspectaculo;
 	}
+	
 }
