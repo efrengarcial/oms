@@ -1,5 +1,6 @@
 package com.touresbalon.oms.config.ldap;
 
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 import org.apache.directory.api.ldap.model.cursor.CursorException;
@@ -36,7 +37,7 @@ public class LdapManager {
             conn = new LdapNetworkConnection(host, portNumber);
             conn.setTimeOut(0);
             conn.bind(LdapManager.managerDn, LdapManager.pwd);
-        } catch (NumberFormatException | LdapException nfe) {
+        } catch (NumberFormatException | LdapException | IOException nfe) {
             log.error(nfe.getMessage());
         }                    
         return conn;                    
@@ -63,7 +64,7 @@ public class LdapManager {
 	    		Entry entry = cursor.get();
 	    		dn = entry.getDn();
 	    	}
-    	} catch (LdapException | CursorException le) {
+    	} catch (LdapException | CursorException | IOException le) {
     		System.out.println(le.getMessage());
     		log.error(le.getMessage());
     	}
