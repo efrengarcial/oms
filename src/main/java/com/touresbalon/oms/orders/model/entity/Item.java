@@ -11,12 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 
 /**
@@ -28,9 +29,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDERS")
-    @SequenceGenerator(name="SEQ_ORDERS",sequenceName="SEQ_ORDERS", allocationSize = 1)
+	@GenericGenerator(name = "STRING_SEQUENCE_GENERATOR", strategy = "com.touresbalon.framework.jpa.StringSequenceGenerator", 
+						parameters = { @Parameter(name = "sequence", value = "SEQ_ORDERS") })
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STRING_SEQUENCE_GENERATOR")
 	@Column(name="ITEMID")
 	private String itemId;
 

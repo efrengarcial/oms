@@ -1,9 +1,13 @@
 package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**
@@ -38,10 +42,6 @@ public class Address implements Serializable {
 	@Column(name="ZIP")
 	private String zip;
 
-	//bi-directional many-to-one association to Customer
-	@ManyToOne
-	@JoinColumn(name="CUSTID")
-	private Customer customer;
 
 	public Address() {
 	}
@@ -101,13 +101,6 @@ public class Address implements Serializable {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	@JsonIgnore
-	public Customer getCustomer() {
-		return this.customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
+	
 
 }
