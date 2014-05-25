@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.touresbalon.oms.orders.model.dao.CustomerDao;
-import com.touresbalon.oms.orders.model.dao.OrderCustomDao;
 import com.touresbalon.oms.orders.model.dao.OrderDao;
 import com.touresbalon.oms.orders.model.dto.OrdenVO;
 import com.touresbalon.oms.orders.model.entity.Customer;
-import com.touresbalon.oms.orders.model.entity.Item;
 import com.touresbalon.oms.orders.model.entity.Order;
 
 @Service
@@ -20,29 +18,19 @@ public class OrderManager {
 
 	@Autowired
 	private OrderDao orderDao;
-	
-//	@Autowired
-//	OrderCustomDao orderCustomDao;
-	
+
 	@Autowired
 	private CustomerDao customerDao;
 		
 	@Transactional(value="transactionManagerOrders") 
 	public Order create(Order order){
-		if (order.getItems() !=null) {
-			for (Item item : order.getItems()) {
-				item.setOrder(order);
-			}
-		}
-		Customer customer = customerDao.findOne(order.getCustomer().getCustid());
+		Customer customer = customerDao.findOne(order.getCustId());
 		order.setCustomer(customer);		
 		return  orderDao.save(order);		
 	}
 	
 	@Transactional(value="transactionManagerOrders") 
-	public void update(String idOrder,String state){
-		Order order= orderDao.findOne(idOrder);
-		order.setStatus(state);
+	public void update(Order order){
 		orderDao.save(order);
 	}
 	 

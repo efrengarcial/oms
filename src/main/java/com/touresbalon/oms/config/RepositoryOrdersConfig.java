@@ -97,7 +97,10 @@ public class RepositoryOrdersConfig {
         bean.setPassword(dbPassword);
         bean.setJdbcUrl(dbUrl);
         bean.setUsername(dbUserName);
-        bean.setDriverClass(dbDriverClass);   
+        bean.setDriverClass(dbDriverClass); 
+        bean.setMaxConnectionsPerPartition(50);
+        bean.setMinConnectionsPerPartition(20);
+        
         /*<property name="driverClass" value="${dataSource.driverClass}" />
         <property name="jdbcUrl" value="${dataSource.jdbcUrl}" />
         <property name="username" value="${dataSource.username}" />

@@ -6,7 +6,7 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.ws.BindingType;
 
-import com.touresbalon.oms.orders.model.entity.Order;
+import com.touresbalon.oms.orders.model.service.dto.OrderDto;
 
 /**
  * http://www.ibm.com/developerworks/library/ws-whichwsdl/
@@ -18,12 +18,12 @@ import com.touresbalon.oms.orders.model.entity.Order;
 @WebService
 @BindingType(javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_BINDING) 
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL,
-	parameterStyle=SOAPBinding.ParameterStyle.BARE)
+	parameterStyle=SOAPBinding.ParameterStyle.WRAPPED)
 public interface OrderService {
 		
 	@WebMethod
-	public void updateStateOrder(@WebParam(name="idOrder") String idOrder,@WebParam(name="state") String state);
+	public void updateStateOrder(@WebParam(name="order") OrderDto orderDto);
 		
 	@WebMethod(operationName="createOrder")
-	public Order createOrder(@WebParam(name="order") Order order);
+	public OrderDto createOrder(@WebParam(name="order") OrderDto orderDto);
 }
