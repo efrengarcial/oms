@@ -46,6 +46,16 @@ public class Customer implements Serializable {
 
 	@Column(name="TYPE")
 	private String type;
+	
+	@Column(name="IDENTIFICACION")
+	private String identificacion;
+	
+	@Column(name="TIPOIDENTIFICACION")
+	private String tipoIdentificacion;
+
+	@Column(name="FRANQUICIA")
+	private String franquicia;
+	
 
 	//bi-directional many-to-one association to Address
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -145,6 +155,30 @@ public class Customer implements Serializable {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+	
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
+
+	public String getTipoIdentificacion() {
+		return tipoIdentificacion;
+	}
+
+	public void setTipoIdentificacion(String tipoIdentificacion) {
+		this.tipoIdentificacion = tipoIdentificacion;
+	}
+
+	public String getFranquicia() {
+		return franquicia;
+	}
+
+	public void setFranquicia(String franquicia) {
+		this.franquicia = franquicia;
 	}
 	
 }

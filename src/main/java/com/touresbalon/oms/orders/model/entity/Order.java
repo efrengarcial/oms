@@ -56,6 +56,9 @@ public class Order implements Serializable {
 
 	@Column(name="STATUS")
 	private String status;
+	
+	@Column(name="SHOWTYPE")
+	private String showType;
 
 	//bi-directional many-to-one association to Item
 	@OneToMany(mappedBy="order", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
@@ -73,11 +76,9 @@ public class Order implements Serializable {
 		return ordId;
 	}
 
-
 	public void setOrdId(String ordId) {
 		this.ordId = ordId;
 	}
-
 
 	public Date getEndOrderDate() {
 		return endOrderDate;
@@ -86,7 +87,6 @@ public class Order implements Serializable {
 	public void setEndOrderDate(Date endOrderDate) {
 		this.endOrderDate = endOrderDate;
 	}
-
 
 	public Date getOrderDate() {
 		return orderDate;

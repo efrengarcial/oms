@@ -55,6 +55,9 @@ public class Item implements Serializable {
 
 	@Column(name="QUANTITY")
 	private BigDecimal quantity;
+	
+	@Column(name="CUSTID")
+	private String custId;
 
 	//bi-directional many-to-one association to Order
 	@ManyToOne
@@ -138,16 +141,20 @@ public class Item implements Serializable {
 		this.order = order;
 	}
 
-
-
 	public int getProdId() {
 		return prodId;
 	}
 
-
-
 	public void setProdId(int prodId) {
 		this.prodId = prodId;
+	}
+	
+	public String getCustId() {
+		return custId;
+	}
+
+	public void setCustId(String custId) {
+		this.custId = custId;
 	}
 
 }
