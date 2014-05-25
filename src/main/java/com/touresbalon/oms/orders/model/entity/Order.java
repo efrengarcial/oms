@@ -1,10 +1,26 @@
 package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.Parameter;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 /**
@@ -16,10 +32,12 @@ import java.util.List;
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+		
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDERS")
-    @SequenceGenerator(name="SEQ_ORDERS",sequenceName="SEQ_ORDERS", allocationSize = 1)
-	@Column(name="ORDID")
+	@GenericGenerator(name = "STRING_SEQUENCE_GENERATOR", strategy = "com.touresbalon.framework.jpa.StringSequenceGenerator", 
+						parameters = { @Parameter(name = "sequence", value = "SEQ_ORDERS") })
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STRING_SEQUENCE_GENERATOR")
+	@Column(name = "ORDID")
 	private String ordId;
 
 	@Column(name="COMMENTS")

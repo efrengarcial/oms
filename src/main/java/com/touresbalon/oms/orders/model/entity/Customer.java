@@ -48,7 +48,8 @@ public class Customer implements Serializable {
 	private String type;
 
 	//bi-directional many-to-one association to Address
-	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="CUSTID")
 	private List<Address> addresses;
 
 
@@ -145,18 +146,5 @@ public class Customer implements Serializable {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
-
-	public Address addAddress(Address address) {
-		getAddresses().add(address);
-		address.setCustomer(this);
-
-		return address;
-	}
-
-	public Address removeAddress(Address address) {
-		getAddresses().remove(address);
-		address.setCustomer(null);
-
-		return address;
-	}
+	
 }
