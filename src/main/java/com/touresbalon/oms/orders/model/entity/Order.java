@@ -19,22 +19,28 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDERS")
     @SequenceGenerator(name="SEQ_ORDERS",sequenceName="SEQ_ORDERS", allocationSize = 1)
+	@Column(name="ORDID")
 	private String ordId;
 
+	@Column(name="COMMENTS")
 	private String comments;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="ENDORDERDATE")
 	private Date endOrderDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="ORDERDATE")
 	private Date orderDate;
 
+	@Column(name="PRICE")
 	private BigDecimal price;
 
+	@Column(name="STATUS")
 	private String status;
 
 	//bi-directional many-to-one association to Item
-	@OneToMany(mappedBy="order", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="order", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Item> items;
 
 	//bi-directional many-to-one association to Customer

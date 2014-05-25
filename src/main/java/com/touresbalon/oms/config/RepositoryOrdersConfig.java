@@ -1,12 +1,11 @@
 package com.touresbalon.oms.config;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -18,14 +17,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.dao.support.PersistenceExceptionTranslator;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.instrument.classloading.LoadTimeWeaver;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
-import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -58,7 +54,7 @@ import com.touresbalon.oms.orders.model.service.impl.OrderServiceImpl;
 @PropertySource("classpath:/oracledb.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {OrderDao.class,OrderCustomDao.class},
-entityManagerFactoryRef = "entityManagerFactoryOracle", 
+entityManagerFactoryRef = "entityManagerFactoryOrders", 
 transactionManagerRef = "transactionManagerOrders"
 )
 @ComponentScan(basePackageClasses = { OrderController.class, OrderManager.class ,OrderServiceImpl.class } )
@@ -67,25 +63,20 @@ transactionManagerRef = "transactionManagerOrders"
 public class RepositoryOrdersConfig {
     private static final Logger logger = LoggerFactory.getLogger(RepositoryOrdersConfig.class);
 
-    @Value("#{ environment['database.driverClassName']?:'' }")
+    @Value("#{ environment['database.oracle.driverClassName']?:'' }")
     private String dbDriverClass;
-    @Value("#{ environment['database.url']?:'' }")
+    @Value("#{ environment['database.oracle.url']?:'' }")
     private String dbUrl;
-    @Value("#{ environment['database.username']?:'' }")
+    @Value("#{ environment['database.oracle.username']?:'' }")
     private String dbUserName;
-    @Value("#{ environment['database.password']?:'' }")
+    @Value("#{ environment['database.oracle.password']?:'' }")
     private String dbPassword;
-    @Value("#{ environment['database.vendor']?:'' }")
+    @Value("#{ environment['database.oracle.vendor']?:'' }")
     private String dbVendor;
-
-    @Autowired
-    BeanFactory beanFactory;
 
 	@Autowired
     private Environment environment;
 
-    @Autowired LoadTimeWeaver loadTimeWeaver;
-   
     @Bean(name="order")
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public Order order() {
@@ -122,76 +113,45 @@ public class RepositoryOrdersConfig {
         <property name="connectionTimeoutInMs" value="${dataSource.connectionTimeoutInMs}"></property>*/
         return bean;
     }
-
-    @Bean(name ="entityManagerFactoryOracle")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory()
-            throws Exception {
-        logger.trace("Vendor '{}'", dbVendor);
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-         // loadTimeWeaver will be available if 
-        //   @EnableLoadTimeWeaving is specified in this 
-        //   config class (annotated with @Configuration) 
-        //https://jira.springsource.org/browse/SPR-10856
-        //http://stackoverflow.com/questions/10769051/eclipselinkjpavendoradapter-instead-of-hibernatejpavendoradapter-issue        
-        factory.setLoadTimeWeaver(this.loadTimeWeaver);        
-        factory.setDataSource(dataSource());
-        logger.debug("Scanning Package '{}' for entities",Order.class.getPackage().getName());
-        factory.setPackagesToScan(Order.class.getPackage().getName());
-        factory.setJpaDialect(new EclipseLinkJpaDialect());
-        factory.setPersistenceUnitName("ordersPersistenceUnit");
-
-        EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
-        jpaVendorAdapter.setDatabase(Database.valueOf(dbVendor));
-        jpaVendorAdapter.setShowSql(true);
-        jpaVendorAdapter.setGenerateDdl(false);        
-
-        factory.setJpaVendorAdapter(jpaVendorAdapter);
-
-        // No persistence.xml - thanks to packagesToScan
-        return factory;
-    }
-
-    @Bean(name ="transactionManagerOrders")
-    public PlatformTransactionManager transactionManager() throws Exception {
-        JpaTransactionManager bean = new JpaTransactionManager();
-        bean.setEntityManagerFactory(entityManagerFactory().getObject());
-        bean.setDataSource(dataSource());
-        bean.afterPropertiesSet();
-
-        return bean;
-    }
-
-    @Bean(name="entityManagerOracle")
-    public EntityManager entityManager() throws Exception {
-        if (entityManagerFactory() == null)
-            logger.error("CEMF IS NULL");
-
-        EntityManager bean = null;
-
-        EntityManagerFactory entityManagerFactory = entityManagerFactory()
-                .getObject();
-        if (entityManagerFactory == null) {
-            logger.error("EMF IS NULL");
-            return null;
-        } else {
-            bean = entityManagerFactory.createEntityManager();
-            if (bean == null) {
-                logger.error("EM IS NULL");
-                return null;
-            }
-        }
-
-        return bean;
+    
+    @Bean(name ="entityManagerFactoryOrders")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+       LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+       em.setDataSource(dataSource());
+       em.setPackagesToScan(new String[] { "com.touresbalon.oms.orders.model.entity" });
+       em.setBeanName("entityManagerFactoryOrders");
+  
+       JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+       em.setJpaVendorAdapter(vendorAdapter);
+       em.setJpaProperties(hibernateProperties());
+       em.setPersistenceUnitName("ordersPersistenceUnit");
+  
+       return em;
     }
     
+    @Bean(name ="transactionManagerOrders")
+    public PlatformTransactionManager transactionManager(){
+       JpaTransactionManager transactionManager = new JpaTransactionManager();
+       transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
+  
+       return transactionManager;
+    }   
+  
+   
     @Bean(name="exceptionTranslationOracle")
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-      return new PersistenceExceptionTranslationPostProcessor();
+       return new PersistenceExceptionTranslationPostProcessor();
     }
-    
-    @Bean(name="persistenceExceptionTranslatorOracle")
-    public PersistenceExceptionTranslator persistenceExceptionTranslator() {
-      return new EclipseLinkJpaDialect();
+
+    @SuppressWarnings("serial")
+	Properties hibernateProperties() {
+       return new Properties() {
+          {
+             setProperty("hibernate.hbm2ddl.auto", "none");
+             setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+             setProperty("hibernate.globally_quoted_identifiers", "true");
+          }
+       };
     }
-   
+  
 }

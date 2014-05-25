@@ -45,7 +45,7 @@ public class OrderManager {
 		order.setStatus(state);
 		orderDao.save(order);
 	}
-	@Transactional(value="transactionManagerOrders") 
+	 
 	public Order find(String id){
 		return orderDao.findOne(id);
 	}
@@ -54,12 +54,10 @@ public class OrderManager {
 		return (List<Order>)orderDao.findAll();
 	}
 	
-	@Transactional(value="transactionManagerOrders") 
 	public List<Order> findOrdersByNumberOrder(String idOrden){
 		return orderDao.findOrdersByNumberOrder(idOrden);
 	}
 	
-	@Transactional(value="transactionManagerOrders") 
 	public List<Order> findOrdersByNumberProduct(int codProduct){
 		return orderDao.findOrdersByNumberProduct(codProduct);
 	}

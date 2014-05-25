@@ -11,24 +11,31 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * 
  */
 @Entity
+@Table(name="ADDRESS")
 public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ADDRID")
 	private String addrid;
 
+	@Column(name="ADDRESSTYPE")
 	private String addressType;
 
+	@Column(name="CITY")
 	private String city;
 
+	@Column(name="COUNTRY")
 	private String country;
 
 	@Column(name="\"STATE\"")
 	private String state;
 
+	@Column(name="STREET")
 	private String street;
 
+	@Column(name="ZIP")
 	private String zip;
 
 	//bi-directional many-to-one association to Customer

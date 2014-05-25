@@ -2,6 +2,7 @@ package com.touresbalon.oms.orders.model.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -10,33 +11,44 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="CUSTOMER")
 public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="CUSTID")
 	private String custid;
 
+	@Column(name="CREDITCARDTYPE")
 	private String creditCardType;
 
+	@Column(name="CREDITCARDNUMBER")
 	private String creditCardNumber;
 
+	@Column(name="EMAIL")
 	private String email;
 
+	@Column(name="FNAME")
 	private String fName;
 
+	@Column(name="LNAME")
 	private String lName;
 
+	@Column(name="PASSWORD")
 	private String password;
 
+	@Column(name="PHONENUMBER")
 	private String phoneNumber;
 
+	@Column(name="STATUS")
 	private String status;
 
+	@Column(name="TYPE")
 	private String type;
 
 	//bi-directional many-to-one association to Address
-	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Address> addresses;
 
 

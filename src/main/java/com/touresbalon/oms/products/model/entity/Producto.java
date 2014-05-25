@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
-@Table(name="PRODUCTO")
+@Table(name="Producto")
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -47,7 +47,7 @@ public class Producto implements Serializable {
 //	@Column(name="FechaFinal")
 //	private Date fechaFinal;
 	
-	private String rutaImagen;
+	//private String rutaImagen;
 	
 	public Producto() {
 	}
@@ -90,13 +90,13 @@ public class Producto implements Serializable {
 		this.descripcionProducto = descripcionProducto;
 	}
 
-	public String getRutaImagen() {
-		return rutaImagen;
-	}
-
-	public void setRutaImagen(String rutaImagen) {
-		this.rutaImagen = rutaImagen;
-	}
+//	public String getRutaImagen() {
+//		return rutaImagen;
+//	}
+//
+//	public void setRutaImagen(String rutaImagen) {
+//		this.rutaImagen = rutaImagen;
+//	}
 
 //	public Date getFechaInicial() {
 //		return fechaInicial;

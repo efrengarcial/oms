@@ -20,8 +20,6 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @PropertySource("classpath:/mongodb.properties")
-@ComponentScan(basePackages = "com.touresbalon.oms",
-				excludeFilters = {@ComponentScan.Filter(Configuration.class)}) 
 public class ApplicationConfig {
 
 	static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);

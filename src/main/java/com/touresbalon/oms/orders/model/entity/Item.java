@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,19 +31,26 @@ public class Item implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ORDERS")
     @SequenceGenerator(name="SEQ_ORDERS",sequenceName="SEQ_ORDERS", allocationSize = 1)
+	@Column(name="ITEMID")
 	private String itemId;
 
+	@Column(name="PRODID")
 	private int prodId;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="ITEMDATE")
 	private Date itemDate;
 
+	@Column(name="PARTNUM")
 	private String partNum;
 
+	@Column(name="PRICE")
 	private BigDecimal price;
 
+	@Column(name="PRODUCTNAME")
 	private String productName;
 
+	@Column(name="QUANTITY")
 	private BigDecimal quantity;
 
 	//bi-directional many-to-one association to Order

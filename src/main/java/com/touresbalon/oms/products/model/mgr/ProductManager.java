@@ -26,7 +26,7 @@ public class ProductManager {
 	public void update(Producto producto){
 		productoDao.save(producto);
 	}
-	@Transactional(value="transactionManagerProduct") 
+	//@Transactional(value="transactionManagerProduct") 
 	public Producto find(int idProducto){
 		return productoDao.findOne(idProducto);
 	}
