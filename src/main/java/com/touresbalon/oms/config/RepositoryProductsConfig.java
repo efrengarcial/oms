@@ -57,7 +57,6 @@ transactionManagerRef = "transactionManagerProduct"
 )
 @ComponentScan(basePackageClasses = { ProductController.class, ProductManager.class } )
 
-@EnableLoadTimeWeaving 
 public class RepositoryProductsConfig {
     private static final Logger logger = LoggerFactory.getLogger(RepositoryProductsConfig.class);
 

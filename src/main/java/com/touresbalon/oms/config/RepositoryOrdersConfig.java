@@ -59,7 +59,6 @@ transactionManagerRef = "transactionManagerOrders"
 )
 @ComponentScan(basePackageClasses = { OrderController.class, OrderManager.class ,OrderServiceImpl.class } )
 
-@EnableLoadTimeWeaving 
 public class RepositoryOrdersConfig {
     private static final Logger logger = LoggerFactory.getLogger(RepositoryOrdersConfig.class);
 
