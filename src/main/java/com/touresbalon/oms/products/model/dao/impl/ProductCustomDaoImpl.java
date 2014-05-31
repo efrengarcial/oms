@@ -1,9 +1,5 @@
 package com.touresbalon.oms.products.model.dao.impl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-
 import com.touresbalon.oms.products.model.dao.ProductCustomDao;
 import com.touresbalon.oms.products.model.dto.ProductDto;
 

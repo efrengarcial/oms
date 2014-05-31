@@ -81,14 +81,6 @@
 			<version>1.3.4.RELEASE</version>
 		</dependency>
 
-		<!-- Spring mongo -->
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.3.3.RELEASE</version>
-		</dependency>
-
 		<!-- Apache cxf -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -151,6 +143,12 @@
 			<artifactId>api-ldap-client-all</artifactId>
 			<version>1.0.0-M15</version>
 		</dependency>
+		
+		   <dependency>
+                <groupId>net.bull.javamelody</groupId>
+                <artifactId>javamelody-core</artifactId>
+                <version>1.50.0</version>
+        </dependency>
 		
 	</dependencies>
 	<profiles>

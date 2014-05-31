@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.touresbalon.oms.products.model.dao.ProductDao;
-import com.touresbalon.oms.products.model.dao.TipoEspectaculoDao;
 import com.touresbalon.oms.products.model.entity.Producto;
 import com.touresbalon.oms.products.model.entity.TipoEspectaculo;
 
