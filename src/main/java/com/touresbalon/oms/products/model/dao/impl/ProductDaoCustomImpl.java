@@ -6,15 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 
-import org.springframework.stereotype.Repository;
-
 import com.touresbalon.oms.products.model.dao.ProductDaoCustom;
 import com.touresbalon.oms.products.model.entity.Producto;
 
-@Repository
 public class ProductDaoCustomImpl implements ProductDaoCustom {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName="productPersistenceUnit")
 	private EntityManager entityManager;
 	
 	@SuppressWarnings("unchecked")

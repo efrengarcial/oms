@@ -96,7 +96,7 @@ public class RepositoryProductsConfig {
         bean.setUsername(dbUserName);
         bean.setDriverClass(dbDriverClass);  
         bean.setMaxConnectionsPerPartition(50);
-        bean.setMinConnectionsPerPartition(2);
+        bean.setMinConnectionsPerPartition(5);
                 
         /*<property name="driverClass" value="${dataSource.driverClass}" />
         <property name="jdbcUrl" value="${dataSource.jdbcUrl}" />
