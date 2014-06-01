@@ -50,7 +50,7 @@ import com.touresbalon.oms.products.model.mgr.ProductManager;
 @Configuration
 @PropertySource("classpath:/sqlserverdb.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {ProductDao.class},
+@EnableJpaRepositories(basePackageClasses = {ProductDao.class},repositoryImplementationPostfix="CustomImpl",
 entityManagerFactoryRef = "entityManagerFactoryProduct", 
 transactionManagerRef = "transactionManagerProduct"
 )

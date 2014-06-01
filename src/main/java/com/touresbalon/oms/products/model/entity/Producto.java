@@ -6,48 +6,64 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the ORDERS database table.
  * 
  */
+
+@NamedStoredProcedureQuery(
+		name = "TraerProductos",
+		resultClasses = Producto.class,
+		procedureName = "spTraerProductos",
+		parameters = {
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="CodigoProducto", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="NombreProducto", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="DescripcionProducto", type=String.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="PaginaActual", type=Integer.class),
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="CantidadRegistros", type=Integer.class)
+		}
+		)
 @Entity
 @Table(name="Producto")
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
 	private Integer idProducto;
-	
+
 	private String codigoProducto;
-	
+
 	private String nombreProducto;
-	
+
 	private String descripcionProducto;
-	
+
 	//private Espectaculo espectaculo;
-	
-//	private TarifaBoleta tarifaBoleta;
-//	
-//	private TarifaTransporte tarifaTransporte;
-//	
-//	private TarifaHospedaje tarifaHospedaje;
-	
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@Column(name="FechaInicial")
-//	private Date fechaInicial;
-//	
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@Column(name="FechaFinal")
-//	private Date fechaFinal;
-	
+
+	//	private TarifaBoleta tarifaBoleta;
+	//	
+	//	private TarifaTransporte tarifaTransporte;
+	//	
+	//	private TarifaHospedaje tarifaHospedaje;
+
+	//	@Temporal(TemporalType.TIMESTAMP)
+	//	@Column(name="FechaInicial")
+	//	private Date fechaInicial;
+	//	
+	//	@Temporal(TemporalType.TIMESTAMP)
+	//	@Column(name="FechaFinal")
+	//	private Date fechaFinal;
+
 	//private String rutaImagen;
-	
+
 	public Producto() {
 	}
-	
+
 	public int getIdProducto() {
 		return idProducto;
 	}
@@ -86,60 +102,60 @@ public class Producto implements Serializable {
 		this.descripcionProducto = descripcionProducto;
 	}
 
-//	public String getRutaImagen() {
-//		return rutaImagen;
-//	}
-//
-//	public void setRutaImagen(String rutaImagen) {
-//		this.rutaImagen = rutaImagen;
-//	}
+	//	public String getRutaImagen() {
+	//		return rutaImagen;
+	//	}
+	//
+	//	public void setRutaImagen(String rutaImagen) {
+	//		this.rutaImagen = rutaImagen;
+	//	}
 
-//	public Date getFechaInicial() {
-//		return fechaInicial;
-//	}
-//
-//	public void setFechaInicial(Date fechaInicial) {
-//		this.fechaInicial = fechaInicial;
-//	}
-//
-//	public Date getFechaFinal() {
-//		return fechaFinal;
-//	}
+	//	public Date getFechaInicial() {
+	//		return fechaInicial;
+	//	}
+	//
+	//	public void setFechaInicial(Date fechaInicial) {
+	//		this.fechaInicial = fechaInicial;
+	//	}
+	//
+	//	public Date getFechaFinal() {
+	//		return fechaFinal;
+	//	}
 
-//	public void setFechaFinal(Date fechaFinal) {
-//		FechaFinal = fechaFinal;
-//	}
+	//	public void setFechaFinal(Date fechaFinal) {
+	//		FechaFinal = fechaFinal;
+	//	}
 
-//	public Espectaculo getEspectaculo() {
-//		return espectaculo;
-//	}
-//
-//	public void setEspectaculo(Espectaculo espectaculo) {
-//		this.espectaculo = espectaculo;
-//	}
+	//	public Espectaculo getEspectaculo() {
+	//		return espectaculo;
+	//	}
+	//
+	//	public void setEspectaculo(Espectaculo espectaculo) {
+	//		this.espectaculo = espectaculo;
+	//	}
 
-//	public TarifaBoleta getTarifaBoleta() {
-//		return tarifaBoleta;
-//	}
-//
-//	public void setTarifaBoleta(TarifaBoleta tarifaBoleta) {
-//		this.tarifaBoleta = tarifaBoleta;
-//	}
-//
-//	public TarifaTransporte getTarifaTransporte() {
-//		return tarifaTransporte;
-//	}
-//
-//	public void setTarifaTransporte(TarifaTransporte tarifaTransporte) {
-//		this.tarifaTransporte = tarifaTransporte;
-//	}
-//
-//	public TarifaHospedaje getTarifaHospedaje() {
-//		return tarifaHospedaje;
-//	}
-//
-//	public void setTarifaHospedaje(TarifaHospedaje tarifaHospedaje) {
-//		this.tarifaHospedaje = tarifaHospedaje;
-//	}
-	
+	//	public TarifaBoleta getTarifaBoleta() {
+	//		return tarifaBoleta;
+	//	}
+	//
+	//	public void setTarifaBoleta(TarifaBoleta tarifaBoleta) {
+	//		this.tarifaBoleta = tarifaBoleta;
+	//	}
+	//
+	//	public TarifaTransporte getTarifaTransporte() {
+	//		return tarifaTransporte;
+	//	}
+	//
+	//	public void setTarifaTransporte(TarifaTransporte tarifaTransporte) {
+	//		this.tarifaTransporte = tarifaTransporte;
+	//	}
+	//
+	//	public TarifaHospedaje getTarifaHospedaje() {
+	//		return tarifaHospedaje;
+	//	}
+	//
+	//	public void setTarifaHospedaje(TarifaHospedaje tarifaHospedaje) {
+	//		this.tarifaHospedaje = tarifaHospedaje;
+	//	}
+
 }

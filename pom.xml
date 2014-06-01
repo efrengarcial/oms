@@ -11,8 +11,9 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<eclipselink.version>2.5.0</eclipselink.version>
-		<spring.version>3.2.5.RELEASE</spring.version>
+		<spring.version>4.0.5.RELEASE</spring.version>
 		<cxf.version>2.7.11</cxf.version>
+		<spring.security.version>3.2.4.RELEASE</spring.security.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,17 +42,17 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>3.2.0.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>3.2.0.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>3.2.0.RELEASE</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 
 		<dependency>
@@ -78,7 +79,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.3.4.RELEASE</version>
+			<version>1.6.0.RELEASE</version>
 		</dependency>
 
 		<!-- Apache cxf -->
@@ -149,6 +150,20 @@
                 <artifactId>javamelody-core</artifactId>
                 <version>1.50.0</version>
         </dependency>
+       
+       <dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.11</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>3.2.0.RELEASE</version>
+		    <scope>test</scope>
+		</dependency>
+        
 		
 	</dependencies>
 	<profiles>
