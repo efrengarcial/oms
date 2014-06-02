@@ -47,10 +47,21 @@ public class SecurityConfig {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+//        auth
+//            .inMemoryAuthentication()
+//                .withUser("user").password("password").roles("USER");      
+    	
+ 
+    	auth.ldapAuthentication()
+			.userDnPatterns("uid={0},ou=People,dc=touresBalon,dc=com")
+			.userSearchFilter("uid={0}")    		
+			.groupSearchBase("ou=People")
+				.contextSource()
+					.url("ldap://192.168.1.109:389/dc=touresBalon,dc=com")
+					.managerDn("cn=Manager,dc=touresBalon,dc=com")
+					.managerPassword("master");
     }
+    
     
 
     @Configuration
