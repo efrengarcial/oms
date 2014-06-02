@@ -41,6 +41,7 @@
       <xs:element name="prodId" type="xs:int"/>
       <xs:element minOccurs="0" name="productName" type="xs:string"/>
       <xs:element minOccurs="0" name="quantity" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="showType" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 

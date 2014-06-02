@@ -25,6 +25,8 @@ public class ItemDto implements Serializable {
 	private BigDecimal quantity;
 	
 	private String custId;
+	
+	private String showType;
 
 
 	public ItemDto() {
@@ -110,6 +112,18 @@ public class ItemDto implements Serializable {
 
 	public void setCustId(String custId) {
 		this.custId = custId;
+	}
+
+
+
+	public String getShowType() {
+		return showType;
+	}
+
+
+
+	public void setShowType(String showType) {
+		this.showType = showType;
 	}
 
 }
