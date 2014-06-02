@@ -1,9 +1,12 @@
 define(["angular", "services"], function(angular, services){
 
-    services.factory('Producto', ['$resource',
+    services.factory('ProductoService', ['$resource',
         function($resource){
-    	 	var Producto = $resource('/oms/api/v1/products');    
-    	    return Producto;
+    	  var Producto = $resource('/oms/api/v1/products/:idProducto', {idProducto: '@idProducto'});
+    	  Producto.prototype.save = function(){
+              return (typeof(this.id) === 'undefined');
+          };
+          return Producto;
         }
     ]);
 });

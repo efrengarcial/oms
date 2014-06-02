@@ -150,8 +150,19 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     title: 'Producto',
                     controller: 'ProductController',
                     settings: {
-                        nav: null,
-                        content: '<i class="fa fa-dashboard"></i> Crud Products'
+                        nav: 6,
+                        content: '<i class="fa fa-dashboard"></i> Administracion Productos'
+                    }
+                }
+            }, {
+                url: '/product/new',
+                config: {
+                    templateUrl: 'app/views/productos/producto.html', 
+                    title: 'Producto',
+                    controller: 'ProductController',
+                    settings: {
+                        nav:null,
+                        content: '<i class="fa fa-dashboard"></i> Crear Producto'
                     }
                 }
             },
@@ -198,7 +209,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     title: 'Productos',
                     controller: 'StoreController',
                     settings: {
-                        nav: null,
+                        nav: 5,
                         content: '<i class="fa fa-dashboard"></i> Productos'
                     }
                 }

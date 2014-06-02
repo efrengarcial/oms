@@ -15,22 +15,22 @@ public class CustomerManager {
 	@Autowired
 	private CustomerDao customerDao;
 	
-	@Transactional(value="transactionManagerOrders") 
+	//@Transactional(value="transactionManagerOrders") 
 	public Customer find(String id){
 		return customerDao.findOne(id);
 	}
 	
-	@Transactional(value="transactionManagerOrders")
+	//@Transactional(value="transactionManagerOrders")
 	public List<Customer> findAll(){
 		return (List<Customer>)customerDao.findAll();
 	}
 	
-	@Transactional(value="transactionManagerOrders") 
+	//@Transactional(value="transactionManagerOrders") 
 	public Customer findCustomerByIdentification(String identification){
 		return customerDao.findCustomerByIdentification(identification);
 	}
-//	public List<Customer> findCustomerByProduct(String codProduct){
-//		return customerDao.findCustomerByProduct(codProduct);
-//	}	
+	public List<Customer> findCustomerByProduct(String codigoProducto){
+		return customerDao.findCustomerByProduct(codigoProducto);
+	}	
 	
 }

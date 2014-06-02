@@ -59,7 +59,7 @@ define(["angular","controllers", "services/CustomerService","services/Store","se
 	        	
 	        	// use routing to pick the selected order
 		        if ($scope.identificacion != null) {
-		        	
+		        //$rootScope.loading = true;	
 		        CustomerService.findCustomerByIdentification.query({
 		        	paginaActual: $scope.filterCriteria.pageNumber,
 		        	identificacion: $scope.identificacion}).$promise.then(
@@ -81,7 +81,7 @@ define(["angular","controllers", "services/CustomerService","services/Store","se
 		        			}
 		        	);      	
 		        } else if($scope.codigoProducto != null){	
-	        	$rootScope.loading = true;
+		        	//$rootScope.loading = true;
 		        	CustomerService.findCustomerByProduct.query({
 	        	    paginaActual: $scope.filterCriteria.pageNumber, codigoProducto: $scope.codigoProducto}).$promise.then(
 	        			//success

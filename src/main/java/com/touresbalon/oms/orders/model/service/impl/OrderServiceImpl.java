@@ -45,7 +45,6 @@ public class OrderServiceImpl  implements OrderService {
 		order.setEndOrderDate(dto.getEndOrderDate());
 		order.setOrderDate(dto.getOrderDate());
 		order.setPrice(dto.getPrice());
-		order.setShowType(dto.getShowType());
 		order.setStatus(dto.getStatus());
 		List<Item>  items = new ArrayList<>();
 		for (ItemDto itemDto : dto.getItems()) {
@@ -59,6 +58,7 @@ public class OrderServiceImpl  implements OrderService {
 			item.setProdId(itemDto.getProdId());
 			item.setProductName(itemDto.getProductName());
 			item.setQuantity(itemDto.getQuantity());
+			item.setShowType(itemDto.getShowType());
 		}
 		order.setItems(items);
 		

@@ -28,7 +28,8 @@ public class ItemDto implements Serializable {
 	
 	private String showType;
 
-
+	private String showType;
+	
 	public ItemDto() {
 	}	
 
