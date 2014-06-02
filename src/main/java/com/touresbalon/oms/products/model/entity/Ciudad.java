@@ -12,24 +12,24 @@ public class Ciudad {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int IdCiudad;
+	private int idCiudad;
 	
-	private String NombreCiudad;
+	private String nombreCiudad;
 	
 	public int getIdCiudad() {
-		return IdCiudad;
+		return this.idCiudad;
 	}
 
 	public void setIdCiudad(int idCiudad) {
-		IdCiudad = idCiudad;
+		this.idCiudad = idCiudad;
 	}
 
 	public String getNombreCiudad() {
-		return NombreCiudad;
+		return this.nombreCiudad;
 	}
 
 	public void setNombreCiudad(String nombreCiudad) {
-		NombreCiudad = nombreCiudad;
+		this.nombreCiudad = nombreCiudad;
 	}
 	
 }

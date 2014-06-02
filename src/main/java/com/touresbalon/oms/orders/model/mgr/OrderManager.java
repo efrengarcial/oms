@@ -50,7 +50,6 @@ public class OrderManager {
 		return orderDao.findOrdersByNumberProduct(codProduct);
 	}
 	
-	@Transactional(value="transactionManagerOrders") 
 	public List<OrdenVO> findOrdersClosed(int paginaActual, Date dateIni, Date dateFin){
 		return null;
 		//return orderCustomDao.findOrdersClosed(paginaActual, dateIni, dateFin);

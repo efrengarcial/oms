@@ -8,6 +8,10 @@
 		    this.products = [];	
 		    this.orders = [];
 		    this.customers = [];
+		    this.espectaculos = [];
+		    this.tarifaboletas=[];
+		    this.tarifatransporte=[];
+		    this.tarifahospedaje=[];
 		}
 		
 		// Define the "instance" methods using the prototype
@@ -62,6 +66,24 @@
 		Store.prototype.setCustomers = function (customers) {
 			this.customers= customers;
 		};
+		
+		//Espectaculos
+		Store.prototype.setEspectaculos = function (espectaculos) {
+			this.espectaculos= espectaculos;
+		};
+		//Tarifa Boleta
+		Store.prototype.setTarifaBoleta = function (tarifaboletas) {
+			this.tarifaboletas= tarifaboletas;
+		};
+		
+		Store.prototype.setTarifaTransporte = function (tarifatransporte) {
+			this.tarifatransporte= tarifatransporte;
+		};
+		
+		Store.prototype.setTarifaHospedaje = function (tarifahospedaje) {
+			this.tarifahospedaje= tarifahospedaje;
+		};
+		
 		
 		 // Return constructor - this is what defines the actual
         // injectable in the DI framework.

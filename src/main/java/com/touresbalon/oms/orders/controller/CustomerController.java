@@ -42,7 +42,6 @@ public class CustomerController {
 	@RequestMapping(value = "/findCustomerByProduct", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public List<Customer> findCustomerByProduct(int paginaActual,String codigoProducto){
-		return null;
-		//return customerMgr.findCustomerByProduct(codProduct);
+		return customerMgr.findCustomerByProduct(codigoProducto);
 	}
 }

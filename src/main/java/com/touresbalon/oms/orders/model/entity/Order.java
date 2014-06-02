@@ -57,9 +57,6 @@ public class Order implements Serializable {
 	@Column(name="STATUS")
 	private String status;
 	
-	@Column(name="SHOWTYPE")
-	private String showType;
-
 	//bi-directional many-to-one association to Item
 	@OneToMany(mappedBy="order", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Item> items;
@@ -151,14 +148,6 @@ public class Order implements Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	public String getShowType() {
-		return showType;
-	}
-
-	public void setShowType(String showType) {
-		this.showType = showType;
 	}
 
 	public String getCustId() {

@@ -2,10 +2,16 @@ package com.touresbalon.oms.products.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="TarifaBoleta")
 public class TarifaBoleta  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -13,9 +19,17 @@ public class TarifaBoleta  implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idTarifaBoleta;
 	
+	@Column(name="NombreTarifaBoleta")
 	private String nombreTarifaBoleta;
+	
+	@Column(name="ValorTarifaBoleta")
 	private Double valorTarifaBoleta;
+	
+	@Column(name="ValorProveedor")
 	private Double valorProveedor;
+	
+	@ManyToOne
+	@JoinColumn(name="IdBoleta")
 	private Boleta boleta;
 	
 	public String getNombreTarifaBoleta() {

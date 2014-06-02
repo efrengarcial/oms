@@ -29,18 +29,18 @@ public class Espectaculo implements Serializable {
 	private int idEspectaculo;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaFinal;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaInicial;
+	private Date fechaEspectaculo;
 
 	private String nombreEspectaculo;
 
 	//bi-directional many-to-one association to Ciudad
 	@ManyToOne
+	@JoinColumn(name="IdTipoEspectaculo")
+	private TipoEspectaculo tipoEspectaculo;
+
+	@ManyToOne
 	@JoinColumn(name="IdCiudad")
 	private Ciudad ciudad;
-
 	public Espectaculo() {
 	}
 
@@ -52,20 +52,13 @@ public class Espectaculo implements Serializable {
 		this.idEspectaculo = idEspectaculo;
 	}
 
-	public Date getFechaFinal() {
-		return this.fechaFinal;
+	
+	public Date getFechaEspectaculo() {
+		return this.fechaEspectaculo;
 	}
 
-	public void setFechaFinal(Timestamp fechaFinal) {
-		this.fechaFinal = fechaFinal;
-	}
-
-	public Date getFechaInicial() {
-		return this.fechaInicial;
-	}
-
-	public void setFechaInicial(Timestamp fechaInicial) {
-		this.fechaInicial = fechaInicial;
+	public void setFechaEspectaculo(Timestamp fechaInicial) {
+		this.fechaEspectaculo = fechaInicial;
 	}
 
 	public String getNombreEspectaculo() {
@@ -83,5 +76,12 @@ public class Espectaculo implements Serializable {
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	public TipoEspectaculo getTipoEspectaculo() {
+		return tipoEspectaculo;
+	}
 
+	public void setTipoEspectaculo(TipoEspectaculo tipoEspectaculo) {
+		this.tipoEspectaculo = tipoEspectaculo;
+	}
 }

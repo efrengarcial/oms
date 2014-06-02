@@ -58,6 +58,9 @@ public class Item implements Serializable {
 	
 	@Column(name="CUSTID")
 	private String custId;
+	
+	@Column(name="SHOWTYPE")
+	private String showType;
 
 	//bi-directional many-to-one association to Order
 	@ManyToOne
@@ -156,5 +159,14 @@ public class Item implements Serializable {
 	public void setCustId(String custId) {
 		this.custId = custId;
 	}
+
+	public String getShowType() {
+		return showType;
+	}
+
+	public void setShowType(String showType) {
+		this.showType = showType;
+	}
+
 
 }

@@ -1,13 +1,34 @@
-define(["angular","controllers", "services/ProductService","services/Store"], function(angular, controllers){
+define(["angular","controllers","services/ProductoService", "services/ProductService","services/Store"], function(angular, controllers){
 
-    controllers.controller('ProductController', ['$scope', '$routeParams', '$location','toaster','ProductService','DataService', 'Store',
-        function($scope,  $routeParams, $location, toaster, ProductService,DataService, Store) {
+    controllers.controller('ProductController', ['$scope', '$routeParams', '$location','toaster','ProductService','DataService', 'Store','ProductoService','ProductFactory',
+        function($scope,  $routeParams, $location, toaster, ProductService,DataService, Store,ProductoService,ProductFactory) {
     	  	$scope.products = [];
     	  	$scope.store = DataService.store;
+    		//$scope.producto = new Producto();
+    		
+    	  	 $scope.init=function(){
+    	  		ProductService.findAllEspectaculos.query({}).$promise.then(
+    	  				function(data){	  
+    	  					$scope.store.setEspectaculos(data);
+    	  				});
+    	  		
+    	  		ProductService.findAllTarifaBoleta.query({}).$promise.then(
+    	  				function(data){	  
+    	  					$scope.store.setTarifaBoleta(data);
+    	  				});
+    	  		
+    	  		ProductService.findAllTarifaTransporte.query({}).$promise.then(
+    	  				function(data){	  
+    	  					$scope.store.setTarifaTransporte(data);
+    	  				});
+    	  		ProductService.findAllTarifaHospedaje.query({}).$promise.then(
+    	  				function(data){	  
+    	  					$scope.store.setTarifaHospedaje(data);
+    	  				});
+    	  	 };
+    	  	 
     	    $scope.save = function () {
-    	    	$scope.producto.$save(function (producto, headers) {
-    	    		toaster.pop('success', "title", "Submitted Product");
-    	        });
+    	    	ProductFactory.save($scope.product);
     	    };
     	    
 	        $scope.buscarProductos= function () {
@@ -79,6 +100,8 @@ define(["angular","controllers", "services/ProductService","services/Store"], fu
 	            sortDir: 'asc',
 	            sortedBy: 'Codigo'
 	        };
+	        
+	        $scope.init();
 	        
         }]);
 });
