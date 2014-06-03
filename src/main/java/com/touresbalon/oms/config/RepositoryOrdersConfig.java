@@ -52,7 +52,7 @@ import com.touresbalon.oms.orders.model.service.impl.OrderServiceImpl;
 @Configuration
 @PropertySource("classpath:/oracledb.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {OrderDao.class,OrderCustomDao.class},
+@EnableJpaRepositories(basePackageClasses = {OrderDao.class},repositoryImplementationPostfix="CustomImpl",
 entityManagerFactoryRef = "entityManagerFactoryOrders", 
 transactionManagerRef = "transactionManagerOrders"
 )

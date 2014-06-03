@@ -17,4 +17,6 @@ public interface CustomerDao extends CrudRepository<Customer, String> {
 	
 	@Query("SELECT o FROM Customer o WHERE o.identificacion = :identification")
 	public List<Customer> findCustomerByProduct(@Param("identification") String codigoProduct);
+	
+	
 }

@@ -50,6 +50,10 @@ public class SecurityConfig {
         auth
             .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER");
+//        auth
+//        .ldapAuthentication()
+//            .userDnPatterns("uid={0},ou=people")
+//            .groupSearchBase("ou=groups");
     }
     
 
@@ -69,7 +73,7 @@ public class SecurityConfig {
     }
     
     @Configuration   
-    public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
+	public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
         @Override
         public void configure(WebSecurity web) throws Exception {
         	  web

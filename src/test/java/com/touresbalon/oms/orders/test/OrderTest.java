@@ -1,8 +1,11 @@
 package com.touresbalon.oms.orders.test;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -35,6 +38,36 @@ public class OrderTest {
 		orderDao.save(order);
 	}
 	
+	@Test
+	public void testfindRankingOpenOrders() {
+		List<Order> orders=orderDao.findRankingOpenOrders();
+		if(orders.size()>0){
+			for (Order order : orders) {
+				System.out.print("ordenes encontradas....." +order.getOrderDate());
+			}
+			
+		}
+	}
+	
+	@Test
+	public void testfindRankingClosedOrders() {
+		Date fechaInicial=null;
+		Date fechaFinal=null;
+		try {
+			fechaInicial = new SimpleDateFormat("yyyy/MM/dd").parse("2014/01/02");
+			fechaFinal=new SimpleDateFormat("yyyy/MM/dd").parse("2014/02/02");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		List<Order> orders=orderDao.findRankingClosedOrders(fechaInicial, fechaFinal);
+		if(orders.size()>0){
+			for (Order order : orders) {
+				System.out.print("ordenes encontradas....." +order.getOrderDate());
+			}
+			
+		}
+	}
 	private Order orderDtoToOrder(){
 		Order order = new Order();
 		order.setOrdId("10000");

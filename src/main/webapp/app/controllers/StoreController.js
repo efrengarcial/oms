@@ -1,59 +1,111 @@
-define(["angular","controllers", "services/DataService",  "services/ShoppingCart", "services/Store" ,"services/Product", "services/ProductoService"],
+define(["angular", "controllers", "services/DataService", "services/ShoppingCart", "services/Store",
+     "services/ProductoService", "services/Product", "services/UserService", "services/OrderService","services/ProductService"],
 		function(angular, controllers){
 
 	//http://nadeemkhedr.wordpress.com/2013/09/01/build-angularjs-grid-with-server-side-paging-sorting-filtering/
-    controllers.controller('StoreController', ['$scope','$routeParams', 'toaster','DataService','Store','ProductoService','$location','$rootScope',
-        function($scope, $routeParams ,toaster,DataService,Store,ProductoService,$location,$rootScope) {   
-	    	 // get store and cart from service
+		    controllers.controller('StoreController', ['$scope', '$routeParams', 'toaster', 'DataService', 'Store',
+                'ProductoService', '$location', '$rootScope', 'UserService', 'OrderService', 'ProductService',
+        function ($scope, $routeParams, toaster, DataService, Store, ProductoService, $location, $rootScope, UserService, OrderService,ProductService) {
+	    	
 	        $scope.store = DataService.store;
-	        $scope.cart = DataService.cart;	        
+	        $rootScope.cart = DataService.cart;
+	        $rootScope.campaign = DataService.campaign;
+	        $rootScope.isLogged = UserService.isLogged;
 
-	        $scope.totalPages = 10;
-	        $scope.productosCount = 100;
+	        $scope.totalPages = $scope.store.getTotalPages();
+	        $scope.productosCount = $scope.store.getProductosCount();
 	        $scope.headers = [
             {
                 title: 'Item',
                 value: ''
             },
             {
+                title: 'Codigo',
+                value: 'codigoProducto'
+            },
+            {
                 title: 'Nombre',
+                value: 'nombreProducto'
+            },
+            {
+                title: 'Espectaculo',
                 value: 'nombre'
             },
             {
-                title: 'Precio',
-                value: 'precio'
+                title: 'Fecha',
+                value: 'Fecha'
             },
             {
-                title: '',
+                title: 'Eliminar',
+                value: ''
+            },
+            {
+                title: 'Modificar',
                 value: ''
             }];
                       
 
+
+   	  	 $scope.init=function(){
+   	  		if($scope.store.espectaculos.length==0){
+   	  		ProductService.findAllEspectaculos.query({}).$promise.then(
+   	  				function(data){	  
+   	  					$scope.store.setEspectaculos(data);
+   	  				});
+   	  		}
+   	  		if($scope.store.tarifaboletas.length==0){
+   	  			ProductService.findAllTarifaBoleta.query({}).$promise.then(
+   	  				function(data){	  
+   	  					$scope.store.setTarifaBoleta(data);
+   	  				});
+   	  		}
+   	  	    if($scope.store.tarifatransporte.length==0){
+   	  		ProductService.findAllTarifaTransporte.query({}).$promise.then(
+   	  				function(data){	  
+   	  					$scope.store.setTarifaTransporte(data);
+   	  				});
+   	  	    }
+   	  	    if($scope.store.tarifahospedaje.length==0){
+   	  		ProductService.findAllTarifaHospedaje.query({}).$promise.then(
+   	  				function(data){	  
+   	  					$scope.store.setTarifaHospedaje(data);
+   	  				});
+   	  	    }
+   	  	 };
             //default criteria that will be sent to the server
 	        $scope.filterCriteria = {
 	            pageNumber: 1,
 	            sortDir: 'asc',
-	            sortedBy: 'codigo'
+	            sortedBy: 'Codigo'
 	        };
 
 	        //The function that is responsible of fetching the result from the server and setting the grid to the new result
-	        $scope.fetchResult = function () {
-	        	$rootScope.loading = true;
-	        	ProductoService.query().$promise.then(	        			
+	        $scope.fetchResult = function ($scope) {
+	            $rootScope.loading = true;
+                
+	            ProductoService.consultarProductos.query({
+	        	    paginaActual: $scope.filterCriteria.pageNumber, nombreProducto: $scope.nombre,
+	        	     codigoProducto : $scope.codigo , descripcionProducto : $scope.descripcion , idEspectaculo :$scope.idEspectaculo }).$promise.then(
 	        			//success
 	        			function( data ){	        				
-	        				$scope.store.setProducts(data);
-	        				$scope.totalPages = 10;//data.TotalPages;
-	        				$scope.productosCount = 100; //data.TotalItems;
-	        				$rootScope.loading = false;
+	        			    $scope.store.setProducts(data);	        			  
+	        			    $rootScope.loading = false;
+        			    	if ($scope.filterCriteria.pageNumber == 1) { 
+	        			    	$scope.totalPages = 1;
+	        			    	$scope.store.setTotalPages(1);
+	        			        $scope.productosCount =  data.length;
+	        			        $scope.store.setProductosCount($scope.productosCount);
+	        			    }
 	        			},
 	        			//error
 	        			function( error ){ 
-	        				toaster.pop('error', "Mensaje de Error", error.data);
-	        				$rootScope.loading = false;	        				
-	        				$scope.store.setProducts([]);
-	        				$scope.totalPages = 0;
-	        				$scope.productosCount = 0;
+	        			    toaster.pop('error', "Mensaje de Error", error.data.Message);
+	        			    $rootScope.loading = false;
+	        			    $scope.store.setProducts([]);
+	        			    $scope.totalPages = 0;
+	        			    $scope.productosCount = 0;
+	        			    $scope.store.setTotalPages(0);
+	        			    $scope.store.setProductosCount(0);
 	        			}
 	        	);      	
 	        };
@@ -61,7 +113,7 @@ define(["angular","controllers", "services/DataService",  "services/ShoppingCart
             //called when navigate to another page in the pagination
 	        $scope.selectPage = function (page) {
 	            $scope.filterCriteria.pageNumber = page;
-	            $scope.fetchResult();
+	            $scope.fetchResult($scope);
 	        };
 
             //Will be called when filtering the grid, will reset the page number to one
@@ -89,13 +141,35 @@ define(["angular","controllers", "services/DataService",  "services/ShoppingCart
 
 	
 	        // use routing to pick the selected product
-	        if ($routeParams.codigoProducto != null) {
-	            $scope.product = $scope.store.getProduct($routeParams.codigoProducto);
+	        if ($routeParams.IdProducto != null) {
+	            // $scope.product = $scope.store.getProduct($routeParams.codigoProducto);
+	            ProductoService.ConsultarProducto.get({ id: $routeParams.IdProducto }).$promise.then(
+	        			//success
+	        			function( data ){	        				
+	        			    $scope.product = data;
+	        			},
+	        			//error
+	        			function( error ){ 
+	        			    toaster.pop('error', "Mensaje de Error", error.data);
+	        			}
+	        	);      	
 	        } 
-	        
+	        $scope.init();
 	        $scope.go = function ( path ) {
 	        	  $location.path( path );
 	        };
+
+	        $scope.checkout = function () {
+	            OrderService.procesarOrden(DataService.cart).
+                    success(function(data, status) {
+                        toaster.pop('success', "Su numero de ticket es: ", data);
+                        console.log(data);
+                    }).error(function (data, status) {
+                        
+                        toaster.pop('error', "Mensaje de Error", error.data);
+                        console.log(data);
+                    });   
+	        }
 	        
 	        $scope.buscarProductos= function () {
 	        	console.log('Buscando productos....');

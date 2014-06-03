@@ -7,46 +7,30 @@
                		
               	 <form class="well form-search">	
 			        <input type="text" ng-model="ordId" class="input-medium search-query" placeholder="Numero orden...">
-			        <input type="number" ng-model="codigoProducto" class="input-medium search-query" placeholder="NumeroProducto...">
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenes()">Buscar</button>
+			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenesCanceladas()">Buscar</button>
 			        <br />
 			    </form>	
-			    <form class="well form-search">	
-			        <input type="date" ng-model="fechaInicio" class="input-medium search-query" placeholder="Fecha inicio...">
-			        <input type="date" ng-model="fechaFin" class="input-medium search-query" placeholder="Fecha fin...">
-			       <!--  <a href="#/orders/{{fechaInicio}}"> -->
-			        	<button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenesCerradas(fechaInicio,fechaFin)">Ordenes Cerradas</button>
-			       <!-- </a> -->
-			      
-			       	<button type="submit" class="btn btn-large btn-primary" ng-click="rankingOpenOrders()">Ranking ordenes abiertas</button>
-			      
-			        <a href="#/orders/{{fechaInicio}}">
-			        	<button type="submit" class="btn btn-large btn-primary" ng-click="">Ranking ordenes cerradas</button>
-			        </a>
-			    </form>
-			    
-			    
-                <div ng-show="ordenesCount == 0">
-                  <h3>Ordenes no encontradas</h3>
+                <div ng-show="store.cancelorders == 0">
+                  <h3>Ingrese el identificador de la Orden a cancelar</h3>
                 </div>
                 <div ng-show="ordenesCount > 0">
-                  <h3>Ordenes encontradas: {{ordenesCount}}</h3>
+                  <h3>Ordenes encontradas: {{store.cancelorders.length}}</h3>
                 </div>    		
 				
-				<table class="table table-boed table-hover" ng-show="store.orders.length > 0">				    
+				<table class="table table-boed table-hover" ng-show="store.cancelorders > 0">				    
                      <thead>
                        <tr class="well bviolet">
 				          <td class="text-right" colspan="6" >
 				         </td>
 				       </tr>
                         <tr class="well blightblue">
-                          <th ng-repeat="header in headers">
+                          <th ng-repeat="header in headersCancel">
                             <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
                           </th>
                         </tr>
                      </thead>
                     <tbody>
-				    <tr ng-repeat="order in  store.orders" >
+				    <tr ng-repeat="order in  store.cancelorders" >
 
                         <td class="tdRight">
 				            {{order.ordId}}
@@ -63,17 +47,14 @@
 				        <td class="tdRight">
 				            {{order.price | currency}}
 				        </td>
-				          <td class="tdRight">
-				            {{order.status}}
-				        </td>
 				        <td class="tdCenter">
-				        	<a href="#/order/{{order.ordId}}">
+				        	
                              <button 
 		                        class="btn btn-block btn-success" 
-		                        ng-click="">
-		                        Detalle de la Orden
+		                        ng-click="CancelarOrden(order)">
+		                        Cancelar Orden
 		                    </button>
-		                    </a>
+		                    
                        </td>
 				    </tr>
 				     </tbody>
@@ -84,7 +65,7 @@
 				    </tr>
                     </tfoot>				   
 				</table>
-                <div ng-show="totalPages > 1" class="align-center">                              
+                <div ng-show="store.cancelorders > 1" class="align-center">                              
                  	<pagination  total-items="ordenesCount" page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
                             on-select-page="selectPage(page)"></pagination>
                 </div>            

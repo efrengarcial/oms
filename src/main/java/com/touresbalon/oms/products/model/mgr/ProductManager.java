@@ -22,7 +22,7 @@ import com.touresbalon.oms.products.model.entity.TipoEspectaculo;
 public class ProductManager {
 
 	@Autowired
-	public ProductDao productoDao;
+	public ProductDao productDao;
 	
 	@Autowired
 	public EspectaculoDao espectaculoDao;
@@ -41,22 +41,28 @@ public class ProductManager {
 	
 	@Transactional(value="transactionManagerProduct")  
 	public Producto create(Producto producto){
-		return productoDao.save(producto);
+		return productDao.save(producto);
 	}
 	@Transactional
 	public void update(Producto producto){
-		productoDao.save(producto);
+		productDao.save(producto);
 	}
-	//@Transactional(value="transactionManagerProduct") 
 	public Producto find(int idProducto){
-		return productoDao.findOne(idProducto);
+		return productDao.findOne(idProducto);
 	}
-	public List<Producto>  findProductos(String codigoProducto,String nombreProducto, String descripcionProducto){
-		return productoDao.findProductos(nombreProducto);
+	/***
+	 * Consulta de productos 
+	 * @param codigoProducto
+	 * @param nombreProducto
+	 * @param descripcionProducto
+	 * @return
+	 */
+	public List<Producto> consultarProductos(int paginaActual, String codigoProducto, String nombreProducto, String descripcionProducto, Integer idEspectaculo){
+		return productDao.queryProducts(codigoProducto,nombreProducto, descripcionProducto, paginaActual,10,idEspectaculo);
 	}
 	
 	public List<Producto> findAll(){
-		return (List<Producto>)productoDao.findAll();
+		return (List<Producto>)productDao.findAll();
 	}
 	
 	public TipoEspectaculo findTipoEspectaculo(int idTipoEspectaculo){

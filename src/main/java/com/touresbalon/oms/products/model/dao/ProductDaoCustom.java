@@ -6,6 +6,5 @@ import com.touresbalon.oms.products.model.entity.Producto;
 
 public interface ProductDaoCustom{
 	
-	public List<Producto> queryProducts(String codProducto, String nomProducto,
-			String desProducto, Integer paginaActual,Integer cantidadRegistros);
+	public List<Producto> queryProducts(String codProducto, String nomProducto,String desProducto, Integer paginaActual,Integer cantidadRegistros,Integer idEspectaculo);
 }

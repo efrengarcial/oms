@@ -99,15 +99,19 @@
 
 						</table>
 					</div>
-				</div>
 					<!-- buttons -->
-					<div class="col-md-3">
-						<button class="btn btn-block btn-success" id="save"
-							ng-click="save(product)">
-							<i class="fa fa-shopping-cart fa-lg icon-white" /> Crear
-							Producto
-						</button>
-					</div>
+		            <div class="col-md-3">
+		                <button 
+		                    class="btn btn-block btn-success" 
+		                    ng-click="save(product)">
+		                    <i class="fa fa-shopping-cart fa-lg icon-white" /> Crear Producto
+		                </button>
+		                <button 
+		                    class="btn btn-block btn-danger" ng-click="go('/store')" >
+		                    <i class="fa fa-chevron-left fa-lg icon-white" /> Regresar a consulta
+		                </button>				       
+				    </div>
+				</div>
 			</div>
 	</section>
 </section>
