@@ -16,6 +16,7 @@ import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  * The persistent class for the ORDERS database table.
@@ -31,7 +32,8 @@ import javax.persistence.TemporalType;
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="NombreProducto", type=String.class),
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="DescripcionProducto", type=String.class),
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="PaginaActual", type=Integer.class),
-			@StoredProcedureParameter(mode=ParameterMode.IN, name="CantidadRegistros", type=Integer.class)
+			@StoredProcedureParameter(mode=ParameterMode.IN, name="CantidadRegistros", type=Integer.class)//,
+			//@StoredProcedureParameter(mode=ParameterMode.IN, name="IdEspectaculo", type=Integer.class)
 		}
 		)
 @Entity
@@ -69,12 +71,14 @@ private static final long serialVersionUID = 1L;
 	@Column(name="FechaInicial")
 	private Date fechaInicial;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="FechaFinal")
-	private Date fechaFinal;
+	@Transient
+	private int totalRegistros;
 	
 	private String rutaImagen;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="FechaFinal")
+	private Date fechaFinal;
 	public Producto() {
 	}
 	
@@ -165,4 +169,15 @@ private static final long serialVersionUID = 1L;
 	public Integer getIdProducto() {
 		return idProducto;
 	}
+	
+
+	public int getTotalRegistros() {
+		return totalRegistros;
+	}
+
+	public void setTotalRegistros(int totalRegistros) {
+		this.totalRegistros = totalRegistros;
+	}
+
+
 }

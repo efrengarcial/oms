@@ -47,6 +47,12 @@ define(["angular","controllers", "services/CustomerService","services/Store","se
 	        	$scope.selectPage(1);
 	        };
 	        
+	        $scope.rankingCustomers= function () {
+	        	console.log('Buscando clientes....');
+	        	toaster.pop('success', "Ranking de clientes", "");
+	        	$scope.selectPage(1);
+	        };
+	        
 	        //called when navigate to another page in the pagination
 	        $scope.selectPage = function (page) {
 	            $scope.filterCriteria.pageNumber = page;

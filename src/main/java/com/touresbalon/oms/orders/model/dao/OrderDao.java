@@ -10,11 +10,15 @@ import org.springframework.stereotype.Repository;
 import com.touresbalon.oms.orders.model.entity.Order;
 
 @Repository
-public interface OrderDao extends CrudRepository<Order, String> {
+public interface OrderDao extends CrudRepository<Order, String>,OrderCustomDao {
 
 	@Query("SELECT p FROM Order p WHERE p.ordId = :idOrden")
     public List<Order> findOrdersByNumberOrder(@Param("idOrden") String idOrden);
 	
 	@Query("SELECT o FROM Order o, Item i WHERE (o.ordId = i.order.ordId) and (i.prodId = :codigo)")
     public List<Order> findOrdersByNumberProduct(@Param("codigo") int codigoProducto);
+	
+	@Query("SELECT p FROM Order p WHERE (p.ordId = :idOrden) and (p.status= 'EN_RESERVACION' or p.status= 'EN_VALIDACION'))")
+    public List<Order> findCancelOrders(@Param("idOrden") String idOrden);
+
 }

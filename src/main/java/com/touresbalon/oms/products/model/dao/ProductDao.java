@@ -20,4 +20,7 @@ public interface ProductDao extends CrudRepository<Producto, Integer>, ProductDa
 		
 	@Query("SELECT p FROM Producto p WHERE p.codigoProducto = :codigoProducto")
 	public Producto findProductoByCodigo(@Param("codigoProducto") String codigoProducto);
+	
+//	@Query("SELECT p FROM Producto p JOIN Espectaculo e on (p.espectaculo.idEspectaculo = es.idEspectaculo) WHERE  (e.nombreEspectaculo like '%:nombreEspectaculo%')")
+//	public List<Producto> queryProductsbyEspectaculo(@Param("nombreEspectaculo") String nombreEspectaculo);
 }

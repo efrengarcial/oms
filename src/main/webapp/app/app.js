@@ -20,21 +20,6 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
         'services',
         'filters'        
     ]);
-
-    /*app.config(['$routeProvider',
-      function($routeProvider) {    
-        $routeProvider
-          //.when('/', {templateUrl: 'views/stories/list.html', controller: 'StoryListController'})
-          .when('/', {templateUrl: 'views/oms/parametros.html', controller: 'ParametroListController'})
-          //.when('/table', {templateUrl: 'views/stories/table.html', controller: 'TableController'})
-          .when('/table', {templateUrl: 'views/oms/admin.html', controller: 'TableController'})
-          .when('/grid', {templateUrl: 'views/stories/grid.html', controller: 'GridController'})
-          .when('/stories/new', {templateUrl: 'views/stories/create.html', controller: 'StoryCreateController'})
-          .when('/stories/:storyId', {templateUrl: 'views/stories/detail.html', controller: 'StoryDetailController'})         
-          .otherwise({
-            redirectTo: '/'
-          }); 
-      }]); */
     
     // Collect the routes
     app.constant('routes', getRoutes());
@@ -97,8 +82,8 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-dashboard"></i> xxxxxxx'
                     }
                 }
-            },
-            {//Cliente
+            },//Cliente
+            {
                 url: '/customer/:ordId',
                 config: {
                     templateUrl: 'app/views/orders/customer.html',                    
@@ -130,42 +115,67 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                         content: '<i class="fa fa-dashboard"></i> orders'
                     }
                 }
-            },//Productos
+            },
             {
-                url: '/consultarProductos',
+                url: '/cancelarOrden',
                 config: {
-                    templateUrl: 'app/views/productos/consultarProductos.html',
-                    title: 'Consultar Productos',   
-                    controller: 'ProductController',
+                    templateUrl: 'app/views/orders/cancelarOrden/cancelarOrdenes.html',                    
+                    controller: 'OrderController',
                     settings: {
                         nav: 3,
-                        content: '<i class="fa fa-dashboard"></i>Consultar Productos'
+                        content: '<i class="fa fa-dashboard"></i> Cancelar orden'
                     }
                 }
             },
+            //Productos
+            {
+                url: '/store',
+                config: {
+                    templateUrl: 'app/views/productos/productQuery.html',
+                    title: 'Productos',
+                    controller: 'StoreController',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="fa fa-plane"></i> Productos'
+                    }
+                }
+            }
+            ,   {
+                url: '/products/:IdProducto',
+                config: {
+                    templateUrl: 'app/views/productos/product.html',                    
+                    controller: 'StoreController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> xxxxxxx'
+                    }
+                }
+            },
+            
             {
                 url: '/product',
                 config: {
                     templateUrl: 'app/views/productos/producto.html',
-                    title: 'Producto',
+                    title: 'Administracion de Productos',
                     controller: 'ProductController',
                     settings: {
-                        nav: 6,
-                        content: '<i class="fa fa-dashboard"></i> Administracion Productos'
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i>Administracion Productos'
                     }
                 }
-            }, {
-                url: '/product/new',
-                config: {
-                    templateUrl: 'app/views/productos/producto.html', 
-                    title: 'Producto',
-                    controller: 'ProductController',
-                    settings: {
-                        nav:null,
-                        content: '<i class="fa fa-dashboard"></i> Crear Producto'
-                    }
-                }
-            },
+            }, 
+//            {
+//                url: '/product/new',
+//                config: {
+//                    templateUrl: 'app/views/productos/producto.html', 
+//                    title: 'Producto',
+//                    controller: 'ProductController',
+//                    settings: {
+//                        nav:null,
+//                        content: '<i class="fa fa-dashboard"></i> Crear Producto'
+//                    }
+//                }
+//            },
             {//Clientes
                 url: '/customers',
                 config: {
@@ -173,7 +183,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     title: 'Customer',
                     controller: 'CustomerController',
                     settings: {
-                        nav: 4,
+                        nav: 6,
                         content: '<i class="fa fa-dashboard"></i> Consulta de clientes'
                     }
                 }
@@ -189,75 +199,8 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     }
                 }
             },
-            {
-                url: '/table',
-                config: {
-                    title: 'admin',
-                    controller: 'TableController',
-                    templateUrl: 'app/views/oms/admin.html',
-                    settings: {
-                        nav: null,
-                        content: '<i class="fa fa-lock"></i> Admin'
-                    }
-                }
-            }
-            //carrito de compras
-            ,   {
-                url: '/store',
-                config: {
-                    templateUrl: 'app/views/admincarrito/store.html',
-                    title: 'Productos',
-                    controller: 'StoreController',
-                    settings: {
-                        nav: 5,
-                        content: '<i class="fa fa-dashboard"></i> Productos'
-                    }
-                }
-            }
-            ,   {
-                url: '/products/:productSku',
-                config: {
-                    templateUrl: 'app/views/admincarrito/product.html',                    
-                    controller: 'StoreController',
-                    settings: {
-                        nav: null,
-                        content: '<i class="fa fa-dashboard"></i> xxxxxxx'
-                    }
-                }
-            }
-            ,   {
-                url: '/cart',
-                config: {
-                    templateUrl: 'app/views/admincarrito/shoppingCart.html',                   
-                    controller: 'StoreController',
-                    settings: {
-                        nav: null,
-                        content: '<i class="fa fa-dashboard"></i> xxxxxxx'
-                    }
-                }
-            }
-            ,   {
-                url: '/stories',
-                config: {
-                    templateUrl: 'app/views/stories/list.html',                   
-                    controller: 'StoryListController',
-                    settings: {
-                        nav: null,
-                        content: '<i class="fa fa-dashboard"></i> Stories'
-                    }
-                }
-            }
-            ,   {
-                url: '/stories/new',
-                config: {
-                    templateUrl: 'app/views/stories/create.html',                   
-                    controller: 'StoryCreateController',
-                    settings: {
-                        nav: null,
-                        content: '<i class="fa fa-dashboard"></i> Stories'
-                    }
-                }
-            }
+
+
         ];
     }
     

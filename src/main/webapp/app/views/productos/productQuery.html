@@ -1,0 +1,92 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">      		                             
+				
+				<h2>Consultar Productos</h2>
+               		
+              	 <form class="well form-search">			       
+			        <input type="text" ng-model="codigo" class="input-medium search-query" placeholder="Codigo...">
+			        <input type="text" ng-model="nombre" class="input-medium search-query" placeholder="Nombre...">
+			        <input type="text" ng-model="descripcion" class="input-medium search-query" placeholder="Descripcion...">
+			        <select ng-init="idEspectaculo = -1" ng-model="idEspectaculo" ng-options="espectaculo.nombreEspectaculo  for espectaculo in store.espectaculos">
+      									<option value="" selected="selected">-- Seleccione el espectaculo --</option>
+    				</select>
+			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarProductos()">Buscar</button>
+			        <button class="btn btn-large btn-primary" id="save"
+							ng-click="go('/product')">
+							<i class="fa fa-shopping-cart fa-lg icon-white" /> Crear
+							Producto
+					 </button>
+			         <p class="help-block">Pruebe  por  ejemplo: "colombia" o "ecuador" o "copa mundial de futbol"</p> 
+			    </form>
+                <div ng-show="productosCount > 0">
+                  <h3>Productos encontrados: {{productosCount}}</h3>
+                </div>    		
+				
+				<table class="table table-bordered table-hover" ng-show="totalPages  > 0">				    
+                     <thead>
+                       <tr class="well bviolet">
+				       </tr>
+                        <tr class="well blightblue">
+                          <th ng-repeat="header in headers">
+                            <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
+                          </th>
+                        </tr>
+                     </thead>
+                    <tbody>
+				    <tr ng-repeat="product in  store.productos" >
+				        <td class="text-center">
+                            <a href="#/products/{{product.idProducto}}">
+                                <img width="30%" height="20%"  ng-src="{{product.rutaImagen}}"                                 
+                            alt="{{product.nombreProducto}}" />
+                             </a> 
+				        </td>
+                        <td class="tdRight">
+				           {{product.codigoProducto}}
+				        </td>
+				        <td class="tdRight">
+				            {{product.nombreProducto}}
+				        </td>
+				        <td>
+				            <b>{{product.nombreProducto}}</b><br />
+				            {{product.descripcionProducto}}
+				        </td>
+                        <td class="tdRight">
+				            {{product.espectaculo.fechaEspectaculo | date:'dd/MM/yyyy' }}
+				        </td>
+				       
+				        <td class="tdCenter">
+                         <button 
+		                    class="btn btn-block btn-danger" 
+		                    ng-click="cart.addItem(product.CodigoProducto, product.NombreProducto, product.ValorProducto, -10000)"
+		                    ng-disabled="cart.getTotalCount(product.CodigoProducto) < 1">
+		                    <i class="fa fa-trash-o fa-lg icon-white" /> Remover
+		                </button>
+				        </td>
+				        <td class="tdCenter">
+                             <button 
+		                        class="btn btn-block btn-success" 
+		                        ng-click="cart.addItem(product.codigoProducto, product.nombreProducto, product.valorProducto, 1)">
+		                        <i class="fa fa-shopping-cart fa-lg icon-white" /> Actualizar
+		                    </button>
+				        </td>
+				    </tr>
+				     </tbody>
+				     <tfoot>
+                    <tr class="well bviolet">
+
+				    </tr>
+                    </tfoot>				   
+				</table>
+                <div ng-show="totalPages > 1" class="align-center">                              
+                 	<pagination  total-items="productosCount" page="filterCriteria.pageNumber" max-size="10" class="" boundary-links="true"
+                            on-select-page="selectPage(page)"></pagination>
+                </div>            
+                            		
+            </div>
+        </div>
+    </section>
+</section>
+
+

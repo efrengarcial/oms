@@ -5,13 +5,18 @@
 		//----------------------------------------------------------------
 		// store (contains the products)
 		function Store() {
-		    this.products = [];	
+		    this.productos = [];	
 		    this.orders = [];
+		    this.cancelorders = [];
+		    this.rankingopenorders = [];
 		    this.customers = [];
 		    this.espectaculos = [];
 		    this.tarifaboletas=[];
 		    this.tarifatransporte=[];
 		    this.tarifahospedaje=[];
+		    
+		    this.totalPages = 0;
+		    this.productosCount = 0;
 		}
 		
 		// Define the "instance" methods using the prototype
@@ -20,13 +25,6 @@
 				
 		};
 		
-		Store.prototype.getProduct = function (codigoProducto) {
-		    for (var i = 0; i < this.products.length; i++) {
-		        if (this.products[i].codigoProducto == codigoProducto)
-		            return this.products[i];
-		    }
-		    return null;
-		};
 		Store.prototype.getOrder = function (ordId) {
 		    for (var i = 0; i < this.orders.length; i++) {
 		        if (this.orders[i].ordId == ordId)
@@ -59,8 +57,8 @@
 			this.orders= orders;
 		};
 		
-		Store.prototype.setProducts = function (products) {
-			this.products= products;
+		Store.prototype.setCancelOrders = function (cancelorders) {
+			this.cancelorders= cancelorders;
 		};
 		
 		Store.prototype.setCustomers = function (customers) {
@@ -84,7 +82,43 @@
 			this.tarifahospedaje= tarifahospedaje;
 		};
 		
+		Store.prototype.getProduct = function (codigoProducto) {
+		    for (var i = 0; i < this.productos.length; i++) {
+		        if (this.productos[i].codigoProducto == codigoProducto)
+		            return this.productos[i];
+		    }
+		    return null;
+		};
 		
+		Store.prototype.setProducts = function (productos) {
+			this.productos= productos;
+		};
+
+		Store.prototype.getTotalPages = function () {
+		    return this.totalPages;
+		};
+
+
+		Store.prototype.getProductosCount = function () {
+		    return this.productosCount;
+		};
+
+
+		Store.prototype.setTotalPages = function (totalPages) {
+		    this.totalPages = totalPages;
+		};
+
+
+		Store.prototype.setProductosCount = function (productosCount) {
+		    this.productosCount = productosCount;
+		};
+		
+		Store.prototype.setRankingopenorders = function (orders) {
+		    this.rankingopenorders = orders;
+		};
+
+		
+
 		 // Return constructor - this is what defines the actual
         // injectable in the DI framework.
         return( Store );

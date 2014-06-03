@@ -8,7 +8,18 @@ define(["angular", "services"], function(angular, services){
                       { paginaActual: '@paginaActual', ordId: '@ordId'}),
                       findOrdersByNumberProduct:  $resource('/oms/api/v1/orders/findOrdersByNumberProduct?paginaActual=:paginaActual'+
                               '&codigoProducto=:codigoProducto',
-                              { paginaActual: '@paginaActual', codigoProducto: '@codigoProducto'})         
+                              { paginaActual: '@paginaActual', codigoProducto: '@codigoProducto'}),
+                              findCancelOrders:  $resource('/oms/api/v1/orders/findCancelOrders?ordId=:ordId',
+                                      {ordId: '@ordId'}),
+                                      cancelarOrden:  $resource('/oms/api/v1/orders/cancelarOrden?ordId=:ordId',
+                                              {ordId: '@ordId'}),
+                                              findRankingOpenOrders:  $resource('/oms/api/v1/orders/findRankingOpenOrders',{}),
+                                              findRankingClosedOrders:$resource('/oms/api/v1/orders/findRankingClosedOrders?fechaInicio=:fechaInicio'+
+                                            		  '&fechaFin=:fechaFin',
+                                                      { fechaInicio: '@fechaInicio', fechaFin: '@fechaFin'}),
+                                              
+                                      
+                              
     		};
         }
     ]);

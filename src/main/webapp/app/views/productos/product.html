@@ -1,0 +1,101 @@
+<section class="mainbar" >
+    <section class="matter">
+        <div class="container">
+            <div class="row">  
+            
+              <h2>Detalle Producto</h2>	
+              
+            </div>
+			<div class="row">  	
+				 <div class="col-md-6">				
+		            <!-- product info -->
+		            <table class="table table-bordered">
+		
+		                <tr class="well">
+		                    <td class="bviolet tdRight" colspan="2" >
+		                        <a href="#/cart" title="Ir al Carrito de Compras" ng-disabled="cart.getTotalCount() < 1">
+		                            <i class="fa fa-shopping-cart fa-lg" />
+		                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+		                            <span ng-show="cart.getTotalCount(product.codigoProducto) > 0"><br />Este item esta en el carrito</span>
+		                        </a>
+		                    </td>
+		                </tr>
+                         <tr>
+		                    <td class="text-left"><b>Nombre</b></td>
+		                    <td class="text-left text-info"><b>{{product.NombreProducto}}</b></td>
+		                </tr>
+                         <tr>
+		                    <td class="text-left"><b>Descripcion</b></td>
+		                    <td class="text-left text-info">{{product.DescripcionProducto}}</td>
+		                </tr>
+		
+		                <tr>
+		                    <td class="text-left"><b>Inicia</b></td>
+		                    <td class="text-left text-info">{{product.FechaInicial | date:'dd/MM/yyyy'}}</td>
+		                </tr>
+		                <tr>
+		                    <td class="text-left"><b>Finaliza</b></td>
+		                    <td class="text-left text-info">{{product.FechaFinal | date:'dd/MM/yyyy' }}</td>
+		                </tr>
+                        <tr>
+		                    <td class="text-left"><b>Espectaculo</b></td>
+		                    <td class="text-left text-info">{{product.InfoEspectaculo.NombreEspectaculo }}<br/>
+                                {{product.InfoEspectaculo.InfoCiudad.NombreCiudad}} -  {{product.InfoEspectaculo.InfoCiudad.InfoPais.NombrePais}}
+		                    </td>
+		                </tr>
+                        <tr>
+		                    <td class="text-left"><b>Hospedaje</b></td>
+		                     <td class="text-left text-info">{{product.InfoTarifaHospedaje.NombreTarifaHospedaje }} - {{product.InfoTarifaHospedaje.ValorTarifaHospedaje |  currency }} <br/>
+                                 {{product.InfoTarifaHospedaje.InfoHospedaje.Direccion}}
+		                    </td>
+		                </tr>
+                         <tr>
+		                    <td class="text-left"><b>Precio</b></td>
+		                    <td class="text-left text-info"><h1>{{product.ValorProducto |  currency }}</h1></td>
+		                </tr>
+		              
+		            </table>
+		        </div>
+
+                <div class="col-md-6">
+                    <td class="text-center"><img  ng-src="{{product.RutaImagen}}"  alt="{{product.NombreProducto}}"/> </td>
+                </div>
+		    </div>
+		     
+              <div class="row">
+                      <div class="col-md-9">
+                          <ul class="list-inline">
+                            <li class="col-xs-2"  ng-repeat="top5 in product.InfoProductosTop5">                                
+                               <a href="#/products/{{top5.IdProducto}}"  alt="125x125">
+                                    <img ng-src="{{top5.RutaImagen}}" width="80%" height="60%" >
+                               </a> 
+                                <h5 class="text-center">{{top5.ValorProducto |  currency }}</h5>                          
+                            </li>
+                          </ul>                            
+                      </div> 
+
+                     <!-- buttons -->
+		            <div class="col-md-3">
+		                <button 
+		                    class="btn btn-block btn-success" 
+		                    ng-click="cart.addItem(product.CodigoProducto, product.NombreProducto, product.ValorProducto, 1)">
+		                    <i class="fa fa-shopping-cart fa-lg icon-white" /> Adicionar a Carrito
+		                </button>
+		                <button 
+		                    class="btn btn-block btn-danger" 
+		                    ng-click="cart.addItem(product.CodigoProducto, product.NombreProducto, product.ValorProducto, -10000)"
+		                    ng-disabled="cart.getTotalCount(product.CodigoProducto) < 1">
+		                    <i class="fa fa-trash-o fa-lg icon-white" /> Remover de Carrito
+		                </button>
+		                <button 
+		                    class="btn btn-block" ng-click="go('/store')" >
+		                    <i class="fa fa-chevron-left fa-lg icon-white" /> Regresar a Eventos
+		                </button>				       
+				    </div>
+              </div>
+
+         </div>
+      </section>
+</section>
+
+

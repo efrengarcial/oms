@@ -37,6 +37,10 @@ define(["angular","controllers", "services/OrderService","services/Order","servi
     	                      value: 'price'
     	                  },
     	                  {
+    	                      title: 'Estado',
+    	                      value: 'state'
+    	                  },
+    	                  {
     	                      title: 'Detalle Orden',
     	                      value: ''
     	                  }
@@ -72,6 +76,33 @@ define(["angular","controllers", "services/OrderService","services/Order","servi
         	                      value: ''
         	                  }
         	                  ];
+    	$scope.headersCancel = [
+    	                  {
+    	                      title: 'Orden Id',
+    	                      value: 'orderid'
+    	                  },
+    	                  {
+    	                      title: 'Comentarios',
+    	                      value: 'comments'
+    	                  },
+    	                  {
+    	                      title: 'Fecha Creacion',
+    	                      value: 'orderDate'
+    	                  },
+    	                  {
+    	                      title: 'Fecha Cierre',
+    	                      value: 'endOrderDate'
+    	                  },
+    	                  {
+    	                      title: 'Precio',
+    	                      value: 'price'
+    	                  },
+    	                  {
+    	                      title: 'Cancelar Orden',
+    	                      value: ''
+    	                  }
+    	                  
+    	                  ];
     	
     	    $scope.save = function () {
     	    	$scope.order.$save(function (order, headers) {
@@ -83,16 +114,83 @@ define(["angular","controllers", "services/OrderService","services/Order","servi
 	        	console.log('Buscando ordenes....');
 	        	$scope.selectPage(1);
 	        }; 
+	        $scope.rankingOpenOrders= function () {
+	        	console.log('Buscando ordenes....');
+	        	
+	        	OrderService.findRankingOpenOrders.query({}).$promise.then(
+		        			//success
+		        			function( data ){	        				
+		        			    $scope.store.setOrders(data);
+		        			},
+		        			//error
+		        			function( error ){ 
+		        			    toaster.pop('error', "Mensaje de Error", error.data);
+		        			}
+		        	);
+	        	
+	        	$scope.selectPage(1);
+	        };
+	        
 	        
 	        $scope.buscarOrdenesCerradas= function (fechaInicio,fechaFin) {
-	        	console.log('Buscando ordenes cerradas....');
-	        	$scope.selectPage(1);
+	        	if ($scope.fechaInicio ==null || $scope.fechaInicio==""){
+	        		toaster.pop('error', "Se debe ingresar una fecha de inicio para la busqueda de ordenes cerradas", "");
+	        	}else if ($scope.fechaFin ==null || $scope.fechaFin==""){
+	        		toaster.pop('error', "Se debe ingresar una fecha de Fin para la busqueda de ordenes cerradas", "");
+	        	}else{
+	        		console.log('Buscando ordenes cerradas....');
+	        		OrderService.findRankingClosedOrders.query({
+	        			fechaInicio: $scope.fechaInicio, fechaFin : $scope.fechaFin}).$promise.then(
+			        			//success
+			        			function( data ){	        				
+			        			    $scope.store.setOrders(data);
+			        			},
+			        			//error
+			        			function( error ){ 
+			        			    toaster.pop('error', "Mensaje de Error", error.data);
+			        			}
+			        	);
+		        	$scope.selectPage(1);
+	        	}
+	        	
 	        };
 	        
 	        //called when navigate to another page in the pagination
 	        $scope.selectPage = function (page) {
 	            $scope.filterCriteria.pageNumber = page;
 	            $scope.fetchResult($scope);
+	        };
+	        //Cancelar la orden
+	        $scope.CancelarOrden = function (page) {
+	        	console.log('Cancelando la orden....');
+	        	OrderService.cancelarOrden.query({
+	        		ordId: $scope.ordId}).$promise.then(
+		        			//success
+		        			function( data ){	        				
+		        			    $scope.store.setCancelOrders([]);
+		        			},
+		        			//error
+		        			function( error ){ 
+		        			    toaster.pop('error', "Mensaje de Error", error.data);
+		        			}
+		        	);
+	        };
+	        
+	        $scope.buscarOrdenesCanceladas=function(){
+	        	OrderService.findCancelOrders.query({
+	        		ordId: $scope.ordId}).$promise.then(
+		        			//success
+		        			function( data ){	        				
+		        			    $scope.store.setCancelOrders(data);
+		        			    if ($scope.store.cancelorders.length==0){
+		        			    	toaster.pop('success', "title", "No se encontraron ordenes a cancelar");
+		        			    }
+		        			},
+		        			//error
+		        			function( error ){ 
+		        			    toaster.pop('error', "Mensaje de Error", error.data);
+		        			}
+		        	);
 	        };
 	        
 	        
@@ -101,7 +199,6 @@ define(["angular","controllers", "services/OrderService","services/Order","servi
 	        	
 	        	// use routing to pick the selected order
 		        if ($scope.codigoProducto != null) {
-		             //$scope.product = $scope.producto.consultarProducto($scope.IdProducto);
 		        	
 		        	OrderService.findOrdersByNumberProduct.query({
 		        	    paginaActual: $scope.filterCriteria.pageNumber, codigoProducto: $scope.codigoProducto}).$promise.then(

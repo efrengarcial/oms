@@ -36,8 +36,8 @@ public class ProductController {
 	
 	@RequestMapping(value = "/consultarProductos",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Producto> consultarProductos(int paginaActual, String codigoProducto, String nombreProducto, String descripcionProducto){
-		return producMgr.findProductos(codigoProducto,nombreProducto,descripcionProducto);
+	public List<Producto> consultarProductos(int paginaActual, String codigoProducto, String nombreProducto, String descripcionProducto, Integer idEspectaculo){
+		return producMgr.consultarProductos(paginaActual, codigoProducto,nombreProducto,descripcionProducto,((idEspectaculo!=null && idEspectaculo>0)?idEspectaculo:null));
 	}
 	
 	@RequestMapping(value = "/findById",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -88,4 +88,5 @@ public class ProductController {
 	public List<TarifaHospedaje> findAllTarifaHospedaje(){
 		return (List<TarifaHospedaje>) producMgr.findAllTarifaHospedaje();
 	}
+	
 }

@@ -49,9 +49,18 @@ public class OrderManager {
 	public List<Order> findOrdersByNumberProduct(int codProduct){
 		return orderDao.findOrdersByNumberProduct(codProduct);
 	}
+	public List<Order> findCancelOrders(String idOrden){
+		return orderDao.findCancelOrders(idOrden);
+	}
+	public List<Order> findRankingOpenOrders(){
+		return orderDao.findRankingOpenOrders();
+	}
+	public List<Order> findRankingClosedOrders(Date fechaInicial, Date fechaFinal ){
+		return orderDao.findRankingClosedOrders(fechaInicial,fechaFinal);
+	}
 	
-	public List<OrdenVO> findOrdersClosed(int paginaActual, Date dateIni, Date dateFin){
-		return null;
-		//return orderCustomDao.findOrdersClosed(paginaActual, dateIni, dateFin);
+	public List<OrdenVO> findOrdersClosed(){
+		
+		return orderDao.findOrdersClosed();
 	}
 }

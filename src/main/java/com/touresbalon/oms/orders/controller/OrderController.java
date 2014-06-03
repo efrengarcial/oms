@@ -58,8 +58,32 @@ public class OrderController {
 	
 	@RequestMapping(value = "/findOrdersClosed",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<OrdenVO> findOrdersClosed(int paginaActual, Date dateIni, Date dateFin){
-		return orderMgr.findOrdersClosed(paginaActual, dateIni, dateFin);
+	public List<OrdenVO> findOrdersClosed(){
+		return orderMgr.findOrdersClosed();
+	}
+	
+	@RequestMapping(value = "/findCancelOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> findCancelOrders(String ordId){
+		return orderMgr.findCancelOrders(ordId);
+	}
+	
+	@RequestMapping(value = "/cancelarOrden",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public boolean cancelarOrden(String ordId){
+		return true;
+	}
+	
+	@RequestMapping(value = "/findRankingOpenOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> findRankingOpenOrders(){
+		return orderMgr.findRankingOpenOrders();
+	}
+	
+	@RequestMapping(value = "/findRankingClosedOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> findRankingClosedOrders(Date fechaInicio, Date fechaFinal){
+		return orderMgr.findRankingClosedOrders(fechaInicio, fechaFinal);
 	}
 	
 }
