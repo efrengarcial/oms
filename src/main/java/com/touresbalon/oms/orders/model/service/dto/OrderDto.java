@@ -24,6 +24,8 @@ public class OrderDto implements Serializable {
 	private List<ItemDto> items;
 
 	private String custId;
+	
+	private String showType;
 
 	public OrderDto() {
 	}
@@ -90,6 +92,14 @@ public class OrderDto implements Serializable {
 
 	public void setCustId(String custId) {
 		this.custId = custId;
+	}
+
+	public String getShowType() {
+		return showType;
+	}
+
+	public void setShowType(String showType) {
+		this.showType = showType;
 	}
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
@@ -23,6 +24,7 @@ import javax.persistence.Transient;
  * 
  */
 
+@NamedStoredProcedureQueries({
 @NamedStoredProcedureQuery(
 		name = "TraerProductos",
 		resultClasses = Producto.class,
@@ -35,7 +37,13 @@ import javax.persistence.Transient;
 			@StoredProcedureParameter(mode=ParameterMode.IN, name="CantidadRegistros", type=Integer.class)//,
 			//@StoredProcedureParameter(mode=ParameterMode.IN, name="IdEspectaculo", type=Integer.class)
 		}
-		)
+		),
+		@NamedStoredProcedureQuery(
+				name = "SpTop5",
+				resultClasses = Producto.class,
+				procedureName = "spTop5",
+				parameters = {
+					@StoredProcedureParameter(mode=ParameterMode.IN, name="i_cadena", type=String.class)})})
 @Entity
 @Table(name="Producto")
 public class Producto implements Serializable {

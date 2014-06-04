@@ -69,7 +69,7 @@ public class SecurityConfig {
                 .antMatcher("/api/v1/**")
                 .authorizeRequests()
                     .antMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                    .antMatchers("/api/v1/**").hasRole("USER")
+                    .antMatchers("/api/v1/**").permitAll()
                     .and()
                 .httpBasic();
         }

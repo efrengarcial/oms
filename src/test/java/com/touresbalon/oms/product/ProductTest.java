@@ -75,7 +75,7 @@ public class ProductTest {
 
 	@Test
 	public void testExecuteTop5() {
-		String i_cadena ="8|4|300|335|666|456";
+		String i_cadena ="8|4|300|335|666|456|";
 		productDao.executeTop5(i_cadena);
 		
 	}

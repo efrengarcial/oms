@@ -14,6 +14,7 @@ import com.touresbalon.oms.orders.model.mgr.OrderManager;
 import com.touresbalon.oms.orders.model.service.OrderService;
 import com.touresbalon.oms.orders.model.service.dto.ItemDto;
 import com.touresbalon.oms.orders.model.service.dto.OrderDto;
+import com.touresbalon.oms.products.model.mgr.ProductManager;
 
 @Service("orderService") 
 @WebService(endpointInterface="com.touresbalon.oms.orders.model.service.OrderService",serviceName = "OrderService",
@@ -23,12 +24,25 @@ public class OrderServiceImpl  implements OrderService {
 	@Autowired
 	private OrderManager orderManager;
 	
+	@Autowired
+	private ProductManager productManager;
+	
 	@Override
 	public void updateStateOrder(OrderDto orderDto) {
 		Order order = orderManager.find(orderDto.getOrdId());
 		order.setEndOrderDate(orderDto.getEndOrderDate());
 		order.setStatus(orderDto.getStatus());
 		orderManager.update(order);
+		
+		if ("CERRADA".equals(order.getStatus())){
+			StringBuilder sb = new StringBuilder();
+			for (Item item : order.getItems()) {
+				sb.append(item.getProdId());
+				sb.append("|");
+			}
+			productManager.queryProducts(sb.toString());
+		}
+		
 	}
 
 	@Override	
