@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://OrderManagementLib/com/touresbalon/bo" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Transport">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="company" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="vendorAmount" type="xsd:double"/>
+      <xsd:element minOccurs="0" name="code" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="travelDate" type="xsd:date"/>
+      <xsd:element minOccurs="0" name="returnDate" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

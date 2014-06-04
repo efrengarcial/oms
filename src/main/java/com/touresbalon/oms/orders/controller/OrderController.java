@@ -64,14 +64,14 @@ public class OrderController {
 	
 	@RequestMapping(value = "/findCancelOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Order> findCancelOrders(String ordId){
+	public  List<Order>  findCancelOrders(String ordId){
 		return orderMgr.findCancelOrders(ordId);
 	}
 	
 	@RequestMapping(value = "/cancelarOrden",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public boolean cancelarOrden(String ordId){
-		return true;
+		return orderMgr.cancelOrder(ordId);
 	}
 	
 	@RequestMapping(value = "/findRankingOpenOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -85,5 +85,12 @@ public class OrderController {
 	public List<Order> findRankingClosedOrders(Date fechaInicio, Date fechaFinal){
 		return orderMgr.findRankingClosedOrders(fechaInicio, fechaFinal);
 	}
+	
+	@RequestMapping(value = "/findRankingCustomers",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> findRankingCustomers(Date fechaInicial, Date fechaFinal ){
+		return orderMgr.findRankingCustomers(fechaInicial, fechaFinal);
+	}
+	
 	
 }

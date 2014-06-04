@@ -114,6 +114,27 @@ define(["angular","controllers", "services/OrderService","services/Order","servi
 	        	console.log('Buscando ordenes....');
 	        	$scope.selectPage(1);
 	        }; 
+	        
+	        
+	        
+	        $scope.findRankingCustomers= function () {
+	        	console.log('Buscando ordenes....');
+	        	
+	        	OrderService.findRankingCustomers.query({}).$promise.then(
+		        			//success
+		        			function( data ){	        				
+		        			    $scope.store.setOrders(data);
+		        			},
+		        			//error
+		        			function( error ){ 
+		        			    toaster.pop('error', "Mensaje de Error", error.data);
+		        			}
+		        	);
+	        	
+	        	$scope.selectPage(1);
+	        };
+	        
+	        
 	        $scope.rankingOpenOrders= function () {
 	        	console.log('Buscando ordenes....');
 	        	

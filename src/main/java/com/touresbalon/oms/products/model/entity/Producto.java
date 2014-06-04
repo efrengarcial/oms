@@ -55,24 +55,36 @@ private static final long serialVersionUID = 1L;
 	@JoinColumn(name="IdEspectaculo")
 	private Espectaculo espectaculo;
 
+	@Transient
+	private int idEspectaculo;
+	
 	@ManyToOne
 	@JoinColumn(name="IdTarifaBoleta")
 	private TarifaBoleta tarifaBoleta;
+	
+	@Transient
+	private int idTarifaBoleta;
 	
 	@ManyToOne
 	@JoinColumn(name="IdTarifaTransporte")
 	private TarifaTransporte tarifaTransporte;
 	
+	@Transient
+	private int idTarifaTransporte;
+	
 	@ManyToOne
 	@JoinColumn(name="IdTarifaHospedaje")
 	private TarifaHospedaje tarifaHospedaje;
+	
+	@Transient
+	private int idTarifaHospedaje;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="FechaInicial")
 	private Date fechaInicial;
 	
 	@Transient
-	private int totalRegistros;
+	private int TotalRegistros;
 	
 	private String rutaImagen;
 	
@@ -172,11 +184,43 @@ private static final long serialVersionUID = 1L;
 	
 
 	public int getTotalRegistros() {
-		return totalRegistros;
+		return TotalRegistros;
 	}
 
 	public void setTotalRegistros(int totalRegistros) {
-		this.totalRegistros = totalRegistros;
+		this.TotalRegistros = totalRegistros;
+	}
+
+	public int getIdEspectaculo() {
+		return idEspectaculo;
+	}
+
+	public void setIdEspectaculo(int idEspectaculo) {
+		this.idEspectaculo = idEspectaculo;
+	}
+
+	public int getIdTarifaBoleta() {
+		return idTarifaBoleta;
+	}
+
+	public void setIdTarifaBoleta(int idTarifaBoleta) {
+		this.idTarifaBoleta = idTarifaBoleta;
+	}
+
+	public int getIdTarifaTransporte() {
+		return idTarifaTransporte;
+	}
+
+	public void setIdTarifaTransporte(int idTarifaTransporte) {
+		this.idTarifaTransporte = idTarifaTransporte;
+	}
+
+	public int getIdTarifaHospedaje() {
+		return idTarifaHospedaje;
+	}
+
+	public void setIdTarifaHospedaje(int idTarifaHospedaje) {
+		this.idTarifaHospedaje = idTarifaHospedaje;
 	}
 
 

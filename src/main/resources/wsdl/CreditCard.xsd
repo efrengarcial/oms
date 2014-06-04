@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://OrderManagementLib/com/touresbalon/bo" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="CreditCard">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="type" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="number" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="securityCode" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="expiration" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

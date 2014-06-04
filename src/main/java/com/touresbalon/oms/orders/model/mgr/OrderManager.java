@@ -49,8 +49,8 @@ public class OrderManager {
 	public List<Order> findOrdersByNumberProduct(int codProduct){
 		return orderDao.findOrdersByNumberProduct(codProduct);
 	}
-	public List<Order> findCancelOrders(String idOrden){
-		return orderDao.findCancelOrders(idOrden);
+	public Boolean cancelOrder(String idOrden){
+		return orderDao.cancelOrder(idOrden);
 	}
 	public List<Order> findRankingOpenOrders(){
 		return orderDao.findRankingOpenOrders();
@@ -62,5 +62,14 @@ public class OrderManager {
 	public List<OrdenVO> findOrdersClosed(){
 		
 		return orderDao.findOrdersClosed();
+	}
+	
+	public List<Order> findCancelOrders(String idOrden){
+		
+		return orderDao.findCancelOrders(idOrden);
+	}
+	
+	public List<Order> findRankingCustomers(Date fechaInicial, Date fechaFinal ){
+		return orderDao.findRankingCustomers(fechaInicial,fechaFinal);
 	}
 }

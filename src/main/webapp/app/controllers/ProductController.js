@@ -1,34 +1,33 @@
 define(["angular","controllers","services/ProductoService", "services/ProductService","services/Store"], function(angular, controllers){
 
-    controllers.controller('ProductController', ['$scope', '$routeParams', '$location','toaster','ProductService','DataService', 'Store','ProductoService','ProductFactory',
-        function($scope,  $routeParams, $location, toaster, ProductService,DataService, Store,ProductoService,ProductFactory) {
+    controllers.controller('ProductController', ['$scope', '$routeParams', '$location','toaster','ProductService','DataService', 'Store','ProductoService','ProductFactory','$http',
+        function($scope,  $routeParams, $location, toaster, ProductService,DataService, Store,ProductoService,ProductFactory,$http) {
     	  	$scope.products = [];
     	  	$scope.store = DataService.store;
     		//$scope.producto = new Producto();
-    		
-    	  	 $scope.init=function(){
-    	  		ProductService.findAllEspectaculos.query({}).$promise.then(
-    	  				function(data){	  
-    	  					$scope.store.setEspectaculos(data);
-    	  				});
-    	  		
-    	  		ProductService.findAllTarifaBoleta.query({}).$promise.then(
-    	  				function(data){	  
-    	  					$scope.store.setTarifaBoleta(data);
-    	  				});
-    	  		
-    	  		ProductService.findAllTarifaTransporte.query({}).$promise.then(
-    	  				function(data){	  
-    	  					$scope.store.setTarifaTransporte(data);
-    	  				});
-    	  		ProductService.findAllTarifaHospedaje.query({}).$promise.then(
-    	  				function(data){	  
-    	  					$scope.store.setTarifaHospedaje(data);
-    	  				});
-    	  	 };
-    	  	 
+    		 
     	    $scope.save = function () {
-    	    	ProductFactory.save($scope.product);
+    	    	
+    	    	
+    	    	
+    	    	//ProductService.createProduct($scope.product);
+    	    	ProductFactory.create({product: $scope.product }).$promise.then(
+		        			//success
+		        			function( data ){	        				
+		        			    $scope.product = data;
+		        			},
+		        			//error
+		        			function( error ){ 
+		        			    toaster.pop('error', "Mensaje de Error", error.data);
+		        			}
+		        	);  
+//    	    	$http({
+//    	    		url:'/oms/api/v1/products/create',
+//    	    		method:"POST",
+//    	    		data:{'producto':$scope.product}
+//    	    	}
+//   			);
+
     	    };
     	    
 	        $scope.buscarProductos= function () {
@@ -100,8 +99,6 @@ define(["angular","controllers","services/ProductoService", "services/ProductSer
 	            sortDir: 'asc',
 	            sortedBy: 'Codigo'
 	        };
-	        
-	        $scope.init();
 	        
         }]);
 });

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OrderManagementIF" targetNamespace="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF" xmlns:bons1="http://OrderManagementLib/com/touresbalon/bo">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF">
+      <xsd:import namespace="http://OrderManagementLib/com/touresbalon/bo" schemaLocation="Order.xsd"/>
+      <xsd:element name="startProcess">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="request" nillable="true" type="bons1:Order"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cancelProcess">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="orderID" nillable="true" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="startProcessRequestMsg">
+    <wsdl:part name="startProcessParameters" element="tns:startProcess"/>
+  </wsdl:message>
+  <wsdl:message name="cancelProcessRequestMsg">
+    <wsdl:part name="cancelProcessParameters" element="tns:cancelProcess"/>
+  </wsdl:message>
+  <wsdl:portType name="OrderManagementIF">
+    <wsdl:operation name="startProcess">
+      <wsdl:input name="startProcessRequest" message="tns:startProcessRequestMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="cancelProcess">
+      <wsdl:input name="cancelProcessRequest" message="tns:cancelProcessRequestMsg"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

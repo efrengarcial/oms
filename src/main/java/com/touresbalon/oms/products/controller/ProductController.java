@@ -59,6 +59,7 @@ public class ProductController {
 	void create(@RequestBody Producto producto){
 		producMgr.create(producto);
 	}
+	
 	@RequestMapping(value = "/findByIdTipoEspectaculo",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public TipoEspectaculo findTipoEspectaculo(int idTipoEspectaculo){
@@ -87,6 +88,12 @@ public class ProductController {
 	@ResponseBody
 	public List<TarifaHospedaje> findAllTarifaHospedaje(){
 		return (List<TarifaHospedaje>) producMgr.findAllTarifaHospedaje();
+	}
+	
+	@RequestMapping(value = "/createProduct",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Producto saveProduct(Producto product){
+		return producMgr.create(product);
 	}
 	
 }

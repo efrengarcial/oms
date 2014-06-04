@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OrderManagementIFExport1_OrderManagementIFHttp_Service" targetNamespace="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:this="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:import namespace="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF" location="OrderManagementIF.wsdl"/>
+  <wsdl:binding name="OrderManagementIFExport1_OrderManagementIFHttpBinding" type="this:OrderManagementIF">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="startProcess">
+      <soap12:operation soapAction="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF/OrderManagementIF/startProcess"/>
+      <wsdl:input name="startProcessRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="cancelProcess">
+      <soap12:operation soapAction="http://OrderManagementLib/com/touresbalon/interfaces/OrderManagementIF/OrderManagementIF/cancelProcess"/>
+      <wsdl:input name="cancelProcessRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderManagementIFExport1_OrderManagementIFHttpService">
+    <wsdl:port name="OrderManagementIFExport1_OrderManagementIFHttpPort" binding="this:OrderManagementIFExport1_OrderManagementIFHttpBinding">
+      <soap12:address location="http://192.168.1.135:9080/OrderManagementWeb/sca/OrderManagementIFExport1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

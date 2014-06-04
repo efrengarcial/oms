@@ -97,5 +97,25 @@ public class OrderTest {
 		
 		return order;
 	}
+	
+	@Test
+	public void testfindRankingCustomers() {
+		Date fechaInicial=null;
+		Date fechaFinal=null;
+		try {
+			fechaInicial = new SimpleDateFormat("yyyy/MM/dd").parse("2014/01/02");
+			fechaFinal=new SimpleDateFormat("yyyy/MM/dd").parse("2014/02/02");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		List<Order> orders=orderDao.findRankingCustomers(fechaInicial, fechaFinal);
+		if(orders.size()>0){
+			for (Order order : orders) {
+				System.out.print("ordenes encontradas....." +order.getOrderDate());
+			}
+			
+		}
+	}
 
 }

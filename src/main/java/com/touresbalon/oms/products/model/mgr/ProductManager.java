@@ -98,5 +98,12 @@ public class ProductManager {
 	public List<TarifaHospedaje> findAllTarifaHospedaje(){
 		return (List<TarifaHospedaje>) tarifaHospedajeDao.findAllTarifaHospedaje();
 	}
-	
+
+	/***
+	 * Execute top 5
+	 * @param i_cadena
+	 */
+	public void queryProducts(String i_cadena){
+		productDao.executeTop5(i_cadena);
+	}
 }

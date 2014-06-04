@@ -237,7 +237,30 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>1.12</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<soap12>true</soap12>
+					<packageName>com.aes.service.accounts.model</packageName>
+					<wsdlUrls>
+						<wsdlUrl>${basedir}/src/main/resources/wsdl/OrderManagementIFExport.wsdl</wsdlUrl>
+					</wsdlUrls>
+					<sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+					<destDir>C:/EntornoSimon/ServiciosSimon/</destDir>
+					<phase>generate-sources</phase>
+					<encoding>UTF-8</encoding>
+					<extension>true</extension>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

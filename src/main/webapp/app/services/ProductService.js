@@ -10,16 +10,24 @@ define(["angular", "services"], function(angular, services){
     		findAllTarifaTransporte :$resource('/oms/api/v1/products/findAllTarifaTransporte',{}),
     		
     		findAllTarifaHospedaje :$resource('/oms/api/v1/products/findAllTarifaHospedaje',{}),
+    		
+    		createProduct :$resource('/oms/api/v1/products/createProduct',{producto:"@product"}),
+    		
     		};
         }
     ]);
     
     services.factory('ProductFactory', function ($resource) {
-        return $resource('/oms/api/v1/products/:producto', {}, {
-        	query: { method: 'GET', isArray: true },
-            save: { method: 'POST' }
-           
-        })
+        return $resource('/oms/api/v1/productos', {producto:"@product"}, {
+        	      create: { method: 'POST' }
+        });
+    	
+//    	$http({
+//    		url:'/oms/api/v1/products/save',
+//    		method:"POST",
+//    		data:{'producto':$scope.product}
+//    	}
+//    			);
     });
     
 });

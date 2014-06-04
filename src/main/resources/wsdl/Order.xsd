@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://OrderManagementLib/com/touresbalon/bo" xmlns:bons0="http://OrderManagementLib/com/touresbalon/bo" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Customer.xsd"/>
+  <xsd:include schemaLocation="Product.xsd"/>
+  <xsd:include schemaLocation="CreditCard.xsd"/>
+  <xsd:complexType name="Order">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="orderID" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="orderDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="endOrderDate" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="amount" type="xsd:double"/>
+      <xsd:element minOccurs="0" name="comments" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="creditCard" type="bons0:CreditCard"/>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="products" type="bons0:Product"/>
+      <xsd:element minOccurs="0" name="customer" type="bons0:Customer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

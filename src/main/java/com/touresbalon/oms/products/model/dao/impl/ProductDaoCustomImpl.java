@@ -29,4 +29,11 @@ public class ProductDaoCustomImpl implements ProductDaoCustom {
 		List<Producto> result = (List<Producto>)query.getResultList();
 		return result;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void executeTop5(String i_cadena){
+		StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("SpTop5");
+		query.setParameter("i_cadena", i_cadena);
+		query.execute();
+	}
 }

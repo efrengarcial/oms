@@ -6,64 +6,72 @@
 				<h2>Consulta de Clientes</h2>
                		
               	 <form class="well form-search">	
-			        <input type="text" ng-model="codigoProducto" class="input-medium search-query" placeholder="Codigo Producto...">
-			        <input type="number" ng-model="identificacion" class="input-medium search-query" placeholder="Identificacion cliente...">
-			        <input type="date" ng-model="fechaInicio" class="input-medium search-query" placeholder="Fecha inicio...">
-			        <input type="date" ng-model="fechaFin" class="input-medium search-query" placeholder="Fecha fin...">
-			 
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarClientes()">Buscar</button>
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="rankingCustomers(fechaInicio,fechaFin)">Ranking clientes</button>
+			        <input type="text" ng-model="ordId" class="input-medium search-query" placeholder="Numero orden...">
+			        <input type="number" ng-model="codigoProducto" class="input-medium search-query" placeholder="NumeroProducto...">
+			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenes()">Buscar</button>
 			        <br />
 			    </form>	
-			   <!--  <form class="well form-search">	
+			    <form class="well form-search">	
 			        <input type="date" ng-model="fechaInicio" class="input-medium search-query" placeholder="Fecha inicio...">
 			        <input type="date" ng-model="fechaFin" class="input-medium search-query" placeholder="Fecha fin...">
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarClientesProducto(fechaInicio,fechaFin)">Ordenes Cerradas</button>
+			       <!--  <a href="#/orders/{{fechaInicio}}"> -->
+			        	<button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenesCerradas(fechaInicio,fechaFin)">Ordenes Cerradas</button>
+			       <!-- </a> -->
+			      
+			       	<button type="submit" class="btn btn-large btn-primary" ng-click="rankingOpenOrders()">Ranking ordenes abiertas</button>
+			      
+			        <a href="#/orders/{{fechaInicio}}">
+			        	<button type="submit" class="btn btn-large btn-primary" ng-click="">Ranking ordenes cerradas</button>
+			        </a>
 			    </form>
-			    --> 
 			    
-                <div ng-show="customersCount == 0">
-                  <h3>Clientes no encontrados</h3>
+			    
+                <div ng-show="ordenesCount == 0">
+                  <h3>Ordenes no encontradas</h3>
                 </div>
-                <div ng-show="customersCount > 0">
-                  <h3>Clientes encontrados: {{customersCount}}</h3>
+                <div ng-show="ordenesCount > 0">
+                  <h3>Ordenes encontradas: {{ordenesCount}}</h3>
                 </div>    		
 				
-				<table class="table table-boed table-hover" ng-show="totalPages > 0">				    
+				<table class="table table-boed table-hover" ng-show="store.orders.length > 0">				    
                      <thead>
                        <tr class="well bviolet">
 				          <td class="text-right" colspan="6" >
 				         </td>
 				       </tr>
                         <tr class="well blightblue">
-                          <th ng-repeat="header in headersCustomer">
+                          <th ng-repeat="header in headers">
                             <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
                           </th>
                         </tr>
                      </thead>
                     <tbody>
-				    <tr ng-repeat="customer in customers" >
-						<td class="tdCenter">
-				            <b>{{customer.tipoIdentificacion}}</b><br />
+				    <tr ng-repeat="order in  store.orders" >
+
+                        <td class="tdRight">
+				            {{order.ordId}}
+				        </td>
+				        <td>
+				            <b>{{order.comments}}</b><br />
 				        </td>
                         <td class="tdRight">
-				            {{customer.identificacion}}
+				            {{order.orderDate | date:'dd/MM/yyyy' }}
 				        </td>
 				        <td class="tdRight">
-				            <b>{{customer.fName}}</b><br />
+				            {{order.endOrderDate | date:'dd/MM/yyyy' }}
 				        </td>
 				        <td class="tdRight">
-				            <b>{{customer.lName}}</b><br />
+				            {{order.price | currency}}
 				        </td>
-				        <td class="tdRight">
-				            <b>{{customer.type}}</b><br />
+				          <td class="tdRight">
+				            {{order.status}}
 				        </td>
 				        <td class="tdCenter">
-				        	<a href="#/customers/{{customer.custid}}">
+				        	<a href="#/order/{{order.ordId}}">
                              <button 
 		                        class="btn btn-block btn-success" 
 		                        ng-click="">
-		                        Detalle del cliente
+		                        Detalle de la Orden
 		                    </button>
 		                    </a>
                        </td>

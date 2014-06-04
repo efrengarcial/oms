@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://OrderManagementLib/com/touresbalon/bo" xmlns:bons0="http://OrderManagementLib/com/touresbalon/bo" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="Ticket.xsd"/>
+  <xsd:include schemaLocation="Lodging.xsd"/>
+  <xsd:include schemaLocation="Transport.xsd"/>
+  <xsd:complexType name="Product">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="prodId" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="partNum" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="amount" type="xsd:double"/>
+      <xsd:element minOccurs="0" name="productName" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="quantity" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="originCity" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="destinationCity" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="originCountry" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="destinationCountry" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="transport" type="bons0:Transport"/>
+      <xsd:element minOccurs="0" name="lodging" type="bons0:Lodging"/>
+      <xsd:element minOccurs="0" name="ticket" type="bons0:Ticket"/>
+      <xsd:element minOccurs="0" name="showType" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

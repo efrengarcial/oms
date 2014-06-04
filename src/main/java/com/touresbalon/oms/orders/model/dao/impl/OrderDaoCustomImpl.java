@@ -9,7 +9,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
+import com.aes.service.accounts.model.OrderManagementIF;
+import com.aes.service.accounts.model.OrderManagementIFExport1OrderManagementIFHttpService;
 import com.touresbalon.oms.orders.model.dao.OrderCustomDao;
+import com.touresbalon.oms.orders.model.dto.CustomersVO;
 import com.touresbalon.oms.orders.model.dto.OrdenVO;
 import com.touresbalon.oms.orders.model.entity.Order;
 
@@ -55,4 +58,24 @@ public class OrderDaoCustomImpl implements OrderCustomDao {
 		
 		return listOrders;
 	}
+	
+	public Boolean cancelOrder(String idOrden){
+		OrderManagementIFExport1OrderManagementIFHttpService service= new OrderManagementIFExport1OrderManagementIFHttpService();
+		OrderManagementIF iff= service.getOrderManagementIFExport1OrderManagementIFHttpPort();
+		iff.cancelProcess(idOrden);
+		return true;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Order> findRankingCustomers(Date fechaInicial, Date fechaFinal ){
+
+		Query query =entityManager.createQuery("SELECT p FROM Order p WHERE (p.endOrderDate BETWEEN :start AND :end)  order by p.price asc ");
+					
+		query.setParameter("start", fechaInicial, TemporalType.DATE);
+		query.setParameter("end", fechaFinal, TemporalType.DATE);
+		query.setMaxResults(5);
+					
+		List<Order> result = (List<Order>)query.getResultList();
+		return result;
+	}	
 }

@@ -95,6 +95,17 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                 }
             },
             {//item
+                url: '/customers/:ordId/:itemId',
+                config: {
+                    templateUrl: 'app/views/customer/consultarRClientes.html',                    
+                    controller: 'OrderController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i> item'
+                    }
+                }
+            },
+            {//item
                 url: '/item/:ordId/:itemId',
                 config: {
                     templateUrl: 'app/views/orders/item.html',                    
@@ -136,7 +147,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                     controller: 'StoreController',
                     settings: {
                         nav: 4,
-                        content: '<i class="fa fa-plane"></i> Productos'
+                        content: '<i class="fa fa-plane"></i> Administracion Productos'
                     }
                 }
             }
