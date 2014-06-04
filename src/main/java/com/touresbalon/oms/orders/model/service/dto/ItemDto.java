@@ -26,7 +26,6 @@ public class ItemDto implements Serializable {
 	
 	private String custId;
 	
-	private String showType;
 
 	private String showType;
 	

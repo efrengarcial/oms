@@ -21,39 +21,16 @@
 							<img src="Content/images/AngularJS-small.png" />
 						</a>
 					</li>
-					<li class="dropdown dropdown-big"  ng-show="showMenu"> 
+					 <li class="dropdown dropdown-big"  ng-show="showMenu"> 
                          <a class="dropdown-toggle">
-                            Log In<b class="caret"></b>
+                            <i class="fa fa-user fa-lg"></i>
+                             {{usuario.InfoCliente.Nombre}}<b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu" my-input>  
-                            <li>
-                            <div class="yamm-content">                            
-                                    <form  name="userForm" class="form-inline" submit-valid="submitForm()"  novalidate>
-                                    	<field ng-model='usuario.login' type='text' label='Usuario:' required>
-										    <validator key='required'>Usuario es requerido</validator>
-										 </field>
-										 
-										 <field ng-model='usuario.password' type='text' label='Contrasena:' required>
-										    <validator key='required'>Constrasena es requerido</validator>
-										 </field>
-										  
-										 <div class="checkbox col-lg-offset-2">
-										    <label>
-										      <input type="checkbox"> No cerrar sesion
-										    </label>
-										  </div>                                  
-										                                        
-                                       
-                                        <div class="form-group">
-                                            <div class="col-lg-offset-4 col-lg-10">
-                                                <button type="submit" class="btn btn-large btn-primary btn-default">Entrar</button>
-                                            </div>
-                                        </div>  
-                                    </form>                                           
-                                </div>                      
-                            </li>                                            
+                        <ul class="dropdown-menu">  
+                          <li><a href="/oms/j_spring_security_logout">Logout</a></li>                                   
                         </ul>
 					</li>
+					
 				</ul>
 			</div>
 		</div>

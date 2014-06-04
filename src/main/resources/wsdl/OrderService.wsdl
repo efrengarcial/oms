@@ -26,7 +26,6 @@
       <xs:element minOccurs="0" name="ordId" type="xs:string"/>
       <xs:element minOccurs="0" name="orderDate" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="price" type="xs:decimal"/>
-      <xs:element minOccurs="0" name="showType" type="xs:string"/>
       <xs:element minOccurs="0" name="status" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
