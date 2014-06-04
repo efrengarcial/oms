@@ -3,36 +3,8 @@
         <div class="container">
             <div class="row">      		                             
 				
-				<h2>Consulta de Clientes</h2>
-               		
-              	 <form class="well form-search">	
-			        <input type="text" ng-model="ordId" class="input-medium search-query" placeholder="Numero orden...">
-			        <input type="number" ng-model="codigoProducto" class="input-medium search-query" placeholder="NumeroProducto...">
-			        <button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenes()">Buscar</button>
-			        <br />
-			    </form>	
-			    <form class="well form-search">	
-			        <input type="date" ng-model="fechaInicio" class="input-medium search-query" placeholder="Fecha inicio...">
-			        <input type="date" ng-model="fechaFin" class="input-medium search-query" placeholder="Fecha fin...">
-			       <!--  <a href="#/orders/{{fechaInicio}}"> -->
-			        	<button type="submit" class="btn btn-large btn-primary" ng-click="buscarOrdenesCerradas(fechaInicio,fechaFin)">Ordenes Cerradas</button>
-			       <!-- </a> -->
-			      
-			       	<button type="submit" class="btn btn-large btn-primary" ng-click="rankingOpenOrders()">Ranking ordenes abiertas</button>
-			      
-			        <a href="#/orders/{{fechaInicio}}">
-			        	<button type="submit" class="btn btn-large btn-primary" ng-click="">Ranking ordenes cerradas</button>
-			        </a>
-			    </form>
-			    
-			    
-                <div ng-show="ordenesCount == 0">
-                  <h3>Ordenes no encontradas</h3>
-                </div>
-                <div ng-show="ordenesCount > 0">
-                  <h3>Ordenes encontradas: {{ordenesCount}}</h3>
-                </div>    		
-				
+				<h2>Ranking Clientes</h2>
+               	
 				<table class="table table-boed table-hover" ng-show="store.orders.length > 0">				    
                      <thead>
                        <tr class="well bviolet">
@@ -40,7 +12,7 @@
 				         </td>
 				       </tr>
                         <tr class="well blightblue">
-                          <th ng-repeat="header in headers">
+                          <th ng-repeat="header in headersCustomer">
                             <sort-by onsort="onSort" sortdir="filterCriteria.sortDir" sortedby="filterCriteria.sortedBy" sortvalue="{{ header.value }}">{{ header.title }}</sort-by>
                           </th>
                         </tr>
@@ -49,16 +21,16 @@
 				    <tr ng-repeat="order in  store.orders" >
 
                         <td class="tdRight">
-				            {{order.ordId}}
+				            {{order.customer.custid}}
 				        </td>
 				        <td>
-				            <b>{{order.comments}}</b><br />
-				        </td>
-                        <td class="tdRight">
-				            {{order.orderDate | date:'dd/MM/yyyy' }}
+				            <b>{{order.customer.fName}}</b><br />
 				        </td>
 				        <td class="tdRight">
-				            {{order.endOrderDate | date:'dd/MM/yyyy' }}
+				            {{order.customer.lName}}
+				        </td>
+                        <td class="tdRight">
+				            {{order.customer.identificacion}}
 				        </td>
 				        <td class="tdRight">
 				            {{order.price | currency}}
@@ -66,7 +38,7 @@
 				          <td class="tdRight">
 				            {{order.status}}
 				        </td>
-				        <td class="tdCenter">
+				        <!-- <td class="tdCenter">
 				        	<a href="#/order/{{order.ordId}}">
                              <button 
 		                        class="btn btn-block btn-success" 
@@ -74,7 +46,7 @@
 		                        Detalle de la Orden
 		                    </button>
 		                    </a>
-                       </td>
+                       </td> -->
 				    </tr>
 				     </tbody>
 				     <tfoot>

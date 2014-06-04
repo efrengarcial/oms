@@ -1,7 +1,7 @@
-define(["angular","controllers", "services/CustomerService","services/Store","services/DataService"], function(angular, controllers){
+define(["angular","controllers", "services/CustomerService","services/Store","services/DataService","services/OrderService"], function(angular, controllers){
 
-    controllers.controller('CustomerController', ['$scope', '$routeParams', '$location','toaster','DataService','CustomerService','Store',
-        function($scope, $routeParams, $location, toaster, DataService,CustomerService,Store) {
+    controllers.controller('CustomerController', ['$scope', '$routeParams', '$location','toaster','DataService','CustomerService','Store','OrderService',
+        function($scope, $routeParams, $location, toaster, DataService,CustomerService,Store,OrderService) {
     	$scope.customers = [];
     	$scope.store = DataService.store;
     	$scope.headersCustomer = [
@@ -108,12 +108,13 @@ define(["angular","controllers", "services/CustomerService","services/Store","se
 	        		toaster.pop('error', "Se debe ingresar una fecha de Fin para la busqueda de ranking de clientes", "");
 	        	}else{
 	        	
-	        	CustomerService.findRankingCustomers.query({
+	        		OrderService.findRankingCustomers.query({
 	        		fechaInicio: $scope.fechaInicio, fechaFin : $scope.fechaFin}).$promise.then(
 	        			//success
 	        			function(data){	  
-	        				 $scope.customers=data;
+	        				 //$scope.customers=data;
 	        				 $scope.store.setOrders(data);
+	        				 $location.path('/customersr');
 	        			    if ($scope.filterCriteria.pageNumber == 1) {
 	        			        $scope.totalPages = 1;//data.TotalPaginas;
 	        			        //$scope.store.setTotalPages($scope.totalPages);

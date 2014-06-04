@@ -17,6 +17,9 @@ define(["angular", "services"], function(angular, services){
                                               findRankingClosedOrders:$resource('/oms/api/v1/orders/findRankingClosedOrders?fechaInicio=:fechaInicio'+
                                             		  '&fechaFin=:fechaFin',
                                                       { fechaInicio: '@fechaInicio', fechaFin: '@fechaFin'}),
+                                                      findRankingCustomers:$resource('/oms/api/v1/orders/findRankingCustomers?fechaInicio=:fechaInicio'+
+                                                    		  '&fechaFin=:fechaFin',
+                                                              { fechaInicio: '@fechaInicio', fechaFin: '@fechaFin'}),
                                               
                                       
                               

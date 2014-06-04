@@ -46,7 +46,7 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                    //controller: 'dashboard',
                     settings: {
                         nav: 1,
-                        content: '<i class="fa fa-dashboard"></i> Dashboard'
+                        content: '<i class="fa fa-dashboard"></i> Inicio'
                     }
                 }
             },		{
@@ -87,6 +87,17 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                 url: '/customer/:ordId',
                 config: {
                     templateUrl: 'app/views/orders/customer.html',                    
+                    controller: 'OrderController',
+                    settings: {
+                        nav: null,
+                        content: '<i class="fa fa-dashboard"></i>Customer'
+                    }
+                }
+            },
+            {
+                url: '/customersr',
+                config: {
+                    templateUrl: 'app/views/customer/consultarRClientes.html',                    
                     controller: 'OrderController',
                     settings: {
                         nav: null,

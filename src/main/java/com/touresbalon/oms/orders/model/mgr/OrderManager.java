@@ -55,7 +55,7 @@ public class OrderManager {
 	public List<Order> findRankingOpenOrders(){
 		return orderDao.findRankingOpenOrders();
 	}
-	public List<Order> findRankingClosedOrders(Date fechaInicial, Date fechaFinal ){
+	public List<Order> findRankingClosedOrders(String fechaInicial, String fechaFinal ){
 		return orderDao.findRankingClosedOrders(fechaInicial,fechaFinal);
 	}
 	
@@ -69,7 +69,7 @@ public class OrderManager {
 		return orderDao.findCancelOrders(idOrden);
 	}
 	
-	public List<Order> findRankingCustomers(Date fechaInicial, Date fechaFinal ){
+	public List<Order> findRankingCustomers(String fechaInicial, String fechaFinal ){
 		return orderDao.findRankingCustomers(fechaInicial,fechaFinal);
 	}
 }

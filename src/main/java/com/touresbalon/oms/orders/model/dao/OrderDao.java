@@ -18,7 +18,7 @@ public interface OrderDao extends CrudRepository<Order, String>,OrderCustomDao {
 	@Query("SELECT o FROM Order o, Item i WHERE (o.ordId = i.order.ordId) and (i.prodId = :codigo)")
     public List<Order> findOrdersByNumberProduct(@Param("codigo") int codigoProducto);
 	
-	@Query("SELECT p FROM Order p WHERE (p.ordId = :idOrden) and (p.status= 'EN_RESERVACION' or p.status= 'EN_VALIDACION'))")
-    public List<Order> findCancelOrders(@Param("idOrden") String idOrden);
+	@Query("SELECT p FROM Order p WHERE (p.ordId = :idOrden) )")
+    public List<Order> findCancelOrders(@Param("idOrden") String idOrden);//and (p.status= 'EN_RESERVACION' or p.status= 'EN_VALIDACION')
 
 }

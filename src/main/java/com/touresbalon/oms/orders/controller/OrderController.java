@@ -82,14 +82,14 @@ public class OrderController {
 	
 	@RequestMapping(value = "/findRankingClosedOrders",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Order> findRankingClosedOrders(Date fechaInicio, Date fechaFinal){
-		return orderMgr.findRankingClosedOrders(fechaInicio, fechaFinal);
+	public List<Order> findRankingClosedOrders(String fechaInicio, String fechaFin){
+		return orderMgr.findRankingClosedOrders(fechaInicio, fechaFin);
 	}
 	
 	@RequestMapping(value = "/findRankingCustomers",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Order> findRankingCustomers(Date fechaInicial, Date fechaFinal ){
-		return orderMgr.findRankingCustomers(fechaInicial, fechaFinal);
+	public List<Order> findRankingCustomers(String fechaInicio, String fechaFin ){
+		return orderMgr.findRankingCustomers(fechaInicio, fechaFin);
 	}
 	
 	

@@ -47,6 +47,34 @@ define(["angular","controllers", "services/OrderService","services/Order","servi
     	                  
     	                  ];
     	
+    	$scope.headersCustomer = [
+    	                  {
+    	                      title: 'Id Cliente',
+    	                      value: 'custid'
+    	                  },
+    	                  {
+    	                      title: 'Nombre',
+    	                      value: ''
+    	                  },
+    	                  {
+    	                      title: 'Apellidos',
+    	                      value: ''
+    	                  },
+    	                  {
+    	                      title: 'Identificación',
+    	                      value: ''
+    	                  },
+    	                  {
+    	                      title: 'Valor facturado en orden',
+    	                      value: ''
+    	                  },
+    	                  {
+    	                      title: 'Estado orden',
+    	                      value: ''
+    	                  },
+    	                  ];
+
+    	
     	$scope.headersItem = [
     	                  {
     	                      title: 'Id Item',
