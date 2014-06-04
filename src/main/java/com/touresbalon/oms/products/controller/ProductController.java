@@ -1,5 +1,6 @@
 package com.touresbalon.oms.products.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,8 +93,17 @@ public class ProductController {
 	
 	@RequestMapping(value = "/createProduct",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Producto saveProduct(Producto product){
-		return producMgr.create(product);
+	public Producto createProduct(String codigoProducto,String nombreProducto,String descripcionProducto,int idEspectaculo,int idTarifaBoleta,int idTarifaTransporte,int idTarifaHospedaje,String rutaImagen,String fechaFinal,String fechaInicial){
+		
+		return  producMgr.saveProduct(codigoProducto,nombreProducto,descripcionProducto,idEspectaculo,idTarifaBoleta,idTarifaTransporte,idTarifaHospedaje,rutaImagen,Calendar.getInstance().getTime(),Calendar.getInstance().getTime());
 	}
+	
+	@RequestMapping(value = "/removeProduct",  method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Boolean removeProduct(int idProducto)
+	{	
+		return  producMgr.delete(idProducto);
+	}
+	
 	
 }

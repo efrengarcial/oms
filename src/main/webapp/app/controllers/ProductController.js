@@ -5,30 +5,62 @@ define(["angular","controllers","services/ProductoService", "services/ProductSer
     	  	$scope.products = [];
     	  	$scope.store = DataService.store;
     		//$scope.producto = new Producto();
-    		 
+    		
     	    $scope.save = function () {
     	    	
-    	    	
-    	    	
-    	    	//ProductService.createProduct($scope.product);
-    	    	ProductFactory.create({product: $scope.product }).$promise.then(
+    	    	ProductService.createProduct.get({codigoProducto: $scope.product.codigoProducto, 
+    	    		nombreProducto:$scope.product.nombreProducto,
+    	    		descripcionProducto:$scope.product.descripcionProducto,
+    	    		idEspectaculo:$scope.product.idEspectaculo.idEspectaculo,
+    	    		idTarifaBoleta:$scope.product.idTarifaBoleta.idTarifaBoleta,
+    	    		idTarifaTransporte:$scope.product.idTarifaTransporte.idTarifaTransporte,
+    	    		idTarifaHospedaje:$scope.product.idTarifaHospedaje.idTarifaHospedaje,
+    	    		rutaImagen:$scope.product.rutaImagen,
+    	    		fechaFinal:$scope.product.fechaFinal,
+    	    		fechaInicial:$scope.product.fechaInicial}).$promise.then(
 		        			//success
 		        			function( data ){	        				
 		        			    $scope.product = data;
+		        			    $location.path('/store');
+		        			    toaster.pop('success', "Su producto se ha agregado correctamente por favor consultar el producto con el identificador: ", data.idProducto);
 		        			},
 		        			//error
 		        			function( error ){ 
 		        			    toaster.pop('error', "Mensaje de Error", error.data);
 		        			}
 		        	);  
-//    	    	$http({
-//    	    		url:'/oms/api/v1/products/create',
-//    	    		method:"POST",
-//    	    		data:{'producto':$scope.product}
-//    	    	}
-//   			);
 
     	    };
+    	    
+    	    
+    	    $scope.update = function () {
+    	    	
+    	    	ProductService.updateProduct.get({idProducto: $scope.product.idProducto,
+    	    		codigoProducto: $scope.product.codigoProducto, 
+    	    		nombreProducto:$scope.product.nombreProducto,
+    	    		descripcionProducto:$scope.product.descripcionProducto,
+    	    		idEspectaculo:$scope.product.idEspectaculo.idEspectaculo,
+    	    		idTarifaBoleta:$scope.product.idTarifaBoleta.idTarifaBoleta,
+    	    		idTarifaTransporte:$scope.product.idTarifaTransporte.idTarifaTransporte,
+    	    		idTarifaHospedaje:$scope.product.idTarifaHospedaje.idTarifaHospedaje,
+    	    		rutaImagen:$scope.product.rutaImagen,
+    	    		fechaFinal:$scope.product.fechaFinal,
+    	    		fechaInicial:$scope.product.fechaInicial}).$promise.then(
+		        			//success
+		        			function( data ){	        				
+		        			    $scope.product = data;
+		        			    $location.path('/store');
+		        			    toaster.pop('success', "Su producto se ha actualizado correctamente por favor consultar el producto con el identificador: ", data.idProducto);
+		        			},
+		        			//error
+		        			function( error ){ 
+		        			    toaster.pop('error', "Mensaje de Error", error.data);
+		        			}
+		        	);  
+
+    	    };
+    	    
+    	    
     	    
 	        $scope.buscarProductos= function () {
 	        	console.log('Buscando productos....');
@@ -91,13 +123,19 @@ define(["angular","controllers","services/ProductoService", "services/ProductSer
 	            
 	        };
 	        
-	        
+	        if ($routeParams.idProducto != null) {
+	            $scope.product = $scope.store.getIdProduct($routeParams.idProducto);
+	        }
 	        
 	        //default criteria that will be sent to the server
 	        $scope.filterCriteria = {
 	            pageNumber: 1,
 	            sortDir: 'asc',
 	            sortedBy: 'Codigo'
+	        };
+	        
+	        $scope.go = function ( path ) {
+	        	  $location.path( path );
 	        };
 	        
         }]);

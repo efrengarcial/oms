@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 
-				<h2>Administracion productos</h2>
+				<h2>Actualizar producto</h2>
 
 
 				<div class="control-group"></div>
@@ -17,51 +17,50 @@
 								<td class="bviolet tdRight" colspan="3">
 							</tr>
 
-							<!--<tr>
+							<tr>
 								<td class="text-right"><b>Id producto</b></td>
-								<td class="text-center"><input type="text" id="idProducto"
+								<td class="text-center"><input type="text" id="product.idProducto"
 									ng-model="product.idProducto" placeholder="Id producto..." /></td>
-							</tr> -->
+							</tr>
 							<tr>
 								<td class="text-right"><b>Codigo producto:</b></td>
 								<td class="text-center"><input type="text"
-									id="codigoProducto" ng-model="product.codigoProducto"
+									id="product.codigoProducto" ng-model="product.codigoProducto"
 									placeholder="Codigo producto..." /></td>
 							</tr>
 							<tr>
 								<td class="text-right"><b>Nombre producto:</b></td>
 								<td class="text-center"><input type="text"
-									id="nombreProducto" ng-model="product.nombreProducto"
+									id="product.nombreProducto" ng-model="product.nombreProducto"
 									placeholder="Nombre producto..." /></td>
 							</tr>
 							<tr>
 								<td class="text-right"><b>Descripcion producto:</b></td>
 								<td class="text-center"><input type="text"
-									id="descripcionProducto" ng-model="product.descripcionProducto"
+									id="product.descripcionProducto" ng-model="product.descripcionProducto"
 									placeholder="Descripcion producto..." /></td>
 							</tr>
 							<tr>
 								<td class="text-right"><b>Ruta imagen:</b></td>
-								<td class="text-center"><input type="text" id="rutaImagen"
+								<td class="text-center"><input type="text" id="product.rutaImagen"
 									ng-model="product.rutaImagen" /></td>
 							</tr>
 							<tr>
 								<td class="text-right"><b>Fecha inicial:</b></td>
 								<td class="text-center"><input type="date"
-									id="fechaInicial" ng-model="product.fechaInicial"
+									id="product.fechaInicial" ng-model="product.fechaInicial"
 									placeholder="Fecha inicial..." /></td>
 							</tr>
 							<tr>
 								<td class="text-right"><b>Fecha final:</b></td>
-								<td class="text-center"><input type="date" id="fechaFinal"
-									ng-model="product.fechaFinal" placeholder="Fecha final..." /></td>
+								<td class="text-center"><input type="date" id="product.fechaFinal" ng-model="product.fechaFinal"/></td>
 							</tr>
 							<tr>
 								<td class="text-right"><b>Espectaculo:</b></td>
 								<td class="text-center">
 								<span  class="nullable">
     								<select ng-model="product.idEspectaculo" ng-options="espectaculo.nombreEspectaculo  for espectaculo in store.espectaculos">
-      									<option value="">-- Seleccione el espectaculo --</option>
+      									<option value="product.espectaculo.idEspectaculo">-- Seleccione el espectaculo --</option>
     								</select>
   								</span><br/>
 								</td>
@@ -71,7 +70,7 @@
 								<td class="text-center">
 								<span  class="nullable">
     								<select ng-model="product.idTarifaBoleta" ng-options="tarifaBoleta.nombreTarifaBoleta  for tarifaBoleta in store.tarifaboletas">
-      									<option value="">-- Seleccione la tarifa Boleta --</option>
+      									<option value="product.tarifaBoleta.idTarifaBoleta">-- Seleccione la tarifa Boleta --</option>
     								</select>
   								</span><br/>
 								</td>
@@ -81,7 +80,7 @@
 								<td class="text-center">
 								<span  class="nullable">
     								<select ng-model="product.idTarifaTransporte" ng-options="transporte.nombreTarifaTransporte  for transporte in store.tarifatransporte">
-      									<option value="">-- Seleccione la tarifa Transporte --</option>
+      									<option value="product.tarifaTransporte.idTarifaTransporte">-- Seleccione la tarifa Transporte --</option>
     								</select>
   								</span><br/>
 								</td>
@@ -91,7 +90,7 @@
 								<td class="text-center">
 								<span  class="nullable">
     								<select ng-model="product.idTarifaHospedaje" ng-options="hospedaje.nombreTarifaHospedaje  for hospedaje in store.tarifahospedaje">
-      									<option value="">-- Seleccione la tarifa Hospedaje --</option>
+      									<option value="product.tarifaHospedaje.idTarifaHospedaje">-- Seleccione la tarifa Hospedaje --</option>
     								</select>
   								</span><br/>
 								</td>
@@ -103,8 +102,8 @@
 		            <div class="col-md-3">
 		                <button 
 		                    class="btn btn-block btn-success" 
-		                    ng-click="save(product)">
-		                    <i class="fa fa-shopping-cart fa-lg icon-white" /> Crear Producto
+		                    ng-click="update(product)">
+		                    <i class="fa fa-shopping-cart fa-lg icon-white" /> Actualizar Producto
 		                </button>
 		                <button 
 		                    class="btn btn-block btn-danger" ng-click="go('/store')" >

@@ -102,6 +102,12 @@ define(["angular","controllers", "services/CustomerService","services/Store","se
 	        
 	        $scope.rankingCustomers= function () {
 	        	console.log('Buscando clientes....');
+	        	if ($scope.fechaInicio ==null || $scope.fechaInicio==""){
+	        		toaster.pop('error', "Se debe ingresar una fecha de inicio para la busqueda del ranking de clientes", "");
+	        	}else if ($scope.fechaFin ==null || $scope.fechaFin==""){
+	        		toaster.pop('error', "Se debe ingresar una fecha de Fin para la busqueda de ranking de clientes", "");
+	        	}else{
+	        	
 	        	CustomerService.findRankingCustomers.query({
 	        		fechaInicio: $scope.fechaInicio, fechaFin : $scope.fechaFin}).$promise.then(
 	        			//success
@@ -125,9 +131,11 @@ define(["angular","controllers", "services/CustomerService","services/Store","se
 	        			    //$scope.store.setTotalPages(0);
 	        			    //$scope.store.setProductosCount(0);
 	        			}
-	        	); 
+	        	);
 	        	toaster.pop('success', "Ranking de clientes", "");
 	        	$scope.selectPage(1);
+	        }
+	        
 	        };
 	        
 	        //called when navigate to another page in the pagination

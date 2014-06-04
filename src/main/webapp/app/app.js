@@ -152,10 +152,10 @@ define("app",["angular", "angular-resource", "angular-route","ng-grid","ui-boots
                 }
             }
             ,   {
-                url: '/products/:IdProducto',
+                url: '/products/:idProducto',
                 config: {
-                    templateUrl: 'app/views/productos/product.html',                    
-                    controller: 'StoreController',
+                    templateUrl: 'app/views/productos/editproducto.html',                    
+                    controller: 'ProductController',
                     settings: {
                         nav: null,
                         content: '<i class="fa fa-dashboard"></i> xxxxxxx'

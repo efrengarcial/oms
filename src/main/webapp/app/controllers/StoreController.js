@@ -109,6 +109,26 @@ define(["angular", "controllers", "services/DataService", "services/ShoppingCart
 	        			}
 	        	);      	
 	        };
+	        
+	        $scope.remove = function (idProducto) {
+    	    	ProductService.removeProduct.get({idProducto:idProducto}).$promise.then(
+		        			//success
+		        			function( data ){	        				
+		        			    toaster.pop('success', "El producto se ha removido", "");
+		        			    
+		        			    for(i in $scope.store.productos) {
+		        		            if($scope.store.productos[i].idProducto == idProducto) {
+		        		            	$scope.store.productos.splice(i,1);
+		        		              }
+		        		        }
+		        			    go('/store');
+		        			},
+		        			//error
+		        			function( error ){ 
+		        			    toaster.pop('error', "Mensaje de Error", error.data);
+		        			}
+		        	);  
+    	    };
 
             //called when navigate to another page in the pagination
 	        $scope.selectPage = function (page) {
@@ -155,6 +175,7 @@ define(["angular", "controllers", "services/DataService", "services/ShoppingCart
 	        	);      	
 	        } 
 	        $scope.init();
+	        
 	        $scope.go = function ( path ) {
 	        	  $location.path( path );
 	        };
@@ -169,6 +190,10 @@ define(["angular", "controllers", "services/DataService", "services/ShoppingCart
                         toaster.pop('error', "Mensaje de Error", error.data);
                         console.log(data);
                     });   
+	        };
+	        
+	        if ($routeParams.idProducto != null) {
+	            $scope.product = $scope.store.getIdProduct($routeParams.idProducto);
 	        }
 	        
 	        $scope.buscarProductos= function () {

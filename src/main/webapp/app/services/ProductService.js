@@ -11,15 +11,44 @@ define(["angular", "services"], function(angular, services){
     		
     		findAllTarifaHospedaje :$resource('/oms/api/v1/products/findAllTarifaHospedaje',{}),
     		
-    		createProduct :$resource('/oms/api/v1/products/createProduct',{producto:"@product"}),
-    		
+    		createProduct :$resource('/oms/api/v1/products/createProduct?&codigoProducto=:codigoProducto'+
+                    '&nombreProducto=:nombreProducto&descripcionProducto=:descripcionProducto&idEspectaculo=:idEspectaculo&idTarifaBoleta=:idTarifaBoleta&idTarifaTransporte=:idTarifaTransporte&idTarifaHospedaje=:idTarifaHospedaje&rutaImagen=:rutaImagen&fechaFinal=:fechaFinal&fechaInicial=:fechaInicial',
+    				{codigoProducto: '@codigoProducto', 
+                	nombreProducto: '@nombreProducto', 
+                	descripcionProducto: '@descripcionProducto',
+                	idEspectaculo: '@idEspectaculo',
+                	idTarifaBoleta:"@idTarifaBoleta",
+                	idTarifaTransporte:"@idTarifaTransporte",
+                	idTarifaHospedaje:"@idTarifaHospedaje",
+                	rutaImagen:"@rutaImagen",
+                	fechaFinal:"@fechaFinal",
+                	fechaInicial:"@fechaInicial"
+    					}),
+					updateProduct :$resource('/oms/api/v1/products/updateProduct?idProducto=:idProducto&codigoProducto=:codigoProducto'+
+		                    '&nombreProducto=:nombreProducto&descripcionProducto=:descripcionProducto&idEspectaculo=:idEspectaculo&idTarifaBoleta=:idTarifaBoleta&idTarifaTransporte=:idTarifaTransporte&idTarifaHospedaje=:idTarifaHospedaje&rutaImagen=:rutaImagen&fechaFinal=:fechaFinal&fechaInicial=:fechaInicial',
+		    				{idProducto: '@idProducto',
+							codigoProducto: '@codigoProducto', 
+		                	nombreProducto: '@nombreProducto', 
+		                	descripcionProducto: '@descripcionProducto',
+		                	idEspectaculo: '@idEspectaculo',
+		                	idTarifaBoleta:"@idTarifaBoleta",
+		                	idTarifaTransporte:"@idTarifaTransporte",
+		                	idTarifaHospedaje:"@idTarifaHospedaje",
+		                	rutaImagen:"@rutaImagen",
+		                	fechaFinal:"@fechaFinal",
+		                	fechaInicial:"@fechaInicial"
+		    					}),		
+		    					
+					removeProduct :$resource('/oms/api/v1/products/removeProduct?idProducto=:idProducto',
+		    				{idProducto: '@idProducto'}),	
+		
     		};
         }
     ]);
     
     services.factory('ProductFactory', function ($resource) {
-        return $resource('/oms/api/v1/productos', {producto:"@product"}, {
-        	      create: { method: 'POST' }
+        return $resource('/oms/api/v1/productos', {}, {
+        	      save: { method: 'POST' }
         });
     	
 //    	$http({

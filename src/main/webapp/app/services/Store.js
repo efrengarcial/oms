@@ -33,6 +33,14 @@
 		    return null;
 		};
 		
+		Store.prototype.getIdProduct = function (idProducto) {
+		    for (var i = 0; i < this.productos.length; i++) {
+		        if (this.productos[i].idProducto == idProducto)
+		            return this.productos[i];
+		    }
+		    return null;
+		};
+		
 		Store.prototype.getItem = function (ordId,itemId) {
 		    for (var i = 0; i < this.orders.length; i++) {
 		        if (this.orders[i].ordId == ordId){

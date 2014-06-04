@@ -1,5 +1,6 @@
 package com.touresbalon.oms.products.model.mgr;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +106,38 @@ public class ProductManager {
 	 */
 	public void queryProducts(String i_cadena){
 		productDao.executeTop5(i_cadena);
+	}
+	
+	public  Producto saveProduct(String codigoProducto,String nombreProducto,String descripcionProducto,int idEspectaculo,int idTarifaBoleta,int idTarifaTransporte,int idTarifaHospedaje,String rutaImagen,Date fechaFinal,Date fechaInicial)
+	{
+		Producto producto = getProducto(codigoProducto,nombreProducto,descripcionProducto,idEspectaculo,idTarifaBoleta,idTarifaTransporte,idTarifaHospedaje,rutaImagen,fechaFinal,fechaInicial);
+		return productDao.save(producto);
+	}
+	
+	public boolean delete(int idProducto)
+	{
+		Producto producto= productDao.findOne(idProducto);
+		productDao.delete(producto);
+		return true;
+	}
+	
+	private Producto getProducto(String codigoProducto,String nombreProducto,String descripcionProducto,int idEspectaculo,int idTarifaBoleta,int idTarifaTransporte,int idTarifaHospedaje,String rutaImagen,Date fechaFinal,Date fechaInicial){
+		Producto producto= new Producto();
+		producto.setCodigoProducto(codigoProducto);
+		producto.setNombreProducto(nombreProducto);
+		producto.setDescripcionProducto(descripcionProducto);
+		Espectaculo espectaculo=espectaculoDao.findOne(idEspectaculo);
+		producto.setEspectaculo(espectaculo);
+		TarifaBoleta tarifaBoleta = tarifaBoletaDao.findOne(idTarifaBoleta);
+		producto.setTarifaBoleta(tarifaBoleta);
+		TarifaTransporte tarifaTransporte = tarifaTransporteDao.findOne(idTarifaTransporte);
+		producto.setTarifaTransporte(tarifaTransporte);
+		TarifaHospedaje tarifaHospedaje = tarifaHospedajeDao.findOne(idTarifaHospedaje);
+		producto.setTarifaHospedaje(tarifaHospedaje);
+		producto.setRutaImagen(rutaImagen);
+		producto.setFechaInicial(fechaInicial);
+		producto.setFechaFinal(fechaFinal);
+		return producto;
+		
 	}
 }
